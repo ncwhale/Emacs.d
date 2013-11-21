@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads (auto-complete) "auto-complete/auto-complete" "auto-complete/auto-complete.el"
-;;;;;;  (21133 31609 605215 22000))
+;;;;;;  (21133 50180 128970 931000))
 ;;; Generated autoloads from auto-complete/auto-complete.el
 
 (autoload 'auto-complete "auto-complete/auto-complete" "\
@@ -26,6 +26,39 @@ Emacs color theme desert, inspired by VIM desert theme.
 
 ;;;***
 
+;;;### (autoloads (color-theme-solarized-light color-theme-solarized-dark
+;;;;;;  color-theme-solarized) "color-theme-solarized/color-theme-solarized"
+;;;;;;  "color-theme-solarized/color-theme-solarized.el" (21133 35480
+;;;;;;  419484 323000))
+;;; Generated autoloads from color-theme-solarized/color-theme-solarized.el
+
+(autoload 'color-theme-solarized "color-theme-solarized/color-theme-solarized" "\
+Color theme by Ethan Schoonover, created 2011-03-24.
+Ported to Emacs by Greg Pfeil, http://ethanschoonover.com/solarized.
+
+\(fn MODE)" t nil)
+
+(autoload 'color-theme-solarized-dark "color-theme-solarized/color-theme-solarized" "\
+
+
+\(fn)" t nil)
+
+(autoload 'color-theme-solarized-light "color-theme-solarized/color-theme-solarized" "\
+
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads nil "color-theme-solarized/solarized-definitions"
+;;;;;;  "color-theme-solarized/solarized-definitions.el" (21133 35480
+;;;;;;  419484 323000))
+;;; Generated autoloads from color-theme-solarized/solarized-definitions.el
+
+(when (boundp 'custom-theme-load-path) (add-to-list 'custom-theme-load-path (file-name-as-directory (file-name-directory load-file-name))))
+
+;;;***
+
 ;;;### (autoloads nil "color-theme-tangotango/tangotango-theme" "color-theme-tangotango/tangotango-theme.el"
 ;;;;;;  (21133 33813 199171 282000))
 ;;; Generated autoloads from color-theme-tangotango/tangotango-theme.el
@@ -35,7 +68,7 @@ Emacs color theme desert, inspired by VIM desert theme.
 ;;;***
 
 ;;;### (autoloads nil "color-theme-zenburn/zenburn-theme" "color-theme-zenburn/zenburn-theme.el"
-;;;;;;  (21133 32567 568456 556000))
+;;;;;;  (21133 50230 474957 405000))
 ;;; Generated autoloads from color-theme-zenburn/zenburn-theme.el
 
 (and load-file-name (boundp 'custom-theme-load-path) (add-to-list 'custom-theme-load-path (file-name-as-directory (file-name-directory load-file-name))))
@@ -190,7 +223,7 @@ Initialize the color theme package by loading color-theme-libraries.
 ;;;;;;  colour-region-previous colour-region-next colour-region-func
 ;;;;;;  colour-region-remove colour-region-toggle-text colour-region-toggle-overlay
 ;;;;;;  colour-region-store-text colour-region-new) "colour-region/colour-region"
-;;;;;;  "colour-region/colour-region.el" (21133 32552 521809 92000))
+;;;;;;  "colour-region/colour-region.el" (21133 50209 681905 33000))
 ;;; Generated autoloads from colour-region/colour-region.el
 
 (autoload 'colour-region-new "colour-region/colour-region" "\
@@ -357,6 +390,22 @@ If FILENAME is not provided then the colour-regions are stored in the filename r
 the colour-region-default-save-file function.
 
 \(fn &optional FILENAME)" t nil)
+
+;;;***
+
+;;;### (autoloads (css-mode) "css-mode/css-mode" "css-mode/css-mode.el"
+;;;;;;  (21133 48333 469455 122000))
+;;; Generated autoloads from css-mode/css-mode.el
+(add-to-list 'auto-mode-alist '("\\.css\\'" . css-mode))
+
+(autoload 'css-mode "css-mode/css-mode" "\
+Major mode for editing CSS source code.
+
+Key bindings:
+
+\\{css-mode-map}
+
+\(fn)" t nil)
 
 ;;;***
 
@@ -1068,6 +1117,139 @@ Display weather report.
 
 ;;;***
 
+;;;### (autoloads (highline-split-window-horizontally highline-split-window-vertically
+;;;;;;  highline-view-mode highline-mode global-highline-mode highline-customize)
+;;;;;;  "highline/highline" "highline/highline.el" (21133 44838 538954
+;;;;;;  709000))
+;;; Generated autoloads from highline/highline.el
+
+(autoload 'highline-customize "highline/highline" "\
+Customize highline group.
+
+\(fn)" t nil)
+
+(defvar global-highline-mode nil "\
+Non-nil if Global-Highline mode is enabled.
+See the command `global-highline-mode' for a description of this minor mode.
+Setting this variable directly does not take effect;
+either customize it (see the info node `Easy Customization')
+or call the function `global-highline-mode'.")
+
+(custom-autoload 'global-highline-mode "highline/highline" nil)
+
+(autoload 'global-highline-mode "highline/highline" "\
+Toggle global minor mode to highlight line about point (HL on modeline).
+
+If ARG is null, toggle global highline mode.
+If ARG is a number and is greater than zero, turn on
+global highline mode; otherwise, turn off global highline mode.
+Only useful with a windowing system.
+
+\(fn &optional ARG)" t nil)
+
+(autoload 'highline-mode "highline/highline" "\
+Toggle local minor mode to highlight the line about point (hl on modeline).
+
+If ARG is null, toggle local highline mode.
+If ARG is a number and is greater than zero, turn on
+local highline mode; otherwise, turn off local highline mode.
+Only useful with a windowing system.
+
+\(fn &optional ARG)" t nil)
+
+(autoload 'highline-view-mode "highline/highline" "\
+Toggle indirect mode to highlight current line in buffer (Ihl on modeline).
+
+If ARG is null, toggle indirect highline mode.
+If ARG is a number and is greater than zero, turn on
+indirect highline mode; otherwise, turn off indirect highline mode.
+Only useful with a windowing system.
+
+Indirect highline (`highline-view-mode') is useful when you wish
+to have various \"visions\" of the same buffer.
+
+Indirect highline uses an indirect buffer to get the \"vision\" of the buffer.
+So, if you kill an indirect buffer, the base buffer is not affected; if you
+kill the base buffer, all indirect buffer related with the base buffer is
+automagically killed.  Also, any text insertion/deletion in any indirect or base
+buffer is updated in all related buffers.
+
+See `highline-view-prefix'.
+
+\(fn &optional ARG)" t nil)
+
+(autoload 'highline-split-window-vertically "highline/highline" "\
+Split window vertically then turn on indirect highline mode.
+
+See `split-window-vertically' for explanation about ARG and for
+documentation.
+
+See also `highline-view-mode' for documentation.
+
+\(fn &optional ARG)" t nil)
+
+(autoload 'highline-split-window-horizontally "highline/highline" "\
+Split window horizontally then turn on indirect highline mode.
+
+See `split-window-horizontally' for explanation about ARG and for
+documentation.
+
+See also `highline-view-mode' for documentation.
+
+\(fn &optional ARG)" t nil)
+
+;;;***
+
+;;;### (autoloads (idle-highlight-mode) "idle-highlight-mode/idle-highlight-mode"
+;;;;;;  "idle-highlight-mode/idle-highlight-mode.el" (21133 50375
+;;;;;;  482996 457000))
+;;; Generated autoloads from idle-highlight-mode/idle-highlight-mode.el
+
+(autoload 'idle-highlight-mode "idle-highlight-mode/idle-highlight-mode" "\
+Idle-Highlight Minor Mode
+
+\(fn &optional ARG)" t nil)
+
+;;;***
+
+;;;### (autoloads (nxml-web-mode html-erb-mode) "mmm-mode/mmm-erb"
+;;;;;;  "mmm-mode/mmm-erb.el" (21133 47290 328213 470000))
+;;; Generated autoloads from mmm-mode/mmm-erb.el
+
+(autoload 'html-erb-mode "mmm-mode/mmm-erb" "\
+
+
+\(fn)" t nil)
+
+(autoload 'nxml-web-mode "mmm-mode/mmm-erb" "\
+
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (mmm-add-classes) "mmm-mode/mmm-vars" "mmm-mode/mmm-vars.el"
+;;;;;;  (21133 47290 331546 754000))
+;;; Generated autoloads from mmm-mode/mmm-vars.el
+
+(autoload 'mmm-add-classes "mmm-mode/mmm-vars" "\
+Add the submode classes CLASSES to `mmm-classes-alist'.
+
+\(fn CLASSES)" nil nil)
+
+;;;***
+
+;;;### (autoloads (multi-web-mode) "multi-web-mode/multi-web-mode"
+;;;;;;  "multi-web-mode/multi-web-mode.el" (21133 47243 22242 624000))
+;;; Generated autoloads from multi-web-mode/multi-web-mode.el
+
+(autoload 'multi-web-mode "multi-web-mode/multi-web-mode" "\
+Enables the multi web mode chunk detection and indentation
+
+\(fn &optional ARG)" t nil)
+
+;;;***
+
 ;;;### (autoloads (php-mode php-file-patterns php-mode-to-use) "php-mode-improved/php-mode-improved"
 ;;;;;;  "php-mode-improved/php-mode-improved.el" (21133 33805 719239
 ;;;;;;  504000))
@@ -1185,13 +1367,15 @@ See `yas-minor-mode' for more information on Yas minor mode.
 ;;;;;;  "color-theme-ir-black/color-theme-ir-black.el" "color-theme-mac-classic/color-theme-mac-classic.el"
 ;;;;;;  "color-theme-maker/color-theme-maker.el" "color-theme-railscasts/color-theme-railscasts.el"
 ;;;;;;  "color-theme-reg/color-theme-reg.el" "color-theme-sanityinc/color-theme-sanityinc.el"
-;;;;;;  "color-theme-subdued/color-theme-subdued.el" "color-theme-tango-2/color-theme-tango-2.el"
-;;;;;;  "color-theme-tango/color-theme-tango.el" "color-theme-tangotango/color-theme-tangotango.el"
-;;;;;;  "color-theme-twilight/color-theme-twilight.el" "color-theme-ubuntu2/color-theme-ubuntu2.el"
-;;;;;;  "color-theme-vim-insert-mode/color-theme-vim-insert-mode.el"
+;;;;;;  "color-theme-solarized/color-theme-solarized-pkg.el" "color-theme-solarized/solarized-dark-theme.el"
+;;;;;;  "color-theme-solarized/solarized-light-theme.el" "color-theme-subdued/color-theme-subdued.el"
+;;;;;;  "color-theme-tango-2/color-theme-tango-2.el" "color-theme-tango/color-theme-tango.el"
+;;;;;;  "color-theme-tangotango/color-theme-tangotango.el" "color-theme-twilight/color-theme-twilight.el"
+;;;;;;  "color-theme-ubuntu2/color-theme-ubuntu2.el" "color-theme-vim-insert-mode/color-theme-vim-insert-mode.el"
 ;;;;;;  "color-theme-x/color-theme-x.el" "color-theme-zen-and-art/zen-and-art.el"
-;;;;;;  "color-theme/color-theme-autoloads.el" "css-palette/css-palette.el"
-;;;;;;  "el-get/el-get-autoloads.el" "el-get/el-get-build.el" "el-get/el-get-byte-compile.el"
+;;;;;;  "color-theme/color-theme-autoloads.el" "css-mode/css-mode-autoloads.el"
+;;;;;;  "css-mode/css-mode-pkg.el" "css-palette/css-palette.el" "el-get/el-get-autoloads.el"
+;;;;;;  "el-get/el-get-build.el" "el-get/el-get-byte-compile.el"
 ;;;;;;  "el-get/el-get-core.el" "el-get/el-get-custom.el" "el-get/el-get-dependencies.el"
 ;;;;;;  "el-get/el-get-install.el" "el-get/el-get-methods.el" "el-get/el-get-notify.el"
 ;;;;;;  "el-get/el-get-recipes.el" "el-get/el-get-status.el" "emacs-async/async-file.el"
@@ -1202,10 +1386,16 @@ See `yas-minor-mode' for more information on Yas minor mode.
 ;;;;;;  "emacs-w3m/w3m-image.el" "emacs-w3m/w3m-load.el" "emacs-w3m/w3m-mail.el"
 ;;;;;;  "emacs-w3m/w3m-proc.el" "emacs-w3m/w3m-rss.el" "emacs-w3m/w3m-tabmenu.el"
 ;;;;;;  "emacs-w3m/w3m-ucs.el" "emacs-w3m/w3m-util.el" "emacs-w3m/w3m-xmas.el"
-;;;;;;  "emacs-w3m/w3mhack.el" "fuzzy/fuzzy.el" "php-completion/php-completion.el"
+;;;;;;  "emacs-w3m/w3mhack.el" "flyphpcs/flyphpcs.el" "fuzzy/fuzzy.el"
+;;;;;;  "mmm-mode/mmm-auto.el" "mmm-mode/mmm-class.el" "mmm-mode/mmm-cmds.el"
+;;;;;;  "mmm-mode/mmm-compat.el" "mmm-mode/mmm-cweb.el" "mmm-mode/mmm-defaults.el"
+;;;;;;  "mmm-mode/mmm-mason.el" "mmm-mode/mmm-mode.el" "mmm-mode/mmm-myghty.el"
+;;;;;;  "mmm-mode/mmm-noweb.el" "mmm-mode/mmm-region.el" "mmm-mode/mmm-rpm.el"
+;;;;;;  "mmm-mode/mmm-sample.el" "mmm-mode/mmm-univ.el" "mmm-mode/mmm-utils.el"
+;;;;;;  "multi-web-mode/mweb-example-config.el" "php-completion/php-completion.el"
 ;;;;;;  "php-doc/php-doc.el" "php-mode/php-mode-test.el" "popup/popup.el"
 ;;;;;;  "yasnippet-config/yasnippet-config.el" "yasnippet/yasnippet-debug.el"
-;;;;;;  "yasnippet/yasnippet-tests.el") (21133 33873 183870 18000))
+;;;;;;  "yasnippet/yasnippet-tests.el") (21133 50375 815550 683000))
 
 ;;;***
 
