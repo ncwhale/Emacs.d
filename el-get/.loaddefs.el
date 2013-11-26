@@ -3,14 +3,502 @@
 ;;; Code:
 
 
+;;;### (autoloads (turn-on-bib-cite bib-cite-minor-mode) "auctex/bib-cite"
+;;;;;;  "auctex/bib-cite.el" (18341 54637 0 0))
+;;; Generated autoloads from auctex/bib-cite.el
+
+(autoload 'bib-cite-minor-mode "auctex/bib-cite" "\
+Toggle bib-cite mode.
+When bib-cite mode is enabled, citations, labels and refs are highlighted
+when the mouse is over them.  Clicking on these highlights with [mouse-2]
+runs bib-find, and [mouse-3] runs bib-display.
+
+\(fn ARG)" t nil)
+
+(autoload 'turn-on-bib-cite "auctex/bib-cite" "\
+Unconditionally turn on Bib Cite mode.
+
+\(fn)" nil nil)
+
+;;;***
+
+;;;### (autoloads (context-mode) "auctex/context" "auctex/context.el"
+;;;;;;  (20911 47549 0 0))
+;;; Generated autoloads from auctex/context.el
+
+(defalias 'ConTeXt-mode 'context-mode)
+
+(autoload 'context-mode "auctex/context" "\
+Major mode in AUCTeX for editing ConTeXt files.
+
+Special commands:
+\\{ConTeXt-mode-map}
+
+Entering `context-mode' calls the value of `text-mode-hook',
+then the value of `TeX-mode-hook', and then the value
+of ConTeXt-mode-hook.
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (context-en-mode) "auctex/context-en" "auctex/context-en.el"
+;;;;;;  (19618 16518 0 0))
+;;; Generated autoloads from auctex/context-en.el
+
+(autoload 'context-en-mode "auctex/context-en" "\
+Major mode for editing files for ConTeXt using its english interface.
+
+Special commands:
+\\{ConTeXt-mode-map}
+
+Entering `context-mode' calls the value of `text-mode-hook',
+then the value of TeX-mode-hook, and then the value
+of context-mode-hook.
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (context-nl-mode) "auctex/context-nl" "auctex/context-nl.el"
+;;;;;;  (19618 16529 0 0))
+;;; Generated autoloads from auctex/context-nl.el
+
+(autoload 'context-nl-mode "auctex/context-nl" "\
+Major mode for editing files for ConTeXt using its dutch interface.
+
+Special commands:
+\\{ConTeXt-mode-map}
+
+Entering `context-mode' calls the value of `text-mode-hook',
+then the value of TeX-mode-hook, and then the value
+of context-mode-hook.
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (font-latex-setup) "auctex/font-latex" "auctex/font-latex.el"
+;;;;;;  (20700 41370 0 0))
+;;; Generated autoloads from auctex/font-latex.el
+
+(autoload 'font-latex-setup "auctex/font-latex" "\
+Setup this buffer for LaTeX font-lock.  Usually called from a hook.
+
+\(fn)" nil nil)
+
+;;;***
+
+;;;### (autoloads (docTeX-mode TeX-latex-mode BibTeX-auto-store)
+;;;;;;  "auctex/latex" "auctex/latex.el" (20826 34613 0 0))
+;;; Generated autoloads from auctex/latex.el
+
+(autoload 'BibTeX-auto-store "auctex/latex" "\
+This function should be called from `bibtex-mode-hook'.
+It will setup BibTeX to store keys in an auto file.
+
+\(fn)" nil nil)
+
+(add-to-list 'auto-mode-alist '("\\.drv\\'" . latex-mode))
+
+(autoload 'TeX-latex-mode "auctex/latex" "\
+Major mode in AUCTeX for editing LaTeX files.
+See info under AUCTeX for full documentation.
+
+Special commands:
+\\{LaTeX-mode-map}
+
+Entering LaTeX mode calls the value of `text-mode-hook',
+then the value of `TeX-mode-hook', and then the value
+of `LaTeX-mode-hook'.
+
+\(fn)" t nil)
+
+(add-to-list 'auto-mode-alist '("\\.dtx\\'" . doctex-mode))
+
+(autoload 'docTeX-mode "auctex/latex" "\
+Major mode in AUCTeX for editing .dtx files derived from `LaTeX-mode'.
+Runs `LaTeX-mode', sets a few variables and
+runs the hooks in `docTeX-mode-hook'.
+
+\(fn)" t nil)
+
+(defalias 'TeX-doctex-mode 'docTeX-mode)
+
+;;;***
+
+;;;### (autoloads (multi-prompt-key-value multi-prompt) "auctex/multi-prompt"
+;;;;;;  "auctex/multi-prompt.el" (20770 16651 0 0))
+;;; Generated autoloads from auctex/multi-prompt.el
+
+(autoload 'multi-prompt "auctex/multi-prompt" "\
+Completing prompt for a list of strings.  
+The first argument SEPARATOR should be the string (of length 1) to
+separate the elements in the list.  The second argument UNIQUE should
+be non-nil, if each element must be unique.  The remaining elements
+are the arguments to `completing-read'.  See that.
+
+\(fn SEPARATOR UNIQUE PROMPT TABLE &optional MP-PREDICATE REQUIRE-MATCH INITIAL HISTORY)" nil nil)
+
+(autoload 'multi-prompt-key-value "auctex/multi-prompt" "\
+Read multiple strings, with completion and key=value support.
+PROMPT is a string to prompt with, usually ending with a colon
+and a space.  TABLE is an alist.  The car of each element should
+be a string representing a key and the optional cdr should be a
+list with strings to be used as values for the key.
+
+See the documentation for `completing-read' for details on the
+other arguments: PREDICATE, REQUIRE-MATCH, INITIAL-INPUT, HIST,
+DEF, and INHERIT-INPUT-METHOD.
+
+The return value is the string as entered in the minibuffer.
+
+\(fn PROMPT TABLE &optional PREDICATE REQUIRE-MATCH INITIAL-INPUT HIST DEF INHERIT-INPUT-METHOD)" nil nil)
+
+;;;***
+
+;;;### (autoloads (ams-tex-mode TeX-plain-tex-mode) "auctex/plain-tex"
+;;;;;;  "auctex/plain-tex.el" (19707 64159 0 0))
+;;; Generated autoloads from auctex/plain-tex.el
+
+(autoload 'TeX-plain-tex-mode "auctex/plain-tex" "\
+Major mode in AUCTeX for editing plain TeX files.
+See info under AUCTeX for documentation.
+
+Special commands:
+\\{plain-TeX-mode-map}
+
+Entering `plain-tex-mode' calls the value of `text-mode-hook',
+then the value of `TeX-mode-hook', and then the value
+of plain-TeX-mode-hook.
+
+\(fn)" t nil)
+
+(autoload 'ams-tex-mode "auctex/plain-tex" "\
+Major mode in AUCTeX for editing AmS-TeX files.
+See info under AUCTeX for documentation.
+
+Special commands:
+\\{AmSTeX-mode-map}
+
+Entering AmS-tex-mode calls the value of `text-mode-hook',
+then the value of `TeX-mode-hook', and then the value
+of `AmS-TeX-mode-hook'.
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (preview-report-bug LaTeX-preview-setup preview-install-styles)
+;;;;;;  "auctex/preview/preview" "auctex/preview/preview.el" (20669
+;;;;;;  44510 0 0))
+;;; Generated autoloads from auctex/preview/preview.el
+
+(autoload 'preview-install-styles "auctex/preview/preview" "\
+Installs the TeX style files into a permanent location.
+This must be in the TeX search path.  If FORCE-OVERWRITE is greater
+than 1, files will get overwritten without query, if it is less
+than 1 or nil, the operation will fail.  The default of 1 for interactive
+use will query.
+
+Similarly FORCE-SAVE can be used for saving
+`preview-TeX-style-dir' to record the fact that the uninstalled
+files are no longer needed in the search path.
+
+\(fn DIR &optional FORCE-OVERWRITE FORCE-SAVE)" t nil)
+
+(autoload 'LaTeX-preview-setup "auctex/preview/preview" "\
+Hook function for embedding the preview package into AUCTeX.
+This is called by `LaTeX-mode-hook' and changes AUCTeX variables
+to add the preview functionality.
+
+\(fn)" nil nil)
+ (add-hook 'LaTeX-mode-hook #'LaTeX-preview-setup)
+
+(autoload 'preview-report-bug "auctex/preview/preview" "\
+Report a bug in the preview-latex package.
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (TeX-submit-bug-report TeX-auto-generate-global
+;;;;;;  TeX-auto-generate TeX-tex-mode) "auctex/tex" "auctex/tex.el"
+;;;;;;  (20818 43415 0 0))
+;;; Generated autoloads from auctex/tex.el
+
+(autoload 'TeX-tex-mode "auctex/tex" "\
+Major mode in AUCTeX for editing TeX or LaTeX files.
+Tries to guess whether this file is for plain TeX or LaTeX.
+
+The algorithm is as follows:
+
+   1) if the file is empty or `TeX-force-default-mode' is not set to nil,
+      `TeX-default-mode' is chosen
+   2) If \\documentstyle or \\begin{, \\section{, \\part{ or \\chapter{ is
+      found, `latex-mode' is selected.
+   3) Otherwise, use `plain-tex-mode'
+
+\(fn)" t nil)
+
+(autoload 'TeX-auto-generate "auctex/tex" "\
+Generate style file for TEX and store it in AUTO.
+If TEX is a directory, generate style files for all files in the directory.
+
+\(fn TEX AUTO)" t nil)
+
+(autoload 'TeX-auto-generate-global "auctex/tex" "\
+Create global auto directory for global TeX macro definitions.
+
+\(fn)" t nil)
+
+(autoload 'TeX-submit-bug-report "auctex/tex" "\
+Submit a bug report on AUCTeX via mail.
+
+Don't hesitate to report any problems or inaccurate documentation.
+
+If you don't have setup sending mail from (X)Emacs, please copy the
+output buffer into your mail program, as it gives us important
+information about your AUCTeX version and AUCTeX configuration.
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (LaTeX-install-toolbar TeX-install-toolbar) "auctex/tex-bar"
+;;;;;;  "auctex/tex-bar.el" (20690 53662 0 0))
+;;; Generated autoloads from auctex/tex-bar.el
+
+(autoload 'TeX-install-toolbar "auctex/tex-bar" "\
+Install toolbar buttons for TeX mode.
+
+\(fn)" t nil)
+
+(autoload 'LaTeX-install-toolbar "auctex/tex-bar" "\
+Install toolbar buttons for LaTeX mode.
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads nil "auctex/tex-fold" "auctex/tex-fold.el" (20669
+;;;;;;  44509 0 0))
+;;; Generated autoloads from auctex/tex-fold.el
+ (autoload 'TeX-fold-mode "tex-fold" "Minor mode for hiding and revealing macros and environments." t)
+
+(defalias 'tex-fold-mode 'TeX-fold-mode)
+
+;;;***
+
+;;;### (autoloads (tex-font-setup) "auctex/tex-font" "auctex/tex-font.el"
+;;;;;;  (18341 54636 0 0))
+;;; Generated autoloads from auctex/tex-font.el
+
+(autoload 'tex-font-setup "auctex/tex-font" "\
+Setup font lock support for TeX.
+
+\(fn)" nil nil)
+
+;;;***
+
+;;;### (autoloads (TeX-texinfo-mode) "auctex/tex-info" "auctex/tex-info.el"
+;;;;;;  (20659 23181 0 0))
+;;; Generated autoloads from auctex/tex-info.el
+
+(defalias 'Texinfo-mode 'texinfo-mode)
+
+(autoload 'TeX-texinfo-mode "auctex/tex-info" "\
+Major mode in AUCTeX for editing Texinfo files.
+
+Special commands:
+\\{Texinfo-mode-map}
+
+Entering Texinfo mode calls the value of `text-mode-hook'  and then the
+value of `Texinfo-mode-hook'.
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (japanese-latex-mode japanese-plain-tex-mode) "auctex/tex-jp"
+;;;;;;  "auctex/tex-jp.el" (20669 44509 0 0))
+;;; Generated autoloads from auctex/tex-jp.el
+
+(autoload 'japanese-plain-tex-mode "auctex/tex-jp" "\
+Major mode in AUCTeX for editing Japanese plain TeX files.
+Set `japanese-TeX-mode' to t, and enter `TeX-plain-tex-mode'.
+
+\(fn)" t nil)
+
+(autoload 'japanese-latex-mode "auctex/tex-jp" "\
+Major mode in AUCTeX for editing Japanese LaTeX files.
+Set `japanese-TeX-mode' to t, and enter `TeX-latex-mode'.
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (texmathp-match-switch texmathp) "auctex/texmathp"
+;;;;;;  "auctex/texmathp.el" (20733 11542 0 0))
+;;; Generated autoloads from auctex/texmathp.el
+
+(autoload 'texmathp "auctex/texmathp" "\
+Determine if point is inside (La)TeX math mode.
+Returns t or nil.  Additional info is placed into `texmathp-why'.
+The functions assumes that you have (almost) syntactically correct (La)TeX in
+the buffer.
+See the variable `texmathp-tex-commands' about which commands are checked.
+
+\(fn)" t nil)
+
+(autoload 'texmathp-match-switch "auctex/texmathp" "\
+Search backward for any of the math switches.
+Limit searched to BOUND.
+
+\(fn BOUND)" nil nil)
+
+;;;***
+
+;;;### (autoloads nil "auctex/toolbar-x" "auctex/toolbar-x.el" (18580
+;;;;;;  49487 0 0))
+;;; Generated autoloads from auctex/toolbar-x.el
+ (autoload 'toolbarx-install-toolbar "toolbar-x")
+
+;;;***
+
 ;;;### (autoloads (auto-complete) "auto-complete/auto-complete" "auto-complete/auto-complete.el"
-;;;;;;  (21133 50180 128970 931000))
+;;;;;;  (21140 24473 127722 773000))
 ;;; Generated autoloads from auto-complete/auto-complete.el
 
 (autoload 'auto-complete "auto-complete/auto-complete" "\
 Start auto-completion at current point.
 
 \(fn &optional SOURCES)" t nil)
+
+;;;***
+
+;;;### (autoloads (coffee-mode) "coffee-mode/coffee-mode" "coffee-mode/coffee-mode.el"
+;;;;;;  (21133 53403 302860 575000))
+;;; Generated autoloads from coffee-mode/coffee-mode.el
+
+(autoload 'coffee-mode "coffee-mode/coffee-mode" "\
+Major mode for editing CoffeeScript.
+
+\(fn)" t nil)
+
+(add-to-list 'auto-mode-alist '("\\.coffee\\'" . coffee-mode))
+
+(add-to-list 'auto-mode-alist '("\\.iced\\'" . coffee-mode))
+
+(add-to-list 'auto-mode-alist '("Cakefile\\'" . coffee-mode))
+
+(add-to-list 'interpreter-mode-alist '("coffee" . coffee-mode))
+
+;;;***
+
+;;;### (autoloads (col-highlight-flash col-highlight-set-interval
+;;;;;;  col-highlight-toggle-when-idle column-highlight-mode col-highlight-overlay-priority
+;;;;;;  col-highlight-period col-highlight-vline-face-flag col-highlight-show-only
+;;;;;;  column-highlight) "col-highlight/col-highlight" "col-highlight/col-highlight.el"
+;;;;;;  (21140 24624 665395 941000))
+;;; Generated autoloads from col-highlight/col-highlight.el
+
+(let ((loads (get 'column-highlight 'custom-loads))) (if (member '"col-highlight/col-highlight" loads) nil (put 'column-highlight 'custom-loads (cons '"col-highlight/col-highlight" loads))))
+
+(defvar col-highlight-show-only nil "\
+Non-nil means `column-highlight-mode' affects only a section of text.
+This affects `vline-mode' also.
+
+The non-nil value determines the type of text section: paragraph,
+sentence, defun, page...
+
+The actual non-nil value is a forward movement command for the given
+section type, e.g., `forward-paragraph', `end-of-defun'.")
+
+(custom-autoload 'col-highlight-show-only "col-highlight/col-highlight" t)
+
+(defvar col-highlight-vline-face-flag t "\
+*Non-nil means `column-highlight-mode' uses `col-highlight-face'.
+nil means that it uses `vline-face'.")
+
+(custom-autoload 'col-highlight-vline-face-flag "col-highlight/col-highlight" t)
+
+(defvar col-highlight-period 1 "\
+*Number of seconds to highlight the current column.")
+
+(custom-autoload 'col-highlight-period "col-highlight/col-highlight" t)
+
+(defvar col-highlight-overlay-priority 300 "\
+*Priority to use for overlays in `vline-overlay-table'.
+A higher priority can make the vline highlighting appear on top of
+other overlays that might exist.")
+
+(custom-autoload 'col-highlight-overlay-priority "col-highlight/col-highlight" t)
+
+(defface col-highlight '((t (:background "SlateGray3"))) "\
+*Face for current-column highlighting by `column-highlight-mode'.
+Not used if `col-highlight-vline-face-flag' is nil." :group (quote column-highlight) :group (quote faces))
+
+(defvar column-highlight-mode nil "\
+Non-nil if Column-Highlight mode is enabled.
+See the command `column-highlight-mode' for a description of this minor mode.
+Setting this variable directly does not take effect;
+either customize it (see the info node `Easy Customization')
+or call the function `column-highlight-mode'.")
+
+(custom-autoload 'column-highlight-mode "col-highlight/col-highlight" nil)
+
+(autoload 'column-highlight-mode "col-highlight/col-highlight" "\
+Toggle highlighting the current column.
+With ARG, turn column highlighting on if and only if ARG is positive.
+
+Column-Highlight mode uses the functions
+`col-highlight-unhighlight' and `col-highlight-highlight'
+on `pre-command-hook' and `post-command-hook'.
+
+\(fn &optional ARG)" t nil)
+
+(defalias 'toggle-highlight-column-when-idle 'col-highlight-toggle-when-idle)
+
+(autoload 'col-highlight-toggle-when-idle "col-highlight/col-highlight" "\
+Turn on or off highlighting the current column when Emacs is idle.
+With prefix argument, turn on if ARG > 0; else turn off.
+
+\(fn &optional ARG)" t nil)
+
+(autoload 'col-highlight-set-interval "col-highlight/col-highlight" "\
+Set the delay before highlighting current column when Emacs is idle.
+Whenever Emacs has been idle for N seconds, the current column is
+highlighted using the face that is the value of variable
+`col-highlight-face'.
+
+To turn on or off automatically highlighting the current column
+when Emacs is idle, use `\\[toggle-highlight-column-when-idle].
+
+\(fn N)" t nil)
+
+(defalias 'flash-column-highlight 'col-highlight-flash)
+
+(autoload 'col-highlight-flash "col-highlight/col-highlight" "\
+Highlight the current column for `col-highlight-period' seconds.
+With a prefix ARG, highlight for that many seconds.
+
+\(fn &optional ARG)" t nil)
+
+;;;***
+
+;;;### (autoloads (color-browser) "color-browser/color-browser" "color-browser/color-browser.el"
+;;;;;;  (21140 24636 475214 341000))
+;;; Generated autoloads from color-browser/color-browser.el
+
+(autoload 'color-browser "color-browser/color-browser" "\
+*Pop up a frame containing a color theme design tool.
+If PALETTE-BUILDER is t, this tool consists of two color palette
+buffers (see `cb-build-color-palette-buffer').  Otherwise it consists
+of on Color Palette buffer and one face group buffer (see
+`cb-build-face-group-buffer')
+
+\(fn &optional PALETTE-BUILDER)" t nil)
 
 ;;;***
 
@@ -68,7 +556,7 @@ Ported to Emacs by Greg Pfeil, http://ethanschoonover.com/solarized.
 ;;;***
 
 ;;;### (autoloads nil "color-theme-zenburn/zenburn-theme" "color-theme-zenburn/zenburn-theme.el"
-;;;;;;  (21133 50230 474957 405000))
+;;;;;;  (21140 24626 658698 626000))
 ;;; Generated autoloads from color-theme-zenburn/zenburn-theme.el
 
 (and load-file-name (boundp 'custom-theme-load-path) (add-to-list 'custom-theme-load-path (file-name-as-directory (file-name-directory load-file-name))))
@@ -223,7 +711,7 @@ Initialize the color theme package by loading color-theme-libraries.
 ;;;;;;  colour-region-previous colour-region-next colour-region-func
 ;;;;;;  colour-region-remove colour-region-toggle-text colour-region-toggle-overlay
 ;;;;;;  colour-region-store-text colour-region-new) "colour-region/colour-region"
-;;;;;;  "colour-region/colour-region.el" (21133 50209 681905 33000))
+;;;;;;  "colour-region/colour-region.el" (21140 24625 305386 101000))
 ;;; Generated autoloads from colour-region/colour-region.el
 
 (autoload 'colour-region-new "colour-region/colour-region" "\
@@ -390,6 +878,93 @@ If FILENAME is not provided then the colour-regions are stored in the filename r
 the colour-region-default-save-file function.
 
 \(fn &optional FILENAME)" t nil)
+
+;;;***
+
+;;;### (autoloads nil "column-marker/column-marker" "column-marker/column-marker.el"
+;;;;;;  (21140 24630 625304 300000))
+;;; Generated autoloads from column-marker/column-marker.el
+
+(autoload 'column-marker-1 "column-marker" "\
+Highlight a column." t)
+
+;;;***
+
+;;;### (autoloads (crosshairs-unhighlight crosshairs-highlight crosshairs
+;;;;;;  crosshairs-flash crosshairs-toggle-when-idle crosshairs-mode
+;;;;;;  crosshairs) "crosshairs/crosshairs" "crosshairs/crosshairs.el"
+;;;;;;  (21140 24625 245387 23000))
+;;; Generated autoloads from crosshairs/crosshairs.el
+
+(let ((loads (get 'crosshairs 'custom-loads))) (if (member '"crosshairs/crosshairs" loads) nil (put 'crosshairs 'custom-loads (cons '"crosshairs/crosshairs" loads))))
+
+(defvar crosshairs-mode nil "\
+Non-nil if Crosshairs mode is enabled.
+See the command `crosshairs-mode' for a description of this minor mode.
+Setting this variable directly does not take effect;
+either customize it (see the info node `Easy Customization')
+or call the function `crosshairs-mode'.")
+
+(custom-autoload 'crosshairs-mode "crosshairs/crosshairs" nil)
+
+(autoload 'crosshairs-mode "crosshairs/crosshairs" "\
+Toggle highlighting the current line and column.
+With ARG, turn highlighting on if and only if ARG is positive.
+
+\(fn &optional ARG)" t nil)
+
+(defalias 'toggle-crosshairs-when-idle 'crosshairs-toggle-when-idle)
+
+(autoload 'crosshairs-toggle-when-idle "crosshairs/crosshairs" "\
+Toggle highlighting the current line and column when Emacs is idle.
+With prefix argument, turn on if ARG > 0; else turn off.
+You can use commands `col-highlight-set-interval' and
+`hl-line-when-idle-interval' to change the idle times.
+
+\(fn &optional ARG)" t nil)
+
+(defalias 'flash-crosshairs 'crosshairs-flash)
+
+(autoload 'crosshairs-flash "crosshairs/crosshairs" "\
+Highlight the current line and column temporarily.
+Highlight the line for `hl-line-flash-show-period' and the column for
+`column-show-period' seconds.  With prefix argument SECONDS, highlight
+both for SECONDS seconds.
+
+\(fn &optional SECONDS)" t nil)
+
+(autoload 'crosshairs "crosshairs/crosshairs" "\
+Highlight current position with crosshairs.
+With no prefix arg, highlighting turns off at the next command.
+With a prefix arg, highlighting stays on until you toggle it off using
+`crosshairs-mode'.
+
+\(fn &optional MODALP)" t nil)
+
+(autoload 'crosshairs-highlight "crosshairs/crosshairs" "\
+Echo current position and highlight it with crosshairs.
+If optional arg MODE is `line-only', then highlight only the line.
+If optional arg MODE is `col-only', then highlight only the column.
+ Interactively:
+  A non-negative prefix argument uses MODE `line-only'.
+  A negative prefix argument uses MODE `col-only'.
+
+Optional arg NOMSG non-nil means show no message.
+
+If the current buffer is not the same as the value of `orig-buff',
+then indicate the buffer, as well as the position.  Variable
+`orig-buff' is not bound here; if you want to take advantage of this
+feature in your code, then bind it.
+
+Return current position as a marker.
+
+\(fn &optional MODE NOMSG)" t nil)
+
+(autoload 'crosshairs-unhighlight "crosshairs/crosshairs" "\
+Turn off crosshairs highlighting of current position.
+Optional arg nil means do nothing if this event is a frame switch.
+
+\(fn &optional ARG)" t nil)
 
 ;;;***
 
@@ -1117,6 +1692,405 @@ Display weather report.
 
 ;;;***
 
+;;;### (autoloads (emms-tag-editor-clear-field emms-tag-editor-alter-notes-tag
+;;;;;;  emms-mark-mark-tagged) "emms-mark-ext/emms-mark-ext" "emms-mark-ext/emms-mark-ext.el"
+;;;;;;  (21135 2215 261170 92000))
+;;; Generated autoloads from emms-mark-ext/emms-mark-ext.el
+
+(autoload 'emms-mark-mark-tagged "emms-mark-ext/emms-mark-ext" "\
+Mark all tracks whose TAG field matches REGEXP.
+A prefix argument means to unmark them instead.
+NOTE: if emms-mark-mode is not turned on, this function will
+turn it on.
+
+\(fn TAG REGEXP ARG)" t nil)
+
+(autoload 'emms-tag-editor-alter-notes-tag "emms-mark-ext/emms-mark-ext" "\
+Alter arbitrary word tags to the info-note tag of tracks.
+The info-tag will have a list of words separated by \":\".
+If a prefix arg is supplied then the words should be removed from the
+info-note tag for each track.
+If region is selected then only alter fields within region.
+WORDS should be a list of words (as strings) to add/remove. 
+If nil then the words will be prompted for from the user with completion, until a blank is entered.
+At each prompt the user can either enter one of the default words in emms-tag-editor-word-list or a new word.
+If a new word is entered the user is prompted to add it to emms-tag-editor-word-list, where it will be saved.
+
+\(fn WORDS ARG)" t nil)
+
+(autoload 'emms-tag-editor-clear-field "emms-mark-ext/emms-mark-ext" "\
+Clear contents of a field for all tracks in tags editor.
+If region is selected then only alter fields within region.
+
+\(fn FIELD)" t nil)
+
+;;;***
+
+;;;### (autoloads (emms-seek-mode-minus emms-seek-mode-plus) "emms-seek-minor-mode/emms-seek-minor-mode"
+;;;;;;  "emms-seek-minor-mode/emms-seek-minor-mode.el" (21135 2215
+;;;;;;  364502 54000))
+;;; Generated autoloads from emms-seek-minor-mode/emms-seek-minor-mode.el
+
+(autoload 'emms-seek-mode-plus "emms-seek-minor-mode/emms-seek-minor-mode" "\
+Raise volume and enable or extend the `emms-seek-minor-mode' timeout.
+
+\(fn)" t nil)
+
+(autoload 'emms-seek-mode-minus "emms-seek-minor-mode/emms-seek-minor-mode" "\
+Lower volume and enable or extend the `emms-seek-minor-mode' timeout.
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (emms-cache-toggle emms-cache-disable emms-cache-enable)
+;;;;;;  "emms/lisp/emms-cache" "emms/lisp/emms-cache.el" (21135 2222
+;;;;;;  907735 348000))
+;;; Generated autoloads from emms/lisp/emms-cache.el
+
+(autoload 'emms-cache-enable "emms/lisp/emms-cache" "\
+Enable caching of Emms track data.
+
+\(fn)" t nil)
+
+(autoload 'emms-cache-disable "emms/lisp/emms-cache" "\
+Disable caching of Emms track data.
+
+\(fn)" t nil)
+
+(autoload 'emms-cache-toggle "emms/lisp/emms-cache" "\
+Toggle caching of Emms track data.
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (emms-lyrics-toggle emms-lyrics-disable emms-lyrics-enable)
+;;;;;;  "emms/lisp/emms-lyrics" "emms/lisp/emms-lyrics.el" (21135
+;;;;;;  2222 907735 348000))
+;;; Generated autoloads from emms/lisp/emms-lyrics.el
+
+(autoload 'emms-lyrics-enable "emms/lisp/emms-lyrics" "\
+Enable displaying emms lyrics.
+
+\(fn)" t nil)
+
+(autoload 'emms-lyrics-disable "emms/lisp/emms-lyrics" "\
+Disable displaying emms lyrics.
+
+\(fn)" t nil)
+
+(autoload 'emms-lyrics-toggle "emms/lisp/emms-lyrics" "\
+Toggle displaying emms lyrics.
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (emms-mode-line-toggle emms-mode-line-disable emms-mode-line-enable)
+;;;;;;  "emms/lisp/emms-mode-line" "emms/lisp/emms-mode-line.el"
+;;;;;;  (21135 2222 911068 637000))
+;;; Generated autoloads from emms/lisp/emms-mode-line.el
+
+(autoload 'emms-mode-line-enable "emms/lisp/emms-mode-line" "\
+Turn on `emms-mode-line'.
+
+\(fn)" t nil)
+
+(autoload 'emms-mode-line-disable "emms/lisp/emms-mode-line" "\
+Turn off `emms-mode-line'.
+
+\(fn)" t nil)
+
+(autoload 'emms-mode-line-toggle "emms/lisp/emms-mode-line" "\
+Toggle `emms-mode-line'.
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (emms-player-mpd-show emms-player-mpd-connect emms-player-mpd-clear)
+;;;;;;  "emms/lisp/emms-player-mpd" "emms/lisp/emms-player-mpd.el"
+;;;;;;  (21135 2222 911068 637000))
+;;; Generated autoloads from emms/lisp/emms-player-mpd.el
+
+(autoload 'emms-player-mpd-clear "emms/lisp/emms-player-mpd" "\
+Clear the MusicPD playlist.
+
+\(fn)" t nil)
+
+(autoload 'emms-player-mpd-connect "emms/lisp/emms-player-mpd" "\
+Connect to MusicPD and retrieve its current playlist.
+
+Afterward, the status of MusicPD will be tracked.
+
+This also has the effect of changing the current EMMS playlist to
+be the same as the current MusicPD playlist.  Thus, this
+function is useful to call if the contents of the EMMS playlist
+buffer get out-of-sync for some reason.
+
+\(fn)" t nil)
+
+(autoload 'emms-player-mpd-show "emms/lisp/emms-player-mpd" "\
+Describe the current EMMS track in the minibuffer.
+
+If INSERTP is non-nil, insert the description into the current
+buffer instead.
+
+If CALLBACK is a function, call it with the current buffer and
+description as arguments instead of displaying the description or
+inserting it.
+
+This function uses `emms-show-format' to format the current track.
+It differs from `emms-show' in that it asks MusicPD for the current track,
+rather than EMMS.
+
+\(fn &optional INSERTP CALLBACK)" t nil)
+
+;;;***
+
+;;;### (autoloads (emms-playing-time-disable-display emms-playing-time-enable-display)
+;;;;;;  "emms/lisp/emms-playing-time" "emms/lisp/emms-playing-time.el"
+;;;;;;  (21135 2222 911068 637000))
+;;; Generated autoloads from emms/lisp/emms-playing-time.el
+
+(autoload 'emms-playing-time-enable-display "emms/lisp/emms-playing-time" "\
+Display playing time on mode line.
+
+\(fn)" t nil)
+
+(autoload 'emms-playing-time-disable-display "emms/lisp/emms-playing-time" "\
+Remove playing time from mode line.
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (emms-playlist-limit-toggle emms-playlist-limit-disable
+;;;;;;  emms-playlist-limit-enable) "emms/lisp/emms-playlist-limit"
+;;;;;;  "emms/lisp/emms-playlist-limit.el" (21135 2222 911068 637000))
+;;; Generated autoloads from emms/lisp/emms-playlist-limit.el
+
+(autoload 'emms-playlist-limit-enable "emms/lisp/emms-playlist-limit" "\
+Turn on emms playlist limit.
+
+\(fn)" t nil)
+
+(autoload 'emms-playlist-limit-disable "emms/lisp/emms-playlist-limit" "\
+Turn off emms playlist limit.
+
+\(fn)" t nil)
+
+(autoload 'emms-playlist-limit-toggle "emms/lisp/emms-playlist-limit" "\
+Toggle emms playlist limit.
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (emms-playlist-mode) "emms/lisp/emms-playlist-mode"
+;;;;;;  "emms/lisp/emms-playlist-mode.el" (21135 2222 911068 637000))
+;;; Generated autoloads from emms/lisp/emms-playlist-mode.el
+
+(autoload 'emms-playlist-mode "emms/lisp/emms-playlist-mode" "\
+A major mode for Emms playlists.
+\\{emms-playlist-mode-map}
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (emms-score-toggle emms-score-disable emms-score-enable)
+;;;;;;  "emms/lisp/emms-score" "emms/lisp/emms-score.el" (21135 2222
+;;;;;;  911068 637000))
+;;; Generated autoloads from emms/lisp/emms-score.el
+
+(autoload 'emms-score-enable "emms/lisp/emms-score" "\
+Turn on emms-score.
+
+\(fn)" t nil)
+
+(autoload 'emms-score-disable "emms/lisp/emms-score" "\
+Turn off emms-score.
+
+\(fn)" t nil)
+
+(autoload 'emms-score-toggle "emms/lisp/emms-score" "\
+Toggle emms-score.
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (emms-default-players emms-devel emms-all emms-standard
+;;;;;;  emms-minimalistic) "emms/lisp/emms-setup" "emms/lisp/emms-setup.el"
+;;;;;;  (21135 2222 911068 637000))
+;;; Generated autoloads from emms/lisp/emms-setup.el
+
+(autoload 'emms-minimalistic "emms/lisp/emms-setup" "\
+An Emms setup script.
+Invisible playlists and all the basics for playing media.
+
+\(fn)" nil nil)
+
+(autoload 'emms-standard "emms/lisp/emms-setup" "\
+An Emms setup script.
+Everything included in the `emms-minimalistic' setup, the Emms
+interactive playlist mode, reading information from tagged
+audio files, and a metadata cache.
+
+\(fn)" nil nil)
+
+(autoload 'emms-all "emms/lisp/emms-setup" "\
+An Emms setup script.
+Everything included in the `emms-standard' setup and adds all the
+stable features which come with the Emms distribution.
+
+\(fn)" nil nil)
+
+(autoload 'emms-devel "emms/lisp/emms-setup" "\
+An Emms setup script.
+Everything included in the `emms-all' setup and adds all the
+features which come with the Emms distribution regardless of if
+they are considered stable or not.  Use this if you like living
+on the edge.
+
+\(fn)" nil nil)
+
+(autoload 'emms-default-players "emms/lisp/emms-setup" "\
+Set `emms-player-list' to `emms-setup-default-player-list'.
+
+\(fn)" nil nil)
+
+;;;***
+
+;;;### (autoloads (emms-locate emms-source-file-regex emms-source-file-directory-tree)
+;;;;;;  "emms/lisp/emms-source-file" "emms/lisp/emms-source-file.el"
+;;;;;;  (21135 2222 911068 637000))
+;;; Generated autoloads from emms/lisp/emms-source-file.el
+ (autoload 'emms-play-file "emms-source-file" nil t)
+ (autoload 'emms-add-file "emms-source-file" nil t)
+ (autoload 'emms-play-directory "emms-source-file" nil t)
+ (autoload 'emms-add-directory "emms-source-file" nil t)
+ (autoload 'emms-play-directory-tree "emms-source-file" nil t)
+ (autoload 'emms-add-directory-tree "emms-source-file" nil t)
+ (autoload 'emms-play-find "emms-source-file" nil t)
+ (autoload 'emms-add-find "emms-source-file" nil t)
+ (autoload 'emms-play-dired "emms-source-file" nil t)
+ (autoload 'emms-add-dired "emms-source-file" nil t)
+
+(autoload 'emms-source-file-directory-tree "emms/lisp/emms-source-file" "\
+Return a list of all files under DIR that match REGEX.
+This function uses `emms-source-file-directory-tree-function'.
+
+\(fn DIR REGEX)" nil nil)
+
+(autoload 'emms-source-file-regex "emms/lisp/emms-source-file" "\
+Return a regexp that matches everything any player (that supports
+files) can play.
+
+\(fn)" nil nil)
+
+(autoload 'emms-locate "emms/lisp/emms-source-file" "\
+Search for REGEXP and display the results in a locate buffer
+
+\(fn REGEXP)" t nil)
+ (autoload 'emms-play-url "emms-source-file" nil t)
+ (autoload 'emms-add-url "emms-source-file" nil t)
+ (autoload 'emms-play-streamlist "emms-source-file" nil t)
+ (autoload 'emms-add-streamlist "emms-source-file" nil t)
+ (autoload 'emms-play-lastfm "emms-lastfm" nil t)
+ (autoload 'emms-add-lastfm "emms-lastfm" nil t)
+
+;;;***
+
+;;;### (autoloads nil "emms/lisp/emms-source-playlist" "emms/lisp/emms-source-playlist.el"
+;;;;;;  (21135 2222 911068 637000))
+;;; Generated autoloads from emms/lisp/emms-source-playlist.el
+ (autoload 'emms-play-playlist "emms-source-playlist" nil t)
+ (autoload 'emms-add-playlist "emms-source-playlist" nil t)
+ (autoload 'emms-play-native-playlist "emms-source-playlist" nil t)
+ (autoload 'emms-add-native-playlist "emms-source-playlist" nil t)
+ (autoload 'emms-play-m3u-playlist "emms-source-playlist" nil t)
+ (autoload 'emms-add-m3u-playlist "emms-source-playlist" nil t)
+ (autoload 'emms-play-pls-playlist "emms-source-playlist" nil t)
+ (autoload 'emms-add-pls-playlist "emms-source-playlist" nil t)
+ (autoload 'emms-play-playlist-file "emms-source-playlist" nil t)
+ (autoload 'emms-add-playlist-file "emms-source-playlist" nil t)
+ (autoload 'emms-play-playlist-directory
+          "emms-source-playlist" nil t)
+ (autoload 'emms-add-playlist-directory
+          "emms-source-playlist" nil t)
+ (autoload 'emms-play-playlist-directory-tree
+          "emms-source-playlist" nil t)
+ (autoload 'emms-add-playlist-directory-tree
+          "emms-source-file" nil t)
+
+;;;***
+
+;;;### (autoloads (emms-streams) "emms/lisp/emms-streams" "emms/lisp/emms-streams.el"
+;;;;;;  (21135 2222 911068 637000))
+;;; Generated autoloads from emms/lisp/emms-streams.el
+
+(autoload 'emms-streams "emms/lisp/emms-streams" "\
+Opens the EMMS Streams interface.
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (emms-volume-mode-minus emms-volume-mode-plus emms-volume-lower
+;;;;;;  emms-volume-raise) "emms/lisp/emms-volume" "emms/lisp/emms-volume.el"
+;;;;;;  (21135 2222 911068 637000))
+;;; Generated autoloads from emms/lisp/emms-volume.el
+
+(autoload 'emms-volume-raise "emms/lisp/emms-volume" "\
+Raise the speaker volume.
+
+\(fn)" t nil)
+
+(autoload 'emms-volume-lower "emms/lisp/emms-volume" "\
+Lower the speaker volume.
+
+\(fn)" t nil)
+
+(autoload 'emms-volume-mode-plus "emms/lisp/emms-volume" "\
+Raise volume and enable or extend the `emms-volume-minor-mode' timeout.
+
+\(fn)" t nil)
+
+(autoload 'emms-volume-mode-minus "emms/lisp/emms-volume" "\
+Lower volume and enable or extend the `emms-volume-minor-mode' timeout.
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (emms-volume-amixer-change) "emms/lisp/emms-volume-amixer"
+;;;;;;  "emms/lisp/emms-volume-amixer.el" (21135 2222 911068 637000))
+;;; Generated autoloads from emms/lisp/emms-volume-amixer.el
+
+(autoload 'emms-volume-amixer-change "emms/lisp/emms-volume-amixer" "\
+Change amixer master volume by AMOUNT.
+
+\(fn AMOUNT)" nil nil)
+
+;;;***
+
+;;;### (autoloads (tq-create) "emms/lisp/tq" "emms/lisp/tq.el" (21135
+;;;;;;  2222 911068 637000))
+;;; Generated autoloads from emms/lisp/tq.el
+
+(autoload 'tq-create "emms/lisp/tq" "\
+Create and return a transaction queue communicating with PROCESS.
+PROCESS should be a subprocess capable of sending and receiving
+streams of bytes.  It may be a local process, or it may be connected
+to a tcp server on another machine.
+
+\(fn PROCESS)" nil nil)
+
+;;;***
+
 ;;;### (autoloads (highline-split-window-horizontally highline-split-window-vertically
 ;;;;;;  highline-view-mode highline-mode global-highline-mode highline-customize)
 ;;;;;;  "highline/highline" "highline/highline.el" (21133 44838 538954
@@ -1200,6 +2174,65 @@ See also `highline-view-mode' for documentation.
 
 ;;;***
 
+;;;### (autoloads (hl-line-flash hl-line-when-idle-interval hl-line-toggle-when-idle
+;;;;;;  hl-line-overlay-priority hl-line-inhibit-highlighting-for-modes
+;;;;;;  hl-line-flash-show-period) "hl-line+/hl-line+" "hl-line+/hl-line+.el"
+;;;;;;  (21140 15053 112466 809000))
+;;; Generated autoloads from hl-line+/hl-line+.el
+
+(defface hl-line '((t (:background "SlateGray3"))) "\
+*Face to use for `hl-line-face'." :group (quote hl-line))
+
+(defvar hl-line-flash-show-period 1 "\
+*Number of seconds for `hl-line-flash' to highlight the line.")
+
+(custom-autoload 'hl-line-flash-show-period "hl-line+/hl-line+" t)
+
+(defvar hl-line-inhibit-highlighting-for-modes nil "\
+*Modes where highlighting is inhibited for `hl-line-highlight-now'.
+A list of `major-mode' values (symbols).")
+
+(custom-autoload 'hl-line-inhibit-highlighting-for-modes "hl-line+/hl-line+" t)
+
+(defvar hl-line-overlay-priority 300 "\
+*Priority to use for `hl-line-overlay' and `global-hl-line-overlay'.
+A higher priority can make the hl-line highlighting appear on top of
+other overlays that might exist.")
+
+(custom-autoload 'hl-line-overlay-priority "hl-line+/hl-line+" t)
+
+(defalias 'toggle-hl-line-when-idle 'hl-line-toggle-when-idle)
+
+(autoload 'hl-line-toggle-when-idle "hl-line+/hl-line+" "\
+Turn on or off using `global-hl-line-mode' when Emacs is idle.
+When on, use `global-hl-line-mode' whenever Emacs is idle.
+With prefix argument, turn on if ARG > 0; else turn off.
+
+In Lisp code, non-nil optional second arg MSGP means display a message
+showing the new value.
+
+\(fn &optional ARG MSGP)" t nil)
+
+(autoload 'hl-line-when-idle-interval "hl-line+/hl-line+" "\
+Set wait until using `global-hl-line-mode' when Emacs is idle.
+Whenever Emacs is idle for this many seconds, `global-hl-line-mode'
+will be turned on.
+
+To turn on or off using `global-hl-line-mode' when idle,
+use `\\[toggle-hl-line-when-idle].
+
+\(fn SECS)" t nil)
+
+(defalias 'flash-line-highlight 'hl-line-flash)
+
+(autoload 'hl-line-flash "hl-line+/hl-line+" "\
+Highlight the current line for `hl-line-flash-show-period' seconds.
+With a prefix argument, highlight for that many seconds.
+
+\(fn &optional ARG)" t nil)
+
+;;;***
+
 ;;;### (autoloads (idle-highlight-mode) "idle-highlight-mode/idle-highlight-mode"
 ;;;;;;  "idle-highlight-mode/idle-highlight-mode.el" (21133 50375
 ;;;;;;  482996 457000))
@@ -1209,6 +2242,61 @@ See also `highline-view-mode' for documentation.
 Idle-Highlight Minor Mode
 
 \(fn &optional ARG)" t nil)
+
+;;;***
+
+;;;### (autoloads (js2-imenu-extras-mode js2-imenu-extras-setup)
+;;;;;;  "js2-mode/js2-imenu-extras" "js2-mode/js2-imenu-extras.el"
+;;;;;;  (21133 53441 575613 772000))
+;;; Generated autoloads from js2-mode/js2-imenu-extras.el
+
+(autoload 'js2-imenu-extras-setup "js2-mode/js2-imenu-extras" "\
+
+
+\(fn)" nil nil)
+
+(autoload 'js2-imenu-extras-mode "js2-mode/js2-imenu-extras" "\
+Toggle Imenu support for frameworks and structural patterns.
+
+\(fn &optional ARG)" t nil)
+
+;;;***
+
+;;;### (autoloads (js2-mode js2-minor-mode) "js2-mode/js2-mode" "js2-mode/js2-mode.el"
+;;;;;;  (21133 53441 578947 55000))
+;;; Generated autoloads from js2-mode/js2-mode.el
+
+(autoload 'js2-minor-mode "js2-mode/js2-mode" "\
+Minor mode for running js2 as a background linter.
+This allows you to use a different major mode for JavaScript editing,
+such as `espresso-mode', while retaining the asynchronous error/warning
+highlighting features of `js2-mode'.
+
+\(fn &optional ARG)" t nil)
+
+(autoload 'js2-mode "js2-mode/js2-mode" "\
+Major mode for editing JavaScript code.
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (gfm-mode markdown-mode) "markdown-mode/markdown-mode"
+;;;;;;  "markdown-mode/markdown-mode.el" (21139 7379 212461 621000))
+;;; Generated autoloads from markdown-mode/markdown-mode.el
+
+(autoload 'markdown-mode "markdown-mode/markdown-mode" "\
+Major mode for editing Markdown files.
+
+\(fn)" t nil)
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+
+(autoload 'gfm-mode "markdown-mode/markdown-mode" "\
+Major mode for editing GitHub Flavored Markdown files.
+
+\(fn)" t nil)
 
 ;;;***
 
@@ -1314,6 +2402,38 @@ Major mode for editing PHP code.
 
 ;;;***
 
+;;;### (autoloads (vline-global-mode vline-mode) "vline/vline" "vline/vline.el"
+;;;;;;  (21140 15080 191417 139000))
+;;; Generated autoloads from vline/vline.el
+
+(autoload 'vline-mode "vline/vline" "\
+Display vertical line mode.
+
+\(fn &optional ARG)" t nil)
+
+(defvar vline-global-mode nil "\
+Non-nil if Vline-Global mode is enabled.
+See the command `vline-global-mode' for a description of this minor mode.
+Setting this variable directly does not take effect;
+either customize it (see the info node `Easy Customization')
+or call the function `vline-global-mode'.")
+
+(custom-autoload 'vline-global-mode "vline/vline" nil)
+
+(autoload 'vline-global-mode "vline/vline" "\
+Toggle Vline mode in all buffers.
+With prefix ARG, enable Vline-Global mode if ARG is positive;
+otherwise, disable it.  If called from Lisp, enable the mode if
+ARG is omitted or nil.
+
+Vline mode is enabled in all buffers where
+`(lambda nil (unless (minibufferp) (vline-mode 1)))' would do it.
+See `vline-mode' for more information on Vline mode.
+
+\(fn &optional ARG)" t nil)
+
+;;;***
+
 ;;;### (autoloads (yas-global-mode yas-minor-mode) "yasnippet/yasnippet"
 ;;;;;;  "yasnippet/yasnippet.el" (21133 32537 608492 747000))
 ;;; Generated autoloads from yasnippet/yasnippet.el
@@ -1357,45 +2477,28 @@ See `yas-minor-mode' for more information on Yas minor mode.
 
 ;;;***
 
-;;;### (autoloads nil nil ("auto-complete+/auto-complete+.el" "auto-complete-css/auto-complete-css.el"
-;;;;;;  "auto-complete-etags/auto-complete-etags.el" "auto-complete-extension/auto-complete-extension.el"
-;;;;;;  "auto-complete/auto-complete-config.el" "auto-complete/auto-complete-pkg.el"
+;;;### (autoloads nil nil ("auctex/auctex.el" "auctex/auto-loads.el"
+;;;;;;  "auctex/lpath.el" "auctex/preview/auto.el" "auctex/preview/preview-latex.el"
+;;;;;;  "auctex/preview/prv-emacs.el" "auctex/preview/prv-install.el"
+;;;;;;  "auctex/preview/prv-xemacs.el" "auctex/tex-buf.el" "auctex/tex-mik.el"
+;;;;;;  "auctex/tex-site.el" "auctex/tex-style.el" "auctex/tex-wizard.el"
+;;;;;;  "auto-complete-extension/auto-complete-extension.el" "color-occur/color-occur.el"
 ;;;;;;  "color-theme-ahei/color-theme-ahei.el" "color-theme-almost-monokai/color-theme-almost-monokai.el"
 ;;;;;;  "color-theme-black-purple/color-theme-black-purple.el" "color-theme-chocolate-rain/color-theme-chocolate-rain.el"
-;;;;;;  "color-theme-domq/color-theme-domq.el" "color-theme-emacs-revert-theme/color-theme-emacs-revert-theme.el"
+;;;;;;  "color-theme-emacs-revert-theme/color-theme-emacs-revert-theme.el"
 ;;;;;;  "color-theme-empty-void/color-theme-empty-void.el" "color-theme-inkpot/color-theme-inkpot.el"
 ;;;;;;  "color-theme-ir-black/color-theme-ir-black.el" "color-theme-mac-classic/color-theme-mac-classic.el"
 ;;;;;;  "color-theme-maker/color-theme-maker.el" "color-theme-railscasts/color-theme-railscasts.el"
 ;;;;;;  "color-theme-reg/color-theme-reg.el" "color-theme-sanityinc/color-theme-sanityinc.el"
 ;;;;;;  "color-theme-solarized/color-theme-solarized-pkg.el" "color-theme-solarized/solarized-dark-theme.el"
 ;;;;;;  "color-theme-solarized/solarized-light-theme.el" "color-theme-subdued/color-theme-subdued.el"
-;;;;;;  "color-theme-tango-2/color-theme-tango-2.el" "color-theme-tango/color-theme-tango.el"
-;;;;;;  "color-theme-tangotango/color-theme-tangotango.el" "color-theme-twilight/color-theme-twilight.el"
-;;;;;;  "color-theme-ubuntu2/color-theme-ubuntu2.el" "color-theme-vim-insert-mode/color-theme-vim-insert-mode.el"
-;;;;;;  "color-theme-x/color-theme-x.el" "color-theme-zen-and-art/zen-and-art.el"
-;;;;;;  "color-theme/color-theme-autoloads.el" "css-mode/css-mode-autoloads.el"
-;;;;;;  "css-mode/css-mode-pkg.el" "css-palette/css-palette.el" "el-get/el-get-autoloads.el"
-;;;;;;  "el-get/el-get-build.el" "el-get/el-get-byte-compile.el"
+;;;;;;  "color-theme-tango-2/color-theme-tango-2.el" "color-theme-tangotango/color-theme-tangotango.el"
+;;;;;;  "color-theme-twilight/color-theme-twilight.el" "color-theme-zen-and-art/zen-and-art.el"
+;;;;;;  "el-get/el-get-autoloads.el" "el-get/el-get-build.el" "el-get/el-get-byte-compile.el"
 ;;;;;;  "el-get/el-get-core.el" "el-get/el-get-custom.el" "el-get/el-get-dependencies.el"
 ;;;;;;  "el-get/el-get-install.el" "el-get/el-get-methods.el" "el-get/el-get-notify.el"
-;;;;;;  "el-get/el-get-recipes.el" "el-get/el-get-status.el" "emacs-async/async-file.el"
-;;;;;;  "emacs-async/async-pkg.el" "emacs-async/async-test.el" "emacs-async/dired-async.el"
-;;;;;;  "emacs-async/helm-async.el" "emacs-async/smtpmail-async.el"
-;;;;;;  "emacs-w3m/mew-w3m.el" "emacs-w3m/w3m-bug.el" "emacs-w3m/w3m-ccl.el"
-;;;;;;  "emacs-w3m/w3m-ems.el" "emacs-w3m/w3m-favicon.el" "emacs-w3m/w3m-hist.el"
-;;;;;;  "emacs-w3m/w3m-image.el" "emacs-w3m/w3m-load.el" "emacs-w3m/w3m-mail.el"
-;;;;;;  "emacs-w3m/w3m-proc.el" "emacs-w3m/w3m-rss.el" "emacs-w3m/w3m-tabmenu.el"
-;;;;;;  "emacs-w3m/w3m-ucs.el" "emacs-w3m/w3m-util.el" "emacs-w3m/w3m-xmas.el"
-;;;;;;  "emacs-w3m/w3mhack.el" "flyphpcs/flyphpcs.el" "fuzzy/fuzzy.el"
-;;;;;;  "mmm-mode/mmm-auto.el" "mmm-mode/mmm-class.el" "mmm-mode/mmm-cmds.el"
-;;;;;;  "mmm-mode/mmm-compat.el" "mmm-mode/mmm-cweb.el" "mmm-mode/mmm-defaults.el"
-;;;;;;  "mmm-mode/mmm-mason.el" "mmm-mode/mmm-mode.el" "mmm-mode/mmm-myghty.el"
-;;;;;;  "mmm-mode/mmm-noweb.el" "mmm-mode/mmm-region.el" "mmm-mode/mmm-rpm.el"
-;;;;;;  "mmm-mode/mmm-sample.el" "mmm-mode/mmm-univ.el" "mmm-mode/mmm-utils.el"
-;;;;;;  "multi-web-mode/mweb-example-config.el" "php-completion/php-completion.el"
-;;;;;;  "php-doc/php-doc.el" "php-mode/php-mode-test.el" "popup/popup.el"
-;;;;;;  "yasnippet-config/yasnippet-config.el" "yasnippet/yasnippet-debug.el"
-;;;;;;  "yasnippet/yasnippet-tests.el") (21133 50375 815550 683000))
+;;;;;;  "el-get/el-get-recipes.el" "el-get/el-get-status.el" "swank-js/slime-js.el")
+;;;;;;  (21140 26904 927595 596000))
 
 ;;;***
 

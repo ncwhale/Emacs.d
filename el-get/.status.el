@@ -1,4 +1,13 @@
-((auto-complete status "installed" recipe
+((auctex status "installed" recipe
+         (:name auctex :website "http://www.gnu.org/software/auctex/" :description "AUCTeX is an extensible package for writing and formatting TeX files in GNU Emacs and XEmacs. It supports many different TeX macro packages, including AMS-TeX, LaTeX, Texinfo, ConTeXt, and docTeX (dtx files)." :type cvs :module "auctex" :url ":pserver:anonymous@cvs.sv.gnu.org:/sources/auctex" :build
+                `("./autogen.sh" ,(concat "./configure --without-texmf-dir --with-lispdir=`pwd` --with-emacs=" el-get-emacs)
+                  "make")
+                :load-path
+                ("." "preview")
+                :load
+                ("tex-site.el" "preview/preview-latex.el")
+                :info "doc"))
+ (auto-complete status "installed" recipe
                 (:name auto-complete :website "http://auto-complete.org/" :description "The most intelligent auto-completion extension." :type github :pkgname "auto-complete/auto-complete" :depends
                        (popup fuzzy)))
  (auto-complete+ status "installed" recipe
@@ -9,6 +18,27 @@
                       (:name auto-complete-etags :type emacswiki :description "Auto-complete sources for etags" :depends auto-complete))
  (auto-complete-extension status "installed" recipe
                           (:name auto-complete-extension :type emacswiki :description "Some extension for auto-complete-mode" :depends auto-complete))
+ (auto-complete-latex status "installed" recipe
+                      (:name auto-complete-latex :description "A LaTeX extention for auto-complete-mode" :website "https://bitbucket.org/tequilasunset/auto-complete-latex" :url "https://bitbucket.org/tequilasunset/auto-complete-latex" :type hg :depends auto-complete))
+ (auto-complete-yasnippet status "installed" recipe
+                          (:name auto-complete-yasnippet :description "Auto-complete sources for YASnippet" :type http :url "http://www.cx4a.org/pub/auto-complete-yasnippet.el" :depends
+                                 (auto-complete yasnippet)))
+ (coffee-mode status "installed" recipe
+              (:name coffee-mode :website "http://ozmm.org/posts/coffee_mode.html" :description "Emacs Major Mode for CoffeeScript" :type github :pkgname "defunkt/coffee-mode" :features coffee-mode :post-init
+                     (progn
+                       (add-to-list 'auto-mode-alist
+                                    '("\\.coffee$" . coffee-mode))
+                       (add-to-list 'auto-mode-alist
+                                    '("Cakefile" . coffee-mode))
+                       (setq coffee-js-mode 'javascript-mode))))
+ (col-highlight status "installed" recipe
+                (:name col-highlight :auto-generated t :type emacswiki :description "Highlight the current column." :website "https://raw.github.com/emacsmirror/emacswiki.org/master/col-highlight.el"))
+ (color-browser status "installed" recipe
+                (:name color-browser :auto-generated t :type emacswiki :description "A utility for designing Emacs color themes." :website "https://raw.github.com/emacsmirror/emacswiki.org/master/color-browser.el"))
+ (color-moccur status "installed" recipe
+               (:name color-moccur :auto-generated t :type emacswiki :description " multi-buffer occur (grep) mode" :website "https://raw.github.com/emacsmirror/emacswiki.org/master/color-moccur.el"))
+ (color-occur status "installed" recipe
+              (:name color-occur :auto-generated t :type emacswiki :description "" :website "https://raw.github.com/emacsmirror/emacswiki.org/master/color-occur.el"))
  (color-theme status "installed" recipe
               (:name color-theme :description "An Emacs-Lisp package with more than 50 color themes for your use. For questions about color-theme" :website "http://www.nongnu.org/color-theme/" :type http-tar :options
                      ("xzf")
@@ -100,6 +130,10 @@
                                (defalias 'zenburn #'color-theme-zenburn))))
  (colour-region status "installed" recipe
                 (:name colour-region :auto-generated t :type emacswiki :description "Toggle regions of the buffer with different text snippets" :website "https://raw.github.com/emacsmirror/emacswiki.org/master/colour-region.el"))
+ (column-marker status "installed" recipe
+                (:name column-marker :description "Highlight certain character columns" :type emacswiki :features column-marker))
+ (crosshairs status "installed" recipe
+             (:name crosshairs :auto-generated t :type emacswiki :description "Highlight the current line and column." :website "https://raw.github.com/emacsmirror/emacswiki.org/master/crosshairs.el"))
  (css-mode status "installed" recipe
            (:name css-mode :description "Minor mode for CSS" :features css-mode :type elpa))
  (css-palette status "installed" recipe
@@ -116,14 +150,44 @@
                    :build/windows-nt
                    ("sh /usr/bin/autoconf" "sh ./configure" "make")
                    :info "doc"))
+ (emms status "installed" recipe
+       (:name emms :description "The Emacs Multimedia System" :type git :url "git://git.sv.gnu.org/emms.git" :info "doc" :load-path
+              ("./lisp")
+              :features emms-setup :build
+              `(,(format "mkdir -p %s/emms " user-emacs-directory)
+                ,(concat "make EMACS=" el-get-emacs " SITEFLAG=\"--no-site-file -L " el-get-dir "/emacs-w3m/ \"" " autoloads lisp docs"))
+              :depends emacs-w3m))
+ (emms-extension status "installed" recipe
+                 (:name emms-extension :auto-generated t :type emacswiki :description "Some extensions for emms" :website "https://raw.github.com/emacsmirror/emacswiki.org/master/emms-extension.el"))
+ (emms-get-lyrics status "installed" recipe
+                  (:name emms-get-lyrics :auto-generated t :type emacswiki :description "Get the lyrics of the song emms is currently playing" :website "https://raw.github.com/emacsmirror/emacswiki.org/master/emms-get-lyrics.el"))
+ (emms-mark-ext status "installed" recipe
+                (:name emms-mark-ext :auto-generated t :type emacswiki :description "Extra functions for emms-mark-mode and emms-tag-edit-mode" :website "https://raw.github.com/emacsmirror/emacswiki.org/master/emms-mark-ext.el"))
+ (emms-player-streaming-fix status "installed" recipe
+                            (:name emms-player-streaming-fix :auto-generated t :type emacswiki :description "mplayer url fix" :website "https://raw.github.com/emacsmirror/emacswiki.org/master/emms-player-streaming-fix.el"))
+ (emms-seek-minor-mode status "installed" recipe
+                       (:name emms-seek-minor-mode :auto-generated t :type emacswiki :description "like emacs-volume-minor-mode except +/- seek" :website "https://raw.github.com/emacsmirror/emacswiki.org/master/emms-seek-minor-mode.el"))
  (flyphpcs status "installed" recipe
            (:name flyphpcs :auto-generated t :type emacswiki :description "Flymake for PHP via PHP-CodeSniffer" :website "https://raw.github.com/emacsmirror/emacswiki.org/master/flyphpcs.el"))
  (fuzzy status "installed" recipe
         (:name fuzzy :website "https://github.com/auto-complete/fuzzy-el" :description "Fuzzy matching utilities for GNU Emacs" :type github :pkgname "auto-complete/fuzzy-el"))
  (highline status "installed" recipe
            (:name highline :auto-generated t :type emacswiki :description "minor mode to highlight current line in buffer" :website "https://raw.github.com/emacsmirror/emacswiki.org/master/highline.el"))
+ (hl-line+ status "installed" recipe
+           (:name hl-line+ :auto-generated t :type emacswiki :description "Extensions to hl-line.el." :website "https://raw.github.com/emacsmirror/emacswiki.org/master/hl-line+.el"))
  (idle-highlight-mode status "installed" recipe
                       (:name idle-highlight-mode :description "Idle Highlight Mode." :website "https://github.com/nonsequitur/idle-highlight-mode" :type github :pkgname "nonsequitur/idle-highlight-mode"))
+ (js2-mode status "installed" recipe
+           (:name js2-mode :website "https://github.com/mooz/js2-mode#readme" :description "An improved JavaScript editing mode" :type github :pkgname "mooz/js2-mode" :prepare
+                  (autoload 'js2-mode "js2-mode" nil t)))
+ (json status "installed" recipe
+       (:name json :description "JavaScript Object Notation parser / generator" :type http :url "http://edward.oconnor.cx/elisp/json.el" :features json))
+ (markdown-mode status "installed" recipe
+                (:name markdown-mode :description "Major mode to edit Markdown files in Emacs" :type git :url "git://jblevins.org/git/markdown-mode.git" :post-init
+                       (add-to-list 'auto-mode-alist
+                                    '("\\.\\(md\\|mdown\\|markdown\\)\\'" . markdown-mode))))
+ (md-readme status "installed" recipe
+            (:name md-readme :auto-generated t :type emacswiki :description "Markdown-formatted READMEs for your ELisp" :website "https://raw.github.com/emacsmirror/emacswiki.org/master/md-readme.el"))
  (mmm-mode status "installed" recipe
            (:name mmm-mode :description "Allow Multiple Major Modes in a buffer" :type github :pkgname "purcell/mmm-mode"))
  (multi-web-mode status "installed" recipe
@@ -162,9 +226,15 @@
                            :features php-mode))
  (popup status "installed" recipe
         (:name popup :website "https://github.com/auto-complete/popup-el" :description "Visual Popup Interface Library for Emacs" :type github :pkgname "auto-complete/popup-el"))
+ (slime status "removed" recipe nil)
+ (slime-loads status "installed" recipe
+              (:name slime-loads :auto-generated t :type emacswiki :description "stub to indirect slime/swank configs on GNU" :website "https://raw.github.com/emacsmirror/emacswiki.org/master/slime-loads.el"))
  (smex status "installed" recipe
        (:name smex :description "M-x interface with Ido-style fuzzy matching." :type github :pkgname "nonsequitur/smex" :features smex :post-init
               (smex-initialize)))
+ (swank-js status "removed" recipe nil)
+ (vline status "installed" recipe
+        (:name vline :description "show vertical line (column highlighting) mode." :type emacswiki :features vline))
  (yasnippet status "installed" recipe
             (:name yasnippet :website "https://github.com/capitaomorte/yasnippet.git" :description "YASnippet is a template system for Emacs." :type github :pkgname "capitaomorte/yasnippet" :features "yasnippet" :pre-init
                    (unless
