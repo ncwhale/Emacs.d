@@ -4,8 +4,8 @@
 
 
 ;;;### (autoloads (slime-hyperspec-lookup slime-connect slime slime-mode
-;;;;;;  slime-lisp-mode-hook) "slime" "slime.el" (21140 26851 741605
-;;;;;;  382000))
+;;;;;;  slime-lisp-mode-hook) "slime" "slime.el" (21152 18855 340542
+;;;;;;  487000))
 ;;; Generated autoloads from slime.el
 
 (defvar slime-lisp-modes '(lisp-mode))
@@ -71,7 +71,7 @@ A wrapper for `hyperspec-lookup'
 
 ;;;***
 
-;;;### (autoloads nil nil ("slime-pkg.el") (21140 26851 761316 899000))
+;;;### (autoloads nil nil ("slime-pkg.el") (21152 18855 362410 312000))
 
 ;;;***
 

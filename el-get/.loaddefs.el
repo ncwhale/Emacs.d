@@ -3,6 +3,29 @@
 ;;; Code:
 
 
+;;;### (autoloads (set-up-slime-ac) "ac-slime/ac-slime" "ac-slime/ac-slime.el"
+;;;;;;  (21141 44236 682588 814000))
+;;; Generated autoloads from ac-slime/ac-slime.el
+
+(defface ac-slime-menu-face '((t (:inherit ac-candidate-face))) "\
+Face for slime candidate menu." :group (quote auto-complete))
+
+(defface ac-slime-selection-face '((t (:inherit ac-selection-face))) "\
+Face for the slime selected candidate." :group (quote auto-complete))
+
+(defvar ac-source-slime-fuzzy '((init . ac-slime-init) (candidates . ac-source-slime-fuzzy-candidates) (candidate-face . ac-slime-menu-face) (selection-face . ac-slime-selection-face) (prefix . slime-symbol-start-pos) (symbol . "l") (match lambda (prefix candidates) candidates) (document . ac-slime-documentation)) "\
+Source for fuzzy slime completion.")
+
+(defvar ac-source-slime-simple '((init . ac-slime-init) (candidates . ac-source-slime-simple-candidates) (candidate-face . ac-slime-menu-face) (selection-face . ac-slime-selection-face) (prefix . slime-symbol-start-pos) (symbol . "l") (document . ac-slime-documentation) (match . ac-source-slime-case-correcting-completions)) "\
+Source for slime completion.")
+
+(autoload 'set-up-slime-ac "ac-slime/ac-slime" "\
+Add an optionally-fuzzy slime completion source to `ac-sources'.
+
+\(fn &optional FUZZY)" t nil)
+
+;;;***
+
 ;;;### (autoloads (turn-on-bib-cite bib-cite-minor-mode) "auctex/bib-cite"
 ;;;;;;  "auctex/bib-cite.el" (18341 54637 0 0))
 ;;; Generated autoloads from auctex/bib-cite.el
@@ -2245,42 +2268,6 @@ Idle-Highlight Minor Mode
 
 ;;;***
 
-;;;### (autoloads (js2-imenu-extras-mode js2-imenu-extras-setup)
-;;;;;;  "js2-mode/js2-imenu-extras" "js2-mode/js2-imenu-extras.el"
-;;;;;;  (21133 53441 575613 772000))
-;;; Generated autoloads from js2-mode/js2-imenu-extras.el
-
-(autoload 'js2-imenu-extras-setup "js2-mode/js2-imenu-extras" "\
-
-
-\(fn)" nil nil)
-
-(autoload 'js2-imenu-extras-mode "js2-mode/js2-imenu-extras" "\
-Toggle Imenu support for frameworks and structural patterns.
-
-\(fn &optional ARG)" t nil)
-
-;;;***
-
-;;;### (autoloads (js2-mode js2-minor-mode) "js2-mode/js2-mode" "js2-mode/js2-mode.el"
-;;;;;;  (21133 53441 578947 55000))
-;;; Generated autoloads from js2-mode/js2-mode.el
-
-(autoload 'js2-minor-mode "js2-mode/js2-mode" "\
-Minor mode for running js2 as a background linter.
-This allows you to use a different major mode for JavaScript editing,
-such as `espresso-mode', while retaining the asynchronous error/warning
-highlighting features of `js2-mode'.
-
-\(fn &optional ARG)" t nil)
-
-(autoload 'js2-mode "js2-mode/js2-mode" "\
-Major mode for editing JavaScript code.
-
-\(fn)" t nil)
-
-;;;***
-
 ;;;### (autoloads (gfm-mode markdown-mode) "markdown-mode/markdown-mode"
 ;;;;;;  "markdown-mode/markdown-mode.el" (21139 7379 212461 621000))
 ;;; Generated autoloads from markdown-mode/markdown-mode.el
@@ -2477,13 +2464,17 @@ See `yas-minor-mode' for more information on Yas minor mode.
 
 ;;;***
 
-;;;### (autoloads nil nil ("auctex/auctex.el" "auctex/auto-loads.el"
-;;;;;;  "auctex/lpath.el" "auctex/preview/auto.el" "auctex/preview/preview-latex.el"
+;;;### (autoloads nil nil ("ac-anything2/ac-anything2.el" "ac-python/ac-python.el"
+;;;;;;  "auctex/auctex.el" "auctex/auto-loads.el" "auctex/lpath.el"
+;;;;;;  "auctex/preview/auto.el" "auctex/preview/preview-latex.el"
 ;;;;;;  "auctex/preview/prv-emacs.el" "auctex/preview/prv-install.el"
 ;;;;;;  "auctex/preview/prv-xemacs.el" "auctex/tex-buf.el" "auctex/tex-mik.el"
 ;;;;;;  "auctex/tex-site.el" "auctex/tex-style.el" "auctex/tex-wizard.el"
-;;;;;;  "auto-complete-extension/auto-complete-extension.el" "color-occur/color-occur.el"
-;;;;;;  "color-theme-ahei/color-theme-ahei.el" "color-theme-almost-monokai/color-theme-almost-monokai.el"
+;;;;;;  "auto-complete-chunk/auto-complete-chunk.el" "auto-complete-chunk/test-auto-complete-chunk.el"
+;;;;;;  "auto-complete-clang/auto-complete-clang.el" "auto-complete-emacs-lisp/auto-complete-emacs-lisp.el"
+;;;;;;  "auto-complete-extension/auto-complete-extension.el" "auto-complete-verilog/auto-complete-verilog.el"
+;;;;;;  "color-occur/color-occur.el" "color-theme-ahei/color-theme-ahei.el"
+;;;;;;  "color-theme-almost-monokai/color-theme-almost-monokai.el"
 ;;;;;;  "color-theme-black-purple/color-theme-black-purple.el" "color-theme-chocolate-rain/color-theme-chocolate-rain.el"
 ;;;;;;  "color-theme-emacs-revert-theme/color-theme-emacs-revert-theme.el"
 ;;;;;;  "color-theme-empty-void/color-theme-empty-void.el" "color-theme-inkpot/color-theme-inkpot.el"
@@ -2497,8 +2488,8 @@ See `yas-minor-mode' for more information on Yas minor mode.
 ;;;;;;  "el-get/el-get-autoloads.el" "el-get/el-get-build.el" "el-get/el-get-byte-compile.el"
 ;;;;;;  "el-get/el-get-core.el" "el-get/el-get-custom.el" "el-get/el-get-dependencies.el"
 ;;;;;;  "el-get/el-get-install.el" "el-get/el-get-methods.el" "el-get/el-get-notify.el"
-;;;;;;  "el-get/el-get-recipes.el" "el-get/el-get-status.el" "swank-js/slime-js.el")
-;;;;;;  (21140 26904 927595 596000))
+;;;;;;  "el-get/el-get-recipes.el" "el-get/el-get-status.el" "pos-tip/pos-tip.el"
+;;;;;;  "slime-loads/slime-loads.el") (21152 17562 159697 454000))
 
 ;;;***
 

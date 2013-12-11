@@ -24,6 +24,9 @@
    '(1 "_NET_WM_STATE_MAXIMIZED_VERT" 0)))
 (set-maximized) 
 
+;; auto revert
+(global-auto-revert-mode t)
+
 (require 'feng-highlight)
 (global-set-key (kbd "M-i") 'feng-highlight-at-point)
 
@@ -40,8 +43,8 @@
 (global-set-key (kbd "M-/") 'hippie-expand)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
-;;(global-set-key (kbd "C-s") 'isearch-forward-regexp)
-;;(global-set-key (kbd "C-r") 'isearch-backward-regexp)
+(global-set-key (kbd "C-s") 'isearch-forward-regexp)
+(global-set-key (kbd "C-r") 'isearch-backward-regexp)
 ;;(global-set-key (kbd "C-M-s") 'isearch-forward)
 ;;(global-set-key (kbd "C-M-r") 'isearch-backward)
 
@@ -68,3 +71,4 @@
     (set-fontset-font (frame-parameter nil 'font)
                       charset
                       (font-spec :family "WenQuanYi Zen Hei Mono" :size 14)))
+

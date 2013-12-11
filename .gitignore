@@ -1,2 +1,5 @@
 session.*
 *~
+\#*
+*.dat
+*.bak

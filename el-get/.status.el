@@ -1,4 +1,10 @@
-((auctex status "installed" recipe
+((ac-anything2 status "installed" recipe
+               (:name ac-anything2 :auto-generated t :type emacswiki :description "ac-anything.el for the latest version of auto-complete.el" :website "https://raw.github.com/emacsmirror/emacswiki.org/master/ac-anything2.el"))
+ (ac-python status "installed" recipe
+            (:name ac-python :description "Simple Python Completion Source for Auto-Complete" :type http :url "http://chrispoole.com/downloads/ac-python.el" :features ac-python))
+ (ac-slime status "installed" recipe
+           (:name ac-slime :website "https://github.com/purcell/ac-slime" :description "Emacs auto-complete plugin for Slime symbols" :type github :pkgname "purcell/ac-slime"))
+ (auctex status "installed" recipe
          (:name auctex :website "http://www.gnu.org/software/auctex/" :description "AUCTeX is an extensible package for writing and formatting TeX files in GNU Emacs and XEmacs. It supports many different TeX macro packages, including AMS-TeX, LaTeX, Texinfo, ConTeXt, and docTeX (dtx files)." :type cvs :module "auctex" :url ":pserver:anonymous@cvs.sv.gnu.org:/sources/auctex" :build
                 `("./autogen.sh" ,(concat "./configure --without-texmf-dir --with-lispdir=`pwd` --with-emacs=" el-get-emacs)
                   "make")
@@ -12,14 +18,22 @@
                        (popup fuzzy)))
  (auto-complete+ status "installed" recipe
                  (:name auto-complete+ :auto-generated t :type emacswiki :description "Auto complete plus" :website "https://raw.github.com/emacsmirror/emacswiki.org/master/auto-complete+.el"))
+ (auto-complete-chunk status "installed" recipe
+                      (:name auto-complete-chunk :description "Auto-completion for dot.separated.words." :type github :pkgname "tkf/auto-complete-chunk" :depends auto-complete))
+ (auto-complete-clang status "installed" recipe
+                      (:name auto-complete-clang :website "https://github.com/brianjcj/auto-complete-clang" :description "Auto-complete sources for Clang. Combine the power of AC, Clang and Yasnippet." :type github :pkgname "brianjcj/auto-complete-clang" :depends auto-complete))
  (auto-complete-css status "installed" recipe
                     (:name auto-complete-css :description "Auto-complete sources for CSS" :type http :url "http://www.cx4a.org/pub/auto-complete-css.el" :depends auto-complete))
+ (auto-complete-emacs-lisp status "installed" recipe
+                           (:name auto-complete-emacs-lisp :description "Auto-complete sources for emacs lisp" :type http :url "http://www.cx4a.org/pub/auto-complete-emacs-lisp.el" :depends auto-complete))
  (auto-complete-etags status "installed" recipe
                       (:name auto-complete-etags :type emacswiki :description "Auto-complete sources for etags" :depends auto-complete))
  (auto-complete-extension status "installed" recipe
                           (:name auto-complete-extension :type emacswiki :description "Some extension for auto-complete-mode" :depends auto-complete))
  (auto-complete-latex status "installed" recipe
                       (:name auto-complete-latex :description "A LaTeX extention for auto-complete-mode" :website "https://bitbucket.org/tequilasunset/auto-complete-latex" :url "https://bitbucket.org/tequilasunset/auto-complete-latex" :type hg :depends auto-complete))
+ (auto-complete-verilog status "installed" recipe
+                        (:name auto-complete-verilog :auto-generated t :type emacswiki :description "Auto-completion source for verilog" :website "https://raw.github.com/emacsmirror/emacswiki.org/master/auto-complete-verilog.el"))
  (auto-complete-yasnippet status "installed" recipe
                           (:name auto-complete-yasnippet :description "Auto-complete sources for YASnippet" :type http :url "http://www.cx4a.org/pub/auto-complete-yasnippet.el" :depends
                                  (auto-complete yasnippet)))
@@ -177,9 +191,7 @@
            (:name hl-line+ :auto-generated t :type emacswiki :description "Extensions to hl-line.el." :website "https://raw.github.com/emacsmirror/emacswiki.org/master/hl-line+.el"))
  (idle-highlight-mode status "installed" recipe
                       (:name idle-highlight-mode :description "Idle Highlight Mode." :website "https://github.com/nonsequitur/idle-highlight-mode" :type github :pkgname "nonsequitur/idle-highlight-mode"))
- (js2-mode status "installed" recipe
-           (:name js2-mode :website "https://github.com/mooz/js2-mode#readme" :description "An improved JavaScript editing mode" :type github :pkgname "mooz/js2-mode" :prepare
-                  (autoload 'js2-mode "js2-mode" nil t)))
+ (js2-mode status "removed" recipe nil)
  (json status "installed" recipe
        (:name json :description "JavaScript Object Notation parser / generator" :type http :url "http://edward.oconnor.cx/elisp/json.el" :features json))
  (markdown-mode status "installed" recipe
@@ -226,9 +238,10 @@
                            :features php-mode))
  (popup status "installed" recipe
         (:name popup :website "https://github.com/auto-complete/popup-el" :description "Visual Popup Interface Library for Emacs" :type github :pkgname "auto-complete/popup-el"))
+ (pos-tip status "installed" recipe
+          (:name pos-tip :description "Show tooltip at point" :type emacswiki))
  (slime status "removed" recipe nil)
- (slime-loads status "installed" recipe
-              (:name slime-loads :auto-generated t :type emacswiki :description "stub to indirect slime/swank configs on GNU" :website "https://raw.github.com/emacsmirror/emacswiki.org/master/slime-loads.el"))
+ (slime-loads status "removed" recipe nil)
  (smex status "installed" recipe
        (:name smex :description "M-x interface with Ido-style fuzzy matching." :type github :pkgname "nonsequitur/smex" :features smex :post-init
               (smex-initialize)))
