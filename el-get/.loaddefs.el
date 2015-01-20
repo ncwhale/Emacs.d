@@ -389,8 +389,9 @@ Limit searched to BOUND.
 
 ;;;***
 
-;;;### (autoloads (auto-complete) "auto-complete/auto-complete" "auto-complete/auto-complete.el"
-;;;;;;  (21140 24473 127722 773000))
+;;;### (autoloads (global-auto-complete-mode auto-complete-mode auto-complete)
+;;;;;;  "auto-complete/auto-complete" "auto-complete/auto-complete.el"
+;;;;;;  (21434 21297 55621 867000))
 ;;; Generated autoloads from auto-complete/auto-complete.el
 
 (autoload 'auto-complete "auto-complete/auto-complete" "\
@@ -398,10 +399,48 @@ Start auto-completion at current point.
 
 \(fn &optional SOURCES)" t nil)
 
+(autoload 'auto-complete-mode "auto-complete/auto-complete" "\
+AutoComplete mode
+
+\(fn &optional ARG)" t nil)
+
+(defvar global-auto-complete-mode nil "\
+Non-nil if Global-Auto-Complete mode is enabled.
+See the command `global-auto-complete-mode' for a description of this minor mode.
+Setting this variable directly does not take effect;
+either customize it (see the info node `Easy Customization')
+or call the function `global-auto-complete-mode'.")
+
+(custom-autoload 'global-auto-complete-mode "auto-complete/auto-complete" nil)
+
+(autoload 'global-auto-complete-mode "auto-complete/auto-complete" "\
+Toggle Auto-Complete mode in all buffers.
+With prefix ARG, enable Global-Auto-Complete mode if ARG is positive;
+otherwise, disable it.  If called from Lisp, enable the mode if
+ARG is omitted or nil.
+
+Auto-Complete mode is enabled in all buffers where
+`auto-complete-mode-maybe' would do it.
+See `auto-complete-mode' for more information on Auto-Complete mode.
+
+\(fn &optional ARG)" t nil)
+
+;;;***
+
+;;;### (autoloads (ac-config-default) "auto-complete/auto-complete-config"
+;;;;;;  "auto-complete/auto-complete-config.el" (21434 21297 55621
+;;;;;;  867000))
+;;; Generated autoloads from auto-complete/auto-complete-config.el
+
+(autoload 'ac-config-default "auto-complete/auto-complete-config" "\
+
+
+\(fn)" nil nil)
+
 ;;;***
 
 ;;;### (autoloads (coffee-mode) "coffee-mode/coffee-mode" "coffee-mode/coffee-mode.el"
-;;;;;;  (21133 53403 302860 575000))
+;;;;;;  (21434 21301 342302 967000))
 ;;; Generated autoloads from coffee-mode/coffee-mode.el
 
 (autoload 'coffee-mode "coffee-mode/coffee-mode" "\
@@ -415,6 +454,8 @@ Major mode for editing CoffeeScript.
 
 (add-to-list 'auto-mode-alist '("Cakefile\\'" . coffee-mode))
 
+(add-to-list 'auto-mode-alist '("\\.cson\\'" . coffee-mode))
+
 (add-to-list 'interpreter-mode-alist '("coffee" . coffee-mode))
 
 ;;;***
@@ -423,7 +464,7 @@ Major mode for editing CoffeeScript.
 ;;;;;;  col-highlight-toggle-when-idle column-highlight-mode col-highlight-overlay-priority
 ;;;;;;  col-highlight-period col-highlight-vline-face-flag col-highlight-show-only
 ;;;;;;  column-highlight) "col-highlight/col-highlight" "col-highlight/col-highlight.el"
-;;;;;;  (21140 24624 665395 941000))
+;;;;;;  (21434 21327 899061 61000))
 ;;; Generated autoloads from col-highlight/col-highlight.el
 
 (let ((loads (get 'column-highlight 'custom-loads))) (if (member '"col-highlight/col-highlight" loads) nil (put 'column-highlight 'custom-loads (cons '"col-highlight/col-highlight" loads))))
@@ -511,7 +552,7 @@ With a prefix ARG, highlight for that many seconds.
 ;;;***
 
 ;;;### (autoloads (color-browser) "color-browser/color-browser" "color-browser/color-browser.el"
-;;;;;;  (21140 24636 475214 341000))
+;;;;;;  (21434 21321 732372 862000))
 ;;; Generated autoloads from color-browser/color-browser.el
 
 (autoload 'color-browser "color-browser/color-browser" "\
@@ -2325,6 +2366,256 @@ Enables the multi web mode chunk detection and indentation
 
 ;;;***
 
+;;;### (autoloads (mc/edit-beginnings-of-lines mc/edit-ends-of-lines
+;;;;;;  mc/edit-lines) "multiple-cursors/mc-edit-lines" "multiple-cursors/mc-edit-lines.el"
+;;;;;;  (21509 14721 418886 38000))
+;;; Generated autoloads from multiple-cursors/mc-edit-lines.el
+
+(autoload 'mc/edit-lines "multiple-cursors/mc-edit-lines" "\
+Add one cursor to each line of the active region.
+Starts from mark and moves in straight down or up towards the
+line point is on.
+
+What is done with lines which are not long enough is governed by
+`mc/edit-lines-empty-lines'.  The prefix argument ARG can be used
+to override this.  If ARG is a symbol (when called from Lisp),
+that symbol is used instead of `mc/edit-lines-empty-lines'.
+Otherwise, if ARG negative, short lines will be ignored.  Any
+other non-nil value will cause short lines to be padded.
+
+\(fn &optional ARG)" t nil)
+
+(autoload 'mc/edit-ends-of-lines "multiple-cursors/mc-edit-lines" "\
+Add one cursor to the end of each line in the active region.
+
+\(fn)" t nil)
+
+(autoload 'mc/edit-beginnings-of-lines "multiple-cursors/mc-edit-lines" "\
+Add one cursor to the beginning of each line in the active region.
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (mc/mark-sgml-tag-pair mc/add-cursor-on-click mc/mark-all-symbols-like-this-in-defun
+;;;;;;  mc/mark-all-words-like-this-in-defun mc/mark-all-like-this-in-defun
+;;;;;;  mc/mark-all-dwim mc/mark-all-like-this-dwim mc/mark-more-like-this-extended
+;;;;;;  mc/mark-all-in-region-regexp mc/mark-all-in-region mc/mark-all-symbols-like-this
+;;;;;;  mc/mark-all-words-like-this mc/mark-all-like-this mc/skip-to-previous-like-this
+;;;;;;  mc/skip-to-next-like-this mc/unmark-previous-like-this mc/unmark-next-like-this
+;;;;;;  mc/mark-previous-lines mc/mark-next-lines mc/mark-previous-symbol-like-this
+;;;;;;  mc/mark-previous-word-like-this mc/mark-previous-like-this
+;;;;;;  mc/mark-next-symbol-like-this mc/mark-next-word-like-this
+;;;;;;  mc/mark-next-like-this) "multiple-cursors/mc-mark-more" "multiple-cursors/mc-mark-more.el"
+;;;;;;  (21509 14721 418886 38000))
+;;; Generated autoloads from multiple-cursors/mc-mark-more.el
+
+(autoload 'mc/mark-next-like-this "multiple-cursors/mc-mark-more" "\
+Find and mark the next part of the buffer matching the currently active region
+With negative ARG, delete the last one instead.
+With zero ARG, skip the last one and mark next.
+
+\(fn ARG)" t nil)
+
+(autoload 'mc/mark-next-word-like-this "multiple-cursors/mc-mark-more" "\
+
+
+\(fn ARG)" t nil)
+
+(autoload 'mc/mark-next-symbol-like-this "multiple-cursors/mc-mark-more" "\
+
+
+\(fn ARG)" t nil)
+
+(autoload 'mc/mark-previous-like-this "multiple-cursors/mc-mark-more" "\
+Find and mark the previous part of the buffer matching the currently active region
+With negative ARG, delete the last one instead.
+With zero ARG, skip the last one and mark next.
+
+\(fn ARG)" t nil)
+
+(autoload 'mc/mark-previous-word-like-this "multiple-cursors/mc-mark-more" "\
+
+
+\(fn ARG)" t nil)
+
+(autoload 'mc/mark-previous-symbol-like-this "multiple-cursors/mc-mark-more" "\
+
+
+\(fn ARG)" t nil)
+
+(autoload 'mc/mark-next-lines "multiple-cursors/mc-mark-more" "\
+
+
+\(fn ARG)" t nil)
+
+(autoload 'mc/mark-previous-lines "multiple-cursors/mc-mark-more" "\
+
+
+\(fn ARG)" t nil)
+
+(autoload 'mc/unmark-next-like-this "multiple-cursors/mc-mark-more" "\
+Deselect next part of the buffer matching the currently active region.
+
+\(fn)" t nil)
+
+(autoload 'mc/unmark-previous-like-this "multiple-cursors/mc-mark-more" "\
+Deselect prev part of the buffer matching the currently active region.
+
+\(fn)" t nil)
+
+(autoload 'mc/skip-to-next-like-this "multiple-cursors/mc-mark-more" "\
+Skip the current one and select the next part of the buffer matching the currently active region.
+
+\(fn)" t nil)
+
+(autoload 'mc/skip-to-previous-like-this "multiple-cursors/mc-mark-more" "\
+Skip the current one and select the prev part of the buffer matching the currently active region.
+
+\(fn)" t nil)
+
+(autoload 'mc/mark-all-like-this "multiple-cursors/mc-mark-more" "\
+Find and mark all the parts of the buffer matching the currently active region
+
+\(fn)" t nil)
+
+(autoload 'mc/mark-all-words-like-this "multiple-cursors/mc-mark-more" "\
+
+
+\(fn)" t nil)
+
+(autoload 'mc/mark-all-symbols-like-this "multiple-cursors/mc-mark-more" "\
+
+
+\(fn)" t nil)
+
+(autoload 'mc/mark-all-in-region "multiple-cursors/mc-mark-more" "\
+Find and mark all the parts in the region matching the given search
+
+\(fn BEG END)" t nil)
+
+(autoload 'mc/mark-all-in-region-regexp "multiple-cursors/mc-mark-more" "\
+Find and mark all the parts in the region matching the given regexp
+
+\(fn BEG END)" t nil)
+
+(autoload 'mc/mark-more-like-this-extended "multiple-cursors/mc-mark-more" "\
+Like mark-more-like-this, but then lets you adjust with arrows key.
+The adjustments work like this:
+
+   <up>    Mark previous like this and set direction to 'up
+   <down>  Mark next like this and set direction to 'down
+
+If direction is 'up:
+
+   <left>  Skip past the cursor furthest up
+   <right> Remove the cursor furthest up
+
+If direction is 'down:
+
+   <left>  Remove the cursor furthest down
+   <right> Skip past the cursor furthest down
+
+The bindings for these commands can be changed. See `mc/mark-more-like-this-extended-keymap'.
+
+\(fn)" t nil)
+
+(autoload 'mc/mark-all-like-this-dwim "multiple-cursors/mc-mark-more" "\
+Tries to guess what you want to mark all of.
+Can be pressed multiple times to increase selection.
+
+With prefix, it behaves the same as original `mc/mark-all-like-this'
+
+\(fn ARG)" t nil)
+
+(autoload 'mc/mark-all-dwim "multiple-cursors/mc-mark-more" "\
+Tries even harder to guess what you want to mark all of.
+
+If the region is active and spans multiple lines, it will behave
+as if `mc/mark-all-in-region'. With the prefix ARG, it will call
+`mc/edit-lines' instead.
+
+If the region is inactive or on a single line, it will behave like 
+`mc/mark-all-like-this-dwim'.
+
+\(fn ARG)" t nil)
+
+(autoload 'mc/mark-all-like-this-in-defun "multiple-cursors/mc-mark-more" "\
+Mark all like this in defun.
+
+\(fn)" t nil)
+
+(autoload 'mc/mark-all-words-like-this-in-defun "multiple-cursors/mc-mark-more" "\
+Mark all words like this in defun.
+
+\(fn)" t nil)
+
+(autoload 'mc/mark-all-symbols-like-this-in-defun "multiple-cursors/mc-mark-more" "\
+Mark all symbols like this in defun.
+
+\(fn)" t nil)
+
+(autoload 'mc/add-cursor-on-click "multiple-cursors/mc-mark-more" "\
+Add a cursor where you click.
+
+\(fn EVENT)" t nil)
+
+(autoload 'mc/mark-sgml-tag-pair "multiple-cursors/mc-mark-more" "\
+Mark the tag we're in and its pair for renaming.
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (mc/mark-pop) "multiple-cursors/mc-mark-pop" "multiple-cursors/mc-mark-pop.el"
+;;;;;;  (21509 14721 418886 38000))
+;;; Generated autoloads from multiple-cursors/mc-mark-pop.el
+
+(autoload 'mc/mark-pop "multiple-cursors/mc-mark-pop" "\
+Add a cursor at the current point, pop off mark ring and jump
+to the popped mark.
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (mc/sort-regions mc/reverse-regions mc/insert-numbers)
+;;;;;;  "multiple-cursors/mc-separate-operations" "multiple-cursors/mc-separate-operations.el"
+;;;;;;  (21509 14721 418886 38000))
+;;; Generated autoloads from multiple-cursors/mc-separate-operations.el
+
+(autoload 'mc/insert-numbers "multiple-cursors/mc-separate-operations" "\
+Insert increasing numbers for each cursor, starting at 0 or ARG.
+
+\(fn ARG)" t nil)
+
+(autoload 'mc/reverse-regions "multiple-cursors/mc-separate-operations" "\
+
+
+\(fn)" t nil)
+
+(autoload 'mc/sort-regions "multiple-cursors/mc-separate-operations" "\
+
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (set-rectangular-region-anchor) "multiple-cursors/rectangular-region-mode"
+;;;;;;  "multiple-cursors/rectangular-region-mode.el" (21509 14721
+;;;;;;  418886 38000))
+;;; Generated autoloads from multiple-cursors/rectangular-region-mode.el
+
+(autoload 'set-rectangular-region-anchor "multiple-cursors/rectangular-region-mode" "\
+Anchors the rectangular region at point.
+
+Think of this one as `set-mark' except you're marking a rectangular region. It is
+an exceedingly quick way of adding multiple cursors to multiple lines.
+
+\(fn)" t nil)
+
+;;;***
+
 ;;;### (autoloads (php-mode php-file-patterns php-mode-to-use) "php-mode-improved/php-mode-improved"
 ;;;;;;  "php-mode-improved/php-mode-improved.el" (21133 33805 719239
 ;;;;;;  504000))
@@ -2470,11 +2761,13 @@ See `yas-minor-mode' for more information on Yas minor mode.
 ;;;;;;  "auctex/preview/prv-emacs.el" "auctex/preview/prv-install.el"
 ;;;;;;  "auctex/preview/prv-xemacs.el" "auctex/tex-buf.el" "auctex/tex-mik.el"
 ;;;;;;  "auctex/tex-site.el" "auctex/tex-style.el" "auctex/tex-wizard.el"
-;;;;;;  "auto-complete-chunk/auto-complete-chunk.el" "auto-complete-chunk/test-auto-complete-chunk.el"
-;;;;;;  "auto-complete-clang/auto-complete-clang.el" "auto-complete-emacs-lisp/auto-complete-emacs-lisp.el"
-;;;;;;  "auto-complete-extension/auto-complete-extension.el" "auto-complete-verilog/auto-complete-verilog.el"
-;;;;;;  "color-occur/color-occur.el" "color-theme-ahei/color-theme-ahei.el"
-;;;;;;  "color-theme-almost-monokai/color-theme-almost-monokai.el"
+;;;;;;  "auto-complete+/auto-complete+.el" "auto-complete-chunk/auto-complete-chunk.el"
+;;;;;;  "auto-complete-chunk/test-auto-complete-chunk.el" "auto-complete-clang/auto-complete-clang.el"
+;;;;;;  "auto-complete-emacs-lisp/auto-complete-emacs-lisp.el" "auto-complete-etags/auto-complete-etags.el"
+;;;;;;  "auto-complete-extension/auto-complete-extension.el" "auto-complete-latex/auto-complete-latex.el"
+;;;;;;  "auto-complete-verilog/auto-complete-verilog.el" "auto-complete/auto-complete-pkg.el"
+;;;;;;  "color-moccur/color-moccur.el" "color-occur/color-occur.el"
+;;;;;;  "color-theme-ahei/color-theme-ahei.el" "color-theme-almost-monokai/color-theme-almost-monokai.el"
 ;;;;;;  "color-theme-black-purple/color-theme-black-purple.el" "color-theme-chocolate-rain/color-theme-chocolate-rain.el"
 ;;;;;;  "color-theme-emacs-revert-theme/color-theme-emacs-revert-theme.el"
 ;;;;;;  "color-theme-empty-void/color-theme-empty-void.el" "color-theme-inkpot/color-theme-inkpot.el"
@@ -2488,8 +2781,10 @@ See `yas-minor-mode' for more information on Yas minor mode.
 ;;;;;;  "el-get/el-get-autoloads.el" "el-get/el-get-build.el" "el-get/el-get-byte-compile.el"
 ;;;;;;  "el-get/el-get-core.el" "el-get/el-get-custom.el" "el-get/el-get-dependencies.el"
 ;;;;;;  "el-get/el-get-install.el" "el-get/el-get-methods.el" "el-get/el-get-notify.el"
-;;;;;;  "el-get/el-get-recipes.el" "el-get/el-get-status.el" "pos-tip/pos-tip.el"
-;;;;;;  "slime-loads/slime-loads.el") (21152 17562 159697 454000))
+;;;;;;  "el-get/el-get-recipes.el" "el-get/el-get-status.el" "multiple-cursors/mc-cycle-cursors.el"
+;;;;;;  "multiple-cursors/mc-hide-unmatched-lines-mode.el" "multiple-cursors/multiple-cursors-core.el"
+;;;;;;  "multiple-cursors/multiple-cursors-pkg.el" "multiple-cursors/multiple-cursors.el"
+;;;;;;  "pos-tip/pos-tip.el") (21509 14722 50858 676000))
 
 ;;;***
 

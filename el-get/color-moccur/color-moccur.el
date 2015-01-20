@@ -3218,4 +3218,589 @@ It serves as a menu to find any of the occurrences in this buffer.
     (if (string-match "^[+-]" str)
         (setq str (substring str 2)))
     (let ((buffer-read-only nil)
-          (inhibit-rea
+          (inhibit-read-only nil))
+      (condition-case err
+          (undo)
+        (error
+         ()))
+      (goto-char (point-min))
+      (re-search-forward (regexp-quote str) nil t))
+
+    ;; highlight but slow..., so comment...
+    ;;(moccur-buffer-color)
+
+    (moccur-mode-start-ee-switch-before-buffer moccur-current-ee line)))
+
+(defun moccur-flush-lines ()
+  (interactive)
+  (let ((str
+         (progn
+           (save-excursion
+             (if (and (not (and (boundp 'running-xemacs) running-xemacs))
+                      transient-mark-mode mark-active)
+                 (goto-char (region-beginning)))
+             (beginning-of-line)
+             (re-search-forward "[^ ]" nil t)
+             (regexp-quote
+              (buffer-substring-no-properties
+               (- (point) 1) (line-end-position))))))
+        (rend-str (if (and (not (and (boundp 'running-xemacs) running-xemacs))
+                           transient-mark-mode mark-active)
+                      (progn
+                        (save-excursion
+                          (goto-char (region-end))
+                          (beginning-of-line)
+                          (re-search-forward "[^ ]" (line-end-position) t)
+                          (regexp-quote
+                           (buffer-substring-no-properties
+                            (- (point) 1) (line-end-position)))))
+                    nil))
+        (line (progn (save-excursion (end-of-line) (count-lines 1 (point)))))
+        (moccur-current-ee
+         (if (string-match "ee" (buffer-name (current-buffer)))
+             t
+           nil))
+        (regexp
+         (read-from-minibuffer
+          "Flush lines (containing match for regexp): " nil nil nil
+          'regexp-history nil t)))
+
+    (moccur-mode-kill-ee)
+    (moccur-switch-buffer 'normal)
+
+    (goto-char (point-min))
+    (if (string-match "^[+-]" str)
+        (setq str (substring str 2)))
+    (if (and rend-str
+             (string-match "^[+-]" rend-str))
+        (setq rend-str (substring rend-str 2)))
+
+    (re-search-forward (regexp-quote str) nil t)
+    (beginning-of-line)
+    (let (rstart rend
+                 (buffer-read-only nil)
+                 (inhibit-read-only nil))
+      (setq rstart (point))
+      (if rend-str
+          (setq rend (copy-marker
+                      (save-excursion
+                        (goto-char (point-min))
+                        (re-search-forward (regexp-quote rend-str) nil t)
+                        (end-of-line)
+                        (point))))
+        (setq rend (point-max-marker)))
+      (goto-char rstart)
+      (let ((case-fold-search case-fold-search))
+        (save-excursion
+          (while (and (< (point) rend)
+                      (re-search-forward regexp rend t))
+            (goto-char (line-beginning-position))
+            (unless (re-search-forward
+                     moccur-buffer-heading-regexp (line-end-position) t)
+              (line-beginning-position)
+              (moccur-mode-kill-line-internal))))))
+    (moccur-mode-start-ee-switch-before-buffer moccur-current-ee line)))
+
+(defun moccur-keep-lines ()
+  (interactive)
+  (let ((str
+         (progn
+           (save-excursion
+             (if (and (not (and (boundp 'running-xemacs) running-xemacs))
+                      transient-mark-mode mark-active)
+                 (goto-char (region-beginning)))
+             (beginning-of-line)
+             (re-search-forward "[^ ]" nil t)
+             (regexp-quote
+              (buffer-substring-no-properties
+               (- (point) 1) (line-end-position))))))
+        (rend-str (if (and (not (and (boundp 'running-xemacs) running-xemacs))
+                           transient-mark-mode mark-active)
+                      (progn
+                        (save-excursion
+                          (goto-char (region-end))
+                          (beginning-of-line)
+                          (re-search-forward "[^ ]" (line-end-position) t)
+                          (regexp-quote
+                           (buffer-substring-no-properties
+                            (- (point) 1) (line-end-position)))))
+                    nil))
+        (line (progn (save-excursion (end-of-line) (count-lines 1 (point)))))
+        (moccur-current-ee
+         (if (string-match "ee" (buffer-name (current-buffer)))
+             t
+           nil))
+        (regexp (read-from-minibuffer
+                 "Flush lines (containing match for regexp): " nil nil nil
+                 'regexp-history nil t)))
+
+    (moccur-mode-kill-ee)
+    (moccur-switch-buffer 'normal)
+
+    (goto-char (point-min))
+    (if (string-match "^[+-]" str)
+        (setq str (substring str 2)))
+    (if (and rend-str
+             (string-match "^[+-]" rend-str))
+        (setq rend-str (substring rend-str 2)))
+
+    (re-search-forward (regexp-quote str) nil t)
+    (beginning-of-line)
+    (let (rstart rend
+                 (buffer-read-only nil)
+                 (inhibit-read-only nil))
+      (setq rstart (point))
+      (if rend-str
+          (setq rend (copy-marker
+                      (save-excursion
+                        (goto-char (point-min))
+                        (re-search-forward (regexp-quote rend-str) nil t)
+                        (end-of-line)
+                        (point))))
+        (setq rend (point-max-marker)))
+      (goto-char rstart)
+      (let ((case-fold-search case-fold-search))
+        (save-excursion
+          (while (< (point) rend)
+            (goto-char (beginning-of-line))
+            (unless (or (string=
+                         (buffer-substring-no-properties
+                          (line-beginning-position) (line-end-position)) "")
+                        (save-excursion
+                          (re-search-forward regexp (line-end-position) t)))
+              (unless
+                  (re-search-forward
+                   moccur-buffer-heading-regexp (line-end-position) t)
+                (beginning-of-line)
+                (moccur-mode-kill-line-internal)
+                (forward-line -1)))
+            (forward-line 1)))))
+    (moccur-mode-start-ee-switch-before-buffer moccur-current-ee line)))
+
+(defun moccur-quit ()
+  (interactive)
+  (while moccur-xdoc2txt-buffers
+    (when (buffer-live-p
+           (car (car moccur-xdoc2txt-buffers)))
+      (kill-buffer (car (car moccur-xdoc2txt-buffers))))
+    (setq moccur-xdoc2txt-buffers (cdr moccur-xdoc2txt-buffers)))
+  (setq buffer-menu-moccur nil)
+  (moccur-kill-buffer nil)
+
+  (when (buffer-live-p moccur-current-buffer)
+    (switch-to-buffer moccur-current-buffer)
+    (when moccur-windows-conf
+      (set-window-configuration moccur-windows-conf)))
+
+  ;; this is needed as "save-excursion" is used in
+  ;; "moccur-remove-overlays-on-all-buffers", so we have to make sure the point in current
+  ;; buffer is already restored before calling "moccur-remove-overlays-on-all-buffers"
+  (when moccur-buffer-position
+    (goto-char moccur-buffer-position)
+    (setq moccur-buffer-position nil))
+
+  (moccur-remove-overlays-on-all-buffers))
+
+(defun moccur-toggle-view ()
+  (interactive)
+  (setq moccur-view-other-window (not moccur-view-other-window)))
+
+;;;; body
+(defun moccur-mode (&optional ee)
+  "Major mode for output from \\[moccur].
+Move point to one of the occurrences in this buffer,
+then use \\[moccur-mode-goto-occurrence] to move to the buffer and
+line where it was found.
+\\{occur-mode-map}"
+  (kill-all-local-variables)
+  (setq buffer-read-only t)
+  (setq major-mode 'moccur-mode)
+  (setq mode-name "Moccur")
+  (if ee
+      (progn
+        (setq mode-name "Moccur-ee")
+        (use-local-map moccur-ee-mode-map)
+        (setq moccur-ee-mode-map (moccur-set-key-ee)))
+    (use-local-map moccur-mode-map)
+    (setq moccur-mode-map (moccur-set-key)))
+  (make-local-variable 'line-move-ignore-invisible)
+  (setq line-move-ignore-invisible t)
+  (if (not (and (boundp 'running-xemacs) running-xemacs))
+      (add-to-invisibility-spec '(moccur . t)))
+  (make-local-variable 'outline-regexp)
+  (setq outline-regexp "\\(^Buffer: \\|^[ ]*[0-9]+ \\)")
+  (make-local-variable 'outline-level)
+  (setq outline-level 'moccur-outline-level))
+
+(defun moccur-grep-mode ()
+  "Major mode for output from \\[moccur-grep].
+Move point to one of the occurrences in this buffer,
+then use \\[moccur-grep-goto] to move to the buffer and
+line where it was found.
+\\{occur-mode-map}"
+  (kill-all-local-variables)
+  (setq buffer-read-only t)
+  (setq major-mode 'moccur-grep-mode)
+  (setq mode-name "Moccur-grep")
+  (use-local-map moccur-mode-map)
+  (setq moccur-mode-map (moccur-set-key))
+  ;; Commented out by <WL> (who should we disable moccur-toggle-view here?)
+  ;; (local-unset-key "t")
+  (local-set-key "\C-m" 'moccur-grep-goto)
+  (local-set-key "\C-c\C-c" 'moccur-grep-goto)
+  (make-local-variable 'line-move-ignore-invisible)
+  (setq line-move-ignore-invisible t)
+  (if (not (and (boundp 'running-xemacs) running-xemacs))
+      (add-to-invisibility-spec '(moccur . t)))
+
+  (turn-on-font-lock)
+
+  (make-local-variable 'outline-regexp)
+  (setq outline-regexp "\\(^Buffer: File (grep): \\)")
+  (make-local-variable 'outline-level)
+  (setq outline-level 'moccur-outline-level))
+
+;;; grep-buffers
+;;(require 'compile)
+(defun grep-buffers ()
+  "*Run `grep` PROGRAM to match EXPRESSION (with optional OPTIONS) \
+on all visited files."
+  (interactive)
+  (save-excursion
+    (let*  ((regexp (read-from-minibuffer "grep all-buffer : "))
+            (buffers (moccur-filter-buffers (buffer-list)))
+            com)
+      (setq com (concat
+                 grep-command "\"" regexp "\" "))
+      (while buffers
+        (if (not (buffer-file-name (car buffers)))
+            (setq buffers (cdr buffers))
+          (let ((currfile (buffer-file-name (car buffers))))
+            (setq buffers (cdr buffers))
+            (setq com (concat
+                       com " "
+                       currfile)))))
+      (grep com))))
+
+;;; junk:search-buffers
+;;;; variables
+(defface search-buffers-face
+  '((((class color)
+      (background dark))
+     (:background "SkyBlue" :bold t :foreground "Black"))
+    (((class color)
+      (background light))
+     (:background "ForestGreen" :bold t))
+    (t
+     ()))
+  "face."
+  :group 'color-moccur
+  )
+
+(defface search-buffers-header-face
+  '((((class color)
+      (background dark))
+     (:background "gray20" :bold t :foreground "azure3"))
+    (((class color)
+      (background light))
+     (:background "ForestGreen" :bold t))
+    (t
+     ()))
+  "face."
+  :group 'color-moccur
+  )
+
+;;;; read minibuffer
+(defun search-buffers-regexp-read-from-minibuf ()
+  (let (default input)
+    (setq default
+          (if (thing-at-point 'word)
+              (thing-at-point 'word)
+            (car regexp-history)))
+    (setq input
+          (read-from-minibuffer
+           (if default
+               (format "Search buffers regexp (default `%s'): "
+                       default)
+             "Search buffers regexp: ")
+           nil nil nil
+           'regexp-history default
+           color-moccur-default-ime-status))
+    (if (and (equal input "") default)
+        (setq input default))
+    input))
+
+;;;; body
+(defvar search-buffers-current-buffer nil)
+(defvar search-buffers-windows-conf nil)
+(defvar search-buffers-regexp-list nil)
+(defvar search-buffers-regexp nil)
+(defvar search-buffers-regexp-for-moccur nil)
+
+(defun search-buffers (regexp arg)
+  "*Search string of all buffers."
+  (interactive (list (search-buffers-regexp-read-from-minibuf)
+                     current-prefix-arg))
+  (setq search-buffers-current-buffer (current-buffer))
+  (setq search-buffers-windows-conf (current-window-configuration))
+  (save-excursion
+    (if (get-buffer "*Search*")  ; there ought to be just one of these
+        (kill-buffer (get-buffer "*Search*")))
+    (let*  ((buffers (moccur-filter-buffers (buffer-list)))
+            (occbuf (generate-new-buffer "*Search*"))
+            (regexp-lst nil) str cur-lst match
+            match-text beg end lst)
+
+      (setq buffers (sort buffers moccur-buffer-sort-method))
+
+      (set-buffer occbuf)
+      (insert "Search " regexp "\n")
+
+      (setq str regexp)
+      (setq search-buffers-regexp regexp)
+      (setq search-buffers-regexp-list (moccur-word-split regexp t))
+      (setq regexp-lst search-buffers-regexp-list)
+      (search-buffers-set-regexp-for-moccur)
+      (setq lst nil)
+
+      (while buffers
+        (if (and (not arg) (not (buffer-file-name (car buffers))))
+            (setq buffers (cdr buffers))
+          (let ((currbuf (car buffers)))
+            (setq cur-lst regexp-lst)
+            (setq buffers (cdr buffers))
+            (set-buffer currbuf)
+            (setq match t)
+            (setq match-text nil)
+            (save-excursion
+              (while (and cur-lst match)
+                (goto-char (point-min))
+                (setq regexp (car cur-lst))
+                (setq cur-lst (cdr cur-lst))
+                (if (re-search-forward regexp nil t)
+                    (progn
+                      (if (> (- (match-beginning 0) 30) 0)
+                          (setq beg (- (match-beginning 0) 30))
+                        (setq beg 1))
+                      (if (< (+ 30 (match-end 0)) (point-max))
+                          (setq end (+ 30 (match-end 0)))
+                        (setq end (point-max)))
+                      (setq match-text
+                            (cons
+                             (buffer-substring beg end)
+                             match-text)))
+                  (setq match nil))))
+            (if match
+                (progn
+                  (let* ((linenum (count-lines (point-min)(point)))
+                         (tag (format "\n%3d " linenum))
+                         fname)
+                    (save-excursion
+                      (set-buffer occbuf)
+                      (if (buffer-file-name currbuf)
+                          (setq fname (buffer-file-name currbuf))
+                        (setq fname "Not file"))
+                      (insert (concat "Buffer: " (buffer-name currbuf)
+                                      " File: " fname "\n"))
+                      (while match-text
+                        (insert (car match-text))
+                        (setq match-text (cdr match-text))
+                        (insert " ... \n"))
+                      (goto-char (point-max))
+                      (insert "\n\n"))))))))
+      (switch-to-buffer occbuf)
+      (goto-char (point-min))
+      (search-buffers-color regexp-lst)
+      (setq buffer-read-only t)
+      (search-buffers-view-mode 1)
+      (search-buffers-next))))
+
+;;;; mode
+(defvar search-buffers-view-mode nil
+  "*Non-nil means in an search-buffers-view-mode.")
+(make-variable-buffer-local 'search-buffers-view-mode)
+(defvar search-buffers-view-mode-map nil "")
+
+(setq search-buffers-view-mode-map nil)
+
+(or search-buffers-view-mode-map
+    (let ((map (make-sparse-keymap)))
+      (define-key map " "
+        (function search-buffers-scroll-up))
+      (define-key map "b"
+        (function search-buffers-scroll-down))
+      (define-key map "q"
+        (function search-buffers-exit))
+      (define-key map "\C-m"
+        (function search-buffers-call-moccur))
+      ;;(function search-buffers-goto))
+      (define-key map "p"
+        (function search-buffers-prev))
+      (define-key map "n"
+        (function search-buffers-next))
+      (define-key map "k"
+        (function search-buffers-prev))
+      (define-key map "j"
+        (function search-buffers-next))
+      (define-key map '[up]
+        (function search-buffers-prev))
+      (define-key map '[down]
+        (function search-buffers-next))
+      (setq search-buffers-view-mode-map map)))
+
+(when (boundp 'minor-mode-map-alist)
+  (or (assq 'search-buffers-view-mode-map minor-mode-map-alist)
+      (setq minor-mode-map-alist
+            (cons (cons 'search-buffers-view-mode
+                        search-buffers-view-mode-map)
+                  minor-mode-map-alist))))
+
+(defun search-buffers-view-mode (&optional arg)
+  (interactive "P")
+  (setq search-buffers-view-mode
+        (if (null arg)
+            (not search-buffers-view-mode)
+          (> (prefix-numeric-value arg) 0))))
+
+;;;; function of mode
+(defun search-buffers-exit ()
+  (interactive)
+  (kill-buffer (get-buffer "*Search*"))
+  (switch-to-buffer search-buffers-current-buffer)
+  (set-window-configuration search-buffers-windows-conf))
+
+(defun search-buffers-set-regexp-for-moccur ()
+  "Make regexp for coloring up."
+  (let ((list (cdr search-buffers-regexp-list)))
+    (if moccur-split-word
+        (progn
+          (setq search-buffers-regexp-for-moccur
+                (concat
+                 "\\(" (car search-buffers-regexp-list)))
+          (while list
+            (setq search-buffers-regexp-for-moccur
+                  (concat search-buffers-regexp-for-moccur
+                          "\\|"
+                          (car list)))
+            (setq list (cdr list)))
+          (setq search-buffers-regexp-for-moccur
+                (concat search-buffers-regexp-for-moccur "\\)")))
+      (setq search-buffers-regexp-for-moccur
+            (car search-buffers-regexp-list)))))
+
+(defun search-buffers-call-moccur ()
+  (interactive)
+  (let (bufname
+        (windows-conf (current-window-configuration))
+        (pos (point)))
+    (save-excursion
+      (end-of-line)
+      (if (re-search-backward moccur-buffer-heading-regexp nil t)
+          (setq bufname (buffer-substring
+                         (match-beginning 1)
+                         (match-end 1)))
+        (if (re-search-forward moccur-buffer-heading-regexp nil t)
+            (setq bufname (buffer-substring
+                           (match-beginning 1)
+                           (match-end 1))))))
+    (switch-to-buffer (get-buffer bufname))
+    (occur-by-moccur search-buffers-regexp-for-moccur t)
+    (set-buffer (get-buffer bufname))
+    (setq moccur-current-buffer (get-buffer "*Search*"))
+    (setq moccur-windows-conf windows-conf)))
+
+(defun search-buffers-goto ()
+  (interactive)
+  (let (bufname)
+    (save-excursion
+      (beginning-of-line)
+      (if (re-search-forward moccur-buffer-heading-regexp nil t)
+          (setq bufname (buffer-substring
+                         (match-beginning 1)
+                         (match-end 1)))
+        (if (re-search-backward moccur-buffer-heading-regexp nil t)
+            (setq bufname (buffer-substring
+                           (match-beginning 1)
+                           (match-end 1)))))
+      (switch-to-buffer (get-buffer bufname))
+      (delete-other-windows))))
+
+(defun search-buffers-next ()
+  (interactive)
+  (let (bufname)
+    (end-of-line)
+    (if (re-search-forward moccur-buffer-heading-regexp nil t)
+        (progn
+          (switch-to-buffer-other-window
+           (get-buffer (buffer-substring-no-properties
+                        (match-beginning 1) (match-end 1))))
+          (switch-to-buffer-other-window (get-buffer "*Search*"))
+          (beginning-of-line)))
+    (recenter)))
+
+(defun search-buffers-prev ()
+  (interactive)
+  (let (bufname)
+    (beginning-of-line)
+    (if (re-search-backward moccur-buffer-heading-regexp nil t)
+        (progn
+          (switch-to-buffer-other-window
+           (get-buffer (buffer-substring-no-properties
+                        (match-beginning 1) (match-end 1))))
+          (switch-to-buffer-other-window (get-buffer "*Search*"))
+          (beginning-of-line)))))
+
+(defun search-buffers-scroll-up ()
+  (interactive)
+  (let (bufname)
+    (scroll-up)
+    (end-of-line)
+    (if (re-search-forward moccur-buffer-heading-regexp nil t)
+        (progn
+          (switch-to-buffer-other-window
+           (get-buffer (buffer-substring-no-properties
+                        (match-beginning 1) (match-end 1))))
+          (switch-to-buffer-other-window (get-buffer "*Search*"))
+          (beginning-of-line)))))
+
+(defun search-buffers-scroll-down ()
+  (interactive)
+  (let (bufname)
+    (scroll-down)
+    (beginning-of-line)
+    (if (re-search-backward moccur-buffer-heading-regexp nil t)
+        (progn
+          (switch-to-buffer-other-window
+           (get-buffer (buffer-substring-no-properties
+                        (match-beginning 1) (match-end 1))))
+          (switch-to-buffer-other-window (get-buffer "*Search*"))
+          (beginning-of-line)))))
+
+;;; color
+(defun search-buffers-color (regexp-lst)
+  (save-excursion
+    (let (ov lst)
+      (setq lst regexp-lst)
+      (while lst
+        (goto-char (point-min))
+        (while (re-search-forward
+                (car lst) nil t)
+          (progn
+            (setq ov (make-overlay (match-beginning 0)
+                                   (match-end 0)))
+            (overlay-put ov 'face 'search-buffers-face)
+            (overlay-put ov 'priority 0)))
+        (setq lst (cdr lst)))
+
+      (goto-char (point-min))
+      (while (re-search-forward
+              "^Buffer: " nil t)
+        (progn
+          (setq ov (make-overlay (match-beginning 0)
+                                 (line-end-position)))
+          (overlay-put ov 'face 'search-buffers-header-face)
+          (overlay-put ov 'priority 0))))))
+
+(provide 'color-moccur)
+;;; end
+;;; color-moccur.el ends here

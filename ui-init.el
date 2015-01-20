@@ -1,4 +1,4 @@
-;;(menu-bar-mode -1)
+(menu-bar-mode -1)
 (when (fboundp 'tool-bar-mode)
   (tool-bar-mode -1))
 (when (fboundp 'scroll-bar-mode)
@@ -22,13 +22,14 @@
   (x-send-client-message
    nil 0 nil "_NET_WM_STATE" 32
    '(1 "_NET_WM_STATE_MAXIMIZED_VERT" 0)))
-(set-maximized) 
+;;(set-maximized) 
 
 ;; auto revert
 (global-auto-revert-mode t)
 
-(require 'feng-highlight)
-(global-set-key (kbd "M-i") 'feng-highlight-at-point)
+;;use multiple-cursors instead.
+;;(require 'feng-highlight)
+;;(global-set-key (kbd "M-i") 'feng-highlight-at-point)
 
 ;; from better-defaults, modifyed.
 (ido-mode t)
@@ -64,11 +65,13 @@
 
 ;; Setting English Font
 (set-face-attribute
-  'default nil :font "Consolas 10")
+  'default nil :font "Consolas 12")
  
 ;; Chinese Font
 (dolist (charset '(kana han symbol cjk-misc bopomofo))
     (set-fontset-font (frame-parameter nil 'font)
                       charset
-                      (font-spec :family "WenQuanYi Zen Hei Mono" :size 14)))
+                      (font-spec :family "Noto Sans S Chinese" :size 14)))
 
+;; For coffee mode
+(setq tab-width 2)
