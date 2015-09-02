@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads (set-up-slime-ac) "ac-slime/ac-slime" "ac-slime/ac-slime.el"
-;;;;;;  (21141 44236 682588 814000))
+;;;;;;  (21840 34038 492726 24000))
 ;;; Generated autoloads from ac-slime/ac-slime.el
 
 (defface ac-slime-menu-face '((t (:inherit ac-candidate-face))) "\
@@ -27,7 +27,7 @@ Add an optionally-fuzzy slime completion source to `ac-sources'.
 ;;;***
 
 ;;;### (autoloads (turn-on-bib-cite bib-cite-minor-mode) "auctex/bib-cite"
-;;;;;;  "auctex/bib-cite.el" (18341 54637 0 0))
+;;;;;;  "auctex/bib-cite.el" (21840 34040 217588 67000))
 ;;; Generated autoloads from auctex/bib-cite.el
 
 (autoload 'bib-cite-minor-mode "auctex/bib-cite" "\
@@ -46,7 +46,7 @@ Unconditionally turn on Bib Cite mode.
 ;;;***
 
 ;;;### (autoloads (context-mode) "auctex/context" "auctex/context.el"
-;;;;;;  (20911 47549 0 0))
+;;;;;;  (21840 34040 81520 63000))
 ;;; Generated autoloads from auctex/context.el
 
 (defalias 'ConTeXt-mode 'context-mode)
@@ -66,7 +66,7 @@ of ConTeXt-mode-hook.
 ;;;***
 
 ;;;### (autoloads (context-en-mode) "auctex/context-en" "auctex/context-en.el"
-;;;;;;  (19618 16518 0 0))
+;;;;;;  (21840 34040 329644 69000))
 ;;; Generated autoloads from auctex/context-en.el
 
 (autoload 'context-en-mode "auctex/context-en" "\
@@ -84,7 +84,7 @@ of context-mode-hook.
 ;;;***
 
 ;;;### (autoloads (context-nl-mode) "auctex/context-nl" "auctex/context-nl.el"
-;;;;;;  (19618 16529 0 0))
+;;;;;;  (21840 34040 69514 63000))
 ;;; Generated autoloads from auctex/context-nl.el
 
 (autoload 'context-nl-mode "auctex/context-nl" "\
@@ -102,7 +102,7 @@ of context-mode-hook.
 ;;;***
 
 ;;;### (autoloads (font-latex-setup) "auctex/font-latex" "auctex/font-latex.el"
-;;;;;;  (20700 41370 0 0))
+;;;;;;  (21840 34040 329644 69000))
 ;;; Generated autoloads from auctex/font-latex.el
 
 (autoload 'font-latex-setup "auctex/font-latex" "\
@@ -113,7 +113,7 @@ Setup this buffer for LaTeX font-lock.  Usually called from a hook.
 ;;;***
 
 ;;;### (autoloads (docTeX-mode TeX-latex-mode BibTeX-auto-store)
-;;;;;;  "auctex/latex" "auctex/latex.el" (20826 34613 0 0))
+;;;;;;  "auctex/latex" "auctex/latex.el" (21840 34040 281620 69000))
 ;;; Generated autoloads from auctex/latex.el
 
 (autoload 'BibTeX-auto-store "auctex/latex" "\
@@ -151,7 +151,7 @@ runs the hooks in `docTeX-mode-hook'.
 ;;;***
 
 ;;;### (autoloads (multi-prompt-key-value multi-prompt) "auctex/multi-prompt"
-;;;;;;  "auctex/multi-prompt.el" (20770 16651 0 0))
+;;;;;;  "auctex/multi-prompt.el" (21840 34040 273616 67000))
 ;;; Generated autoloads from auctex/multi-prompt.el
 
 (autoload 'multi-prompt "auctex/multi-prompt" "\
@@ -181,7 +181,7 @@ The return value is the string as entered in the minibuffer.
 ;;;***
 
 ;;;### (autoloads (ams-tex-mode TeX-plain-tex-mode) "auctex/plain-tex"
-;;;;;;  "auctex/plain-tex.el" (19707 64159 0 0))
+;;;;;;  "auctex/plain-tex.el" (21840 34040 73516 64000))
 ;;; Generated autoloads from auctex/plain-tex.el
 
 (autoload 'TeX-plain-tex-mode "auctex/plain-tex" "\
@@ -213,8 +213,8 @@ of `AmS-TeX-mode-hook'.
 ;;;***
 
 ;;;### (autoloads (preview-report-bug LaTeX-preview-setup preview-install-styles)
-;;;;;;  "auctex/preview/preview" "auctex/preview/preview.el" (20669
-;;;;;;  44510 0 0))
+;;;;;;  "auctex/preview/preview" "auctex/preview/preview.el" (21840
+;;;;;;  34040 293626 68000))
 ;;; Generated autoloads from auctex/preview/preview.el
 
 (autoload 'preview-install-styles "auctex/preview/preview" "\
@@ -247,7 +247,7 @@ Report a bug in the preview-latex package.
 
 ;;;### (autoloads (TeX-submit-bug-report TeX-auto-generate-global
 ;;;;;;  TeX-auto-generate TeX-tex-mode) "auctex/tex" "auctex/tex.el"
-;;;;;;  (20818 43415 0 0))
+;;;;;;  (21840 34040 77518 63000))
 ;;; Generated autoloads from auctex/tex.el
 
 (autoload 'TeX-tex-mode "auctex/tex" "\
@@ -289,7 +289,7 @@ information about your AUCTeX version and AUCTeX configuration.
 ;;;***
 
 ;;;### (autoloads (LaTeX-install-toolbar TeX-install-toolbar) "auctex/tex-bar"
-;;;;;;  "auctex/tex-bar.el" (20690 53662 0 0))
+;;;;;;  "auctex/tex-bar.el" (21840 34040 337648 70000))
 ;;; Generated autoloads from auctex/tex-bar.el
 
 (autoload 'TeX-install-toolbar "auctex/tex-bar" "\
@@ -304,8 +304,8 @@ Install toolbar buttons for LaTeX mode.
 
 ;;;***
 
-;;;### (autoloads nil "auctex/tex-fold" "auctex/tex-fold.el" (20669
-;;;;;;  44509 0 0))
+;;;### (autoloads nil "auctex/tex-fold" "auctex/tex-fold.el" (21840
+;;;;;;  34040 69514 63000))
 ;;; Generated autoloads from auctex/tex-fold.el
  (autoload 'TeX-fold-mode "tex-fold" "Minor mode for hiding and revealing macros and environments." t)
 
@@ -314,7 +314,7 @@ Install toolbar buttons for LaTeX mode.
 ;;;***
 
 ;;;### (autoloads (tex-font-setup) "auctex/tex-font" "auctex/tex-font.el"
-;;;;;;  (18341 54636 0 0))
+;;;;;;  (21840 34040 225592 67000))
 ;;; Generated autoloads from auctex/tex-font.el
 
 (autoload 'tex-font-setup "auctex/tex-font" "\
@@ -325,7 +325,7 @@ Setup font lock support for TeX.
 ;;;***
 
 ;;;### (autoloads (TeX-texinfo-mode) "auctex/tex-info" "auctex/tex-info.el"
-;;;;;;  (20659 23181 0 0))
+;;;;;;  (21840 34040 221590 66000))
 ;;; Generated autoloads from auctex/tex-info.el
 
 (defalias 'Texinfo-mode 'texinfo-mode)
@@ -344,7 +344,7 @@ value of `Texinfo-mode-hook'.
 ;;;***
 
 ;;;### (autoloads (japanese-latex-mode japanese-plain-tex-mode) "auctex/tex-jp"
-;;;;;;  "auctex/tex-jp.el" (20669 44509 0 0))
+;;;;;;  "auctex/tex-jp.el" (21840 34040 225592 67000))
 ;;; Generated autoloads from auctex/tex-jp.el
 
 (autoload 'japanese-plain-tex-mode "auctex/tex-jp" "\
@@ -362,7 +362,7 @@ Set `japanese-TeX-mode' to t, and enter `TeX-latex-mode'.
 ;;;***
 
 ;;;### (autoloads (texmathp-match-switch texmathp) "auctex/texmathp"
-;;;;;;  "auctex/texmathp.el" (20733 11542 0 0))
+;;;;;;  "auctex/texmathp.el" (21840 34040 89524 64000))
 ;;; Generated autoloads from auctex/texmathp.el
 
 (autoload 'texmathp "auctex/texmathp" "\
@@ -382,8 +382,8 @@ Limit searched to BOUND.
 
 ;;;***
 
-;;;### (autoloads nil "auctex/toolbar-x" "auctex/toolbar-x.el" (18580
-;;;;;;  49487 0 0))
+;;;### (autoloads nil "auctex/toolbar-x" "auctex/toolbar-x.el" (21840
+;;;;;;  34040 261610 68000))
 ;;; Generated autoloads from auctex/toolbar-x.el
  (autoload 'toolbarx-install-toolbar "toolbar-x")
 
@@ -391,7 +391,7 @@ Limit searched to BOUND.
 
 ;;;### (autoloads (global-auto-complete-mode auto-complete-mode auto-complete)
 ;;;;;;  "auto-complete/auto-complete" "auto-complete/auto-complete.el"
-;;;;;;  (21434 21297 55621 867000))
+;;;;;;  (21840 34039 489224 49000))
 ;;; Generated autoloads from auto-complete/auto-complete.el
 
 (autoload 'auto-complete "auto-complete/auto-complete" "\
@@ -428,8 +428,8 @@ See `auto-complete-mode' for more information on Auto-Complete mode.
 ;;;***
 
 ;;;### (autoloads (ac-config-default) "auto-complete/auto-complete-config"
-;;;;;;  "auto-complete/auto-complete-config.el" (21434 21297 55621
-;;;;;;  867000))
+;;;;;;  "auto-complete/auto-complete-config.el" (21840 34039 489224
+;;;;;;  49000))
 ;;; Generated autoloads from auto-complete/auto-complete-config.el
 
 (autoload 'ac-config-default "auto-complete/auto-complete-config" "\
@@ -440,7 +440,7 @@ See `auto-complete-mode' for more information on Auto-Complete mode.
 ;;;***
 
 ;;;### (autoloads (coffee-mode) "coffee-mode/coffee-mode" "coffee-mode/coffee-mode.el"
-;;;;;;  (21434 21301 342302 967000))
+;;;;;;  (21840 34040 769864 80000))
 ;;; Generated autoloads from coffee-mode/coffee-mode.el
 
 (autoload 'coffee-mode "coffee-mode/coffee-mode" "\
@@ -464,7 +464,7 @@ Major mode for editing CoffeeScript.
 ;;;;;;  col-highlight-toggle-when-idle column-highlight-mode col-highlight-overlay-priority
 ;;;;;;  col-highlight-period col-highlight-vline-face-flag col-highlight-show-only
 ;;;;;;  column-highlight) "col-highlight/col-highlight" "col-highlight/col-highlight.el"
-;;;;;;  (21434 21327 899061 61000))
+;;;;;;  (21840 34038 496728 24000))
 ;;; Generated autoloads from col-highlight/col-highlight.el
 
 (let ((loads (get 'column-highlight 'custom-loads))) (if (member '"col-highlight/col-highlight" loads) nil (put 'column-highlight 'custom-loads (cons '"col-highlight/col-highlight" loads))))
@@ -552,7 +552,7 @@ With a prefix ARG, highlight for that many seconds.
 ;;;***
 
 ;;;### (autoloads (color-browser) "color-browser/color-browser" "color-browser/color-browser.el"
-;;;;;;  (21434 21321 732372 862000))
+;;;;;;  (21840 34038 56508 14000))
 ;;; Generated autoloads from color-browser/color-browser.el
 
 (autoload 'color-browser "color-browser/color-browser" "\
@@ -567,8 +567,8 @@ of on Color Palette buffer and one face group buffer (see
 ;;;***
 
 ;;;### (autoloads (color-theme-desert) "color-theme-desert/color-theme-desert"
-;;;;;;  "color-theme-desert/color-theme-desert.el" (21133 33825 19063
-;;;;;;  334000))
+;;;;;;  "color-theme-desert/color-theme-desert.el" (21840 34039 197078
+;;;;;;  42000))
 ;;; Generated autoloads from color-theme-desert/color-theme-desert.el
 
 (autoload 'color-theme-desert "color-theme-desert/color-theme-desert" "\
@@ -580,8 +580,8 @@ Emacs color theme desert, inspired by VIM desert theme.
 
 ;;;### (autoloads (color-theme-solarized-light color-theme-solarized-dark
 ;;;;;;  color-theme-solarized) "color-theme-solarized/color-theme-solarized"
-;;;;;;  "color-theme-solarized/color-theme-solarized.el" (21133 35480
-;;;;;;  419484 323000))
+;;;;;;  "color-theme-solarized/color-theme-solarized.el" (21840 34038
+;;;;;;  820890 32000))
 ;;; Generated autoloads from color-theme-solarized/color-theme-solarized.el
 
 (autoload 'color-theme-solarized "color-theme-solarized/color-theme-solarized" "\
@@ -603,8 +603,8 @@ Ported to Emacs by Greg Pfeil, http://ethanschoonover.com/solarized.
 ;;;***
 
 ;;;### (autoloads nil "color-theme-solarized/solarized-definitions"
-;;;;;;  "color-theme-solarized/solarized-definitions.el" (21133 35480
-;;;;;;  419484 323000))
+;;;;;;  "color-theme-solarized/solarized-definitions.el" (21840 34038
+;;;;;;  824892 33000))
 ;;; Generated autoloads from color-theme-solarized/solarized-definitions.el
 
 (when (boundp 'custom-theme-load-path) (add-to-list 'custom-theme-load-path (file-name-as-directory (file-name-directory load-file-name))))
@@ -612,7 +612,7 @@ Ported to Emacs by Greg Pfeil, http://ethanschoonover.com/solarized.
 ;;;***
 
 ;;;### (autoloads nil "color-theme-tangotango/tangotango-theme" "color-theme-tangotango/tangotango-theme.el"
-;;;;;;  (21133 33813 199171 282000))
+;;;;;;  (21840 34040 745852 79000))
 ;;; Generated autoloads from color-theme-tangotango/tangotango-theme.el
 
 (and load-file-name (boundp 'custom-theme-load-path) (add-to-list 'custom-theme-load-path (file-name-as-directory (file-name-directory load-file-name))))
@@ -620,7 +620,7 @@ Ported to Emacs by Greg Pfeil, http://ethanschoonover.com/solarized.
 ;;;***
 
 ;;;### (autoloads nil "color-theme-zenburn/zenburn-theme" "color-theme-zenburn/zenburn-theme.el"
-;;;;;;  (21140 24626 658698 626000))
+;;;;;;  (21840 34040 753856 80000))
 ;;; Generated autoloads from color-theme-zenburn/zenburn-theme.el
 
 (and load-file-name (boundp 'custom-theme-load-path) (add-to-list 'custom-theme-load-path (file-name-as-directory (file-name-directory load-file-name))))
@@ -633,8 +633,8 @@ Ported to Emacs by Greg Pfeil, http://ethanschoonover.com/solarized.
 ;;;;;;  color-theme-compare color-theme-make-snapshot color-theme-analyze-defun
 ;;;;;;  color-theme-print color-theme-install-at-point-for-current-frame
 ;;;;;;  color-theme-install-at-mouse color-theme-describe color-theme-select)
-;;;;;;  "color-theme/color-theme" "color-theme/color-theme.el" (17529
-;;;;;;  41105 0 0))
+;;;;;;  "color-theme/color-theme" "color-theme/color-theme.el" (21840
+;;;;;;  34038 396678 23000))
 ;;; Generated autoloads from color-theme/color-theme.el
 
 (autoload 'color-theme-select "color-theme/color-theme" "\
@@ -775,7 +775,7 @@ Initialize the color theme package by loading color-theme-libraries.
 ;;;;;;  colour-region-previous colour-region-next colour-region-func
 ;;;;;;  colour-region-remove colour-region-toggle-text colour-region-toggle-overlay
 ;;;;;;  colour-region-store-text colour-region-new) "colour-region/colour-region"
-;;;;;;  "colour-region/colour-region.el" (21140 24625 305386 101000))
+;;;;;;  "colour-region/colour-region.el" (21840 34039 89024 39000))
 ;;; Generated autoloads from colour-region/colour-region.el
 
 (autoload 'colour-region-new "colour-region/colour-region" "\
@@ -946,7 +946,7 @@ the colour-region-default-save-file function.
 ;;;***
 
 ;;;### (autoloads nil "column-marker/column-marker" "column-marker/column-marker.el"
-;;;;;;  (21140 24630 625304 300000))
+;;;;;;  (21840 34040 337648 70000))
 ;;; Generated autoloads from column-marker/column-marker.el
 
 (autoload 'column-marker-1 "column-marker" "\
@@ -957,7 +957,7 @@ Highlight a column." t)
 ;;;### (autoloads (crosshairs-unhighlight crosshairs-highlight crosshairs
 ;;;;;;  crosshairs-flash crosshairs-toggle-when-idle crosshairs-mode
 ;;;;;;  crosshairs) "crosshairs/crosshairs" "crosshairs/crosshairs.el"
-;;;;;;  (21140 24625 245387 23000))
+;;;;;;  (21840 34038 52506 14000))
 ;;; Generated autoloads from crosshairs/crosshairs.el
 
 (let ((loads (get 'crosshairs 'custom-loads))) (if (member '"crosshairs/crosshairs" loads) nil (put 'crosshairs 'custom-loads (cons '"crosshairs/crosshairs" loads))))
@@ -1033,7 +1033,7 @@ Optional arg nil means do nothing if this event is a frame switch.
 ;;;***
 
 ;;;### (autoloads (css-mode) "css-mode/css-mode" "css-mode/css-mode.el"
-;;;;;;  (21133 48333 469455 122000))
+;;;;;;  (21840 34040 713836 78000))
 ;;; Generated autoloads from css-mode/css-mode.el
 (add-to-list 'auto-mode-alist '("\\.css\\'" . css-mode))
 
@@ -1050,7 +1050,7 @@ Key bindings:
 
 ;;;### (autoloads (el-get-checksum el-get-make-recipes el-get-cd
 ;;;;;;  el-get-self-update el-get-update-all el-get-version) "el-get/el-get"
-;;;;;;  "el-get/el-get.el" (21133 30579 261495 197000))
+;;;;;;  "el-get/el-get.el" (21840 34039 897428 58000))
 ;;; Generated autoloads from el-get/el-get.el
 
 (autoload 'el-get-version "el-get/el-get" "\
@@ -1087,7 +1087,7 @@ Compute the checksum of the given package, and put it in the kill-ring
 ;;;***
 
 ;;;### (autoloads (el-get-list-packages) "el-get/el-get-list-packages"
-;;;;;;  "el-get/el-get-list-packages.el" (21133 30579 261495 197000))
+;;;;;;  "el-get/el-get-list-packages.el" (21840 34039 693326 54000))
 ;;; Generated autoloads from el-get/el-get-list-packages.el
 
 (autoload 'el-get-list-packages "el-get/el-get-list-packages" "\
@@ -1098,7 +1098,7 @@ Display a list of packages.
 ;;;***
 
 ;;;### (autoloads (async-start async-start-process) "emacs-async/async"
-;;;;;;  "emacs-async/async.el" (21133 32560 261799 472000))
+;;;;;;  "emacs-async/async.el" (21840 34040 13486 61000))
 ;;; Generated autoloads from emacs-async/async.el
 
 (autoload 'async-start-process "emacs-async/async" "\
@@ -1163,7 +1163,7 @@ returns nil.  It can still be useful, however, as an argument to
 ;;;***
 
 ;;;### (autoloads (bookmark-w3m-bookmark-jump) "emacs-w3m/bookmark-w3m"
-;;;;;;  "emacs-w3m/bookmark-w3m.el" (19648 52975 0 0))
+;;;;;;  "emacs-w3m/bookmark-w3m.el" (21840 34040 529744 74000))
 ;;; Generated autoloads from emacs-w3m/bookmark-w3m.el
 
 (autoload 'bookmark-w3m-bookmark-jump "emacs-w3m/bookmark-w3m" "\
@@ -1174,7 +1174,7 @@ Default bookmark handler for w3m buffers.
 ;;;***
 
 ;;;### (autoloads (mime-w3m-preview-text/html) "emacs-w3m/mime-w3m"
-;;;;;;  "emacs-w3m/mime-w3m.el" (20927 43680 0 0))
+;;;;;;  "emacs-w3m/mime-w3m.el" (21840 34040 401680 70000))
 ;;; Generated autoloads from emacs-w3m/mime-w3m.el
 
 (autoload 'mime-w3m-preview-text/html "emacs-w3m/mime-w3m" "\
@@ -1186,7 +1186,7 @@ Default bookmark handler for w3m buffers.
 
 ;;;### (autoloads (octet-mime-setup mime-view-octet mime-preview-octet
 ;;;;;;  octet-find-file octet-buffer) "emacs-w3m/octet" "emacs-w3m/octet.el"
-;;;;;;  (19563 28233 0 0))
+;;;;;;  (21840 34040 401680 70000))
 ;;; Generated autoloads from emacs-w3m/octet.el
 
 (autoload 'octet-buffer "emacs-w3m/octet" "\
@@ -1221,7 +1221,7 @@ Octet setting for MIME module.
 ;;;### (autoloads (w3m-buffer w3m-region w3m-find-file w3m-browse-url
 ;;;;;;  w3m w3m-create-empty-session w3m-gohome w3m-goto-url-new-session
 ;;;;;;  w3m-goto-url w3m-download w3m-retrieve) "emacs-w3m/w3m" "emacs-w3m/w3m.el"
-;;;;;;  (21132 27110 0 0))
+;;;;;;  (21840 34040 413686 72000))
 ;;; Generated autoloads from emacs-w3m/w3m.el
 
 (autoload 'w3m-retrieve "emacs-w3m/w3m" "\
@@ -1379,7 +1379,7 @@ See `w3m-region' for the optional arguments.
 ;;;***
 
 ;;;### (autoloads (w3m-antenna w3m-about-antenna) "emacs-w3m/w3m-antenna"
-;;;;;;  "emacs-w3m/w3m-antenna.el" (19187 58267 0 0))
+;;;;;;  "emacs-w3m/w3m-antenna.el" (21840 34040 421690 71000))
 ;;; Generated autoloads from emacs-w3m/w3m-antenna.el
 
 (autoload 'w3m-about-antenna "emacs-w3m/w3m-antenna" "\
@@ -1397,7 +1397,7 @@ Report changes of WEB sites, which is specified in `w3m-antenna-sites'.
 ;;;### (autoloads (w3m-setup-bookmark-menu w3m-about-bookmark w3m-bookmark-view-new-session
 ;;;;;;  w3m-bookmark-view w3m-bookmark-add-current-url-group w3m-bookmark-add-all-urls
 ;;;;;;  w3m-bookmark-add-current-url w3m-bookmark-add-this-url) "emacs-w3m/w3m-bookmark"
-;;;;;;  "emacs-w3m/w3m-bookmark.el" (20597 64488 0 0))
+;;;;;;  "emacs-w3m/w3m-bookmark.el" (21840 34040 561760 75000))
 ;;; Generated autoloads from emacs-w3m/w3m-bookmark.el
 
 (autoload 'w3m-bookmark-add-this-url "emacs-w3m/w3m-bookmark" "\
@@ -1445,7 +1445,7 @@ Setup w3m bookmark items in menubar.
 
 ;;;### (autoloads (w3m-about-cookie w3m-cookie w3m-cookie-get w3m-cookie-set
 ;;;;;;  w3m-cookie-shutdown) "emacs-w3m/w3m-cookie" "emacs-w3m/w3m-cookie.el"
-;;;;;;  (19449 53703 0 0))
+;;;;;;  (21840 34040 569764 75000))
 ;;; Generated autoloads from emacs-w3m/w3m-cookie.el
 
 (autoload 'w3m-cookie-shutdown "emacs-w3m/w3m-cookie" "\
@@ -1477,7 +1477,7 @@ Make the html contents to display and to enable you to manage cookies.
 ;;;***
 
 ;;;### (autoloads (w3m-dtree w3m-about-dtree) "emacs-w3m/w3m-dtree"
-;;;;;;  "emacs-w3m/w3m-dtree.el" (18964 36505 0 0))
+;;;;;;  "emacs-w3m/w3m-dtree.el" (21840 34040 445702 73000))
 ;;; Generated autoloads from emacs-w3m/w3m-dtree.el
 
 (autoload 'w3m-about-dtree "emacs-w3m/w3m-dtree" "\
@@ -1494,7 +1494,7 @@ If called with 'prefix argument', display all directorys and files.
 ;;;***
 
 ;;;### (autoloads (w3m-fb-mode) "emacs-w3m/w3m-fb" "emacs-w3m/w3m-fb.el"
-;;;;;;  (17681 2386 0 0))
+;;;;;;  (21840 34040 573766 75000))
 ;;; Generated autoloads from emacs-w3m/w3m-fb.el
 
 (defvar w3m-fb-mode nil "\
@@ -1515,7 +1515,7 @@ This allows frame-local lists of buffers (tabs).
 ;;;***
 
 ;;;### (autoloads (w3m-filter) "emacs-w3m/w3m-filter" "emacs-w3m/w3m-filter.el"
-;;;;;;  (21069 21362 0 0))
+;;;;;;  (21840 34040 445702 73000))
 ;;; Generated autoloads from emacs-w3m/w3m-filter.el
 
 (autoload 'w3m-filter "emacs-w3m/w3m-filter" "\
@@ -1526,7 +1526,7 @@ Apply filtering rule of URL against a content in this buffer.
 ;;;***
 
 ;;;### (autoloads (w3m-fontify-forms) "emacs-w3m/w3m-form" "emacs-w3m/w3m-form.el"
-;;;;;;  (21076 49837 0 0))
+;;;;;;  (21840 34040 529744 74000))
 ;;; Generated autoloads from emacs-w3m/w3m-form.el
 
 (autoload 'w3m-fontify-forms "emacs-w3m/w3m-form" "\
@@ -1540,8 +1540,8 @@ Process half-dumped data and fontify forms in this buffer.
 ;;;;;;  w3m-lnum-print-this-url w3m-lnum-edit-this-url w3m-lnum-external-view-this-url
 ;;;;;;  w3m-lnum-save-image w3m-lnum-view-image w3m-lnum-toggle-inline-image
 ;;;;;;  w3m-lnum-universal w3m-lnum-follow w3m-lnum-goto w3m-lnum-mode)
-;;;;;;  "emacs-w3m/w3m-lnum" "emacs-w3m/w3m-lnum.el" (21087 15965
-;;;;;;  0 0))
+;;;;;;  "emacs-w3m/w3m-lnum" "emacs-w3m/w3m-lnum.el" (21840 34040
+;;;;;;  409684 71000))
 ;;; Generated autoloads from emacs-w3m/w3m-lnum.el
 
 (autoload 'w3m-lnum-mode "emacs-w3m/w3m-lnum" "\
@@ -1633,7 +1633,7 @@ If no link under point, activate numbering and ask for one.
 ;;;***
 
 ;;;### (autoloads (w3m-namazu w3m-about-namazu) "emacs-w3m/w3m-namazu"
-;;;;;;  "emacs-w3m/w3m-namazu.el" (18964 36505 0 0))
+;;;;;;  "emacs-w3m/w3m-namazu.el" (21840 34040 441700 72000))
 ;;; Generated autoloads from emacs-w3m/w3m-namazu.el
 
 (autoload 'w3m-about-namazu "emacs-w3m/w3m-namazu" "\
@@ -1649,7 +1649,7 @@ Search indexed files with Namazu.
 ;;;***
 
 ;;;### (autoloads (w3m-perldoc w3m-about-perldoc) "emacs-w3m/w3m-perldoc"
-;;;;;;  "emacs-w3m/w3m-perldoc.el" (18197 61165 0 0))
+;;;;;;  "emacs-w3m/w3m-perldoc.el" (21840 34040 417688 72000))
 ;;; Generated autoloads from emacs-w3m/w3m-perldoc.el
 
 (autoload 'w3m-about-perldoc "emacs-w3m/w3m-perldoc" "\
@@ -1666,7 +1666,7 @@ View Perl documents.
 
 ;;;### (autoloads (w3m-search-uri-replace w3m-search-new-session
 ;;;;;;  w3m-search) "emacs-w3m/w3m-search" "emacs-w3m/w3m-search.el"
-;;;;;;  (20697 1486 0 0))
+;;;;;;  (21840 34040 401680 70000))
 ;;; Generated autoloads from emacs-w3m/w3m-search.el
 
 (autoload 'w3m-search "emacs-w3m/w3m-search" "\
@@ -1694,7 +1694,7 @@ Generate query string for ENGINE from URI matched by last search.
 ;;;### (autoloads (w3m-session-last-crashed-session w3m-session-last-autosave-session
 ;;;;;;  w3m-setup-session-menu w3m-session-select w3m-session-crash-recovery-remove
 ;;;;;;  w3m-session-save) "emacs-w3m/w3m-session" "emacs-w3m/w3m-session.el"
-;;;;;;  (20839 34704 0 0))
+;;;;;;  (21840 34040 565762 76000))
 ;;; Generated autoloads from emacs-w3m/w3m-session.el
 
 (autoload 'w3m-session-save "emacs-w3m/w3m-session" "\
@@ -1730,7 +1730,7 @@ Setup w3m session items in menubar.
 ;;;***
 
 ;;;### (autoloads (w3m-replace-symbol) "emacs-w3m/w3m-symbol" "emacs-w3m/w3m-symbol.el"
-;;;;;;  (18791 2971 0 0))
+;;;;;;  (21840 34040 597778 76000))
 ;;; Generated autoloads from emacs-w3m/w3m-symbol.el
 
 (autoload 'w3m-replace-symbol "emacs-w3m/w3m-symbol" "\
@@ -1741,7 +1741,7 @@ Setup w3m session items in menubar.
 ;;;***
 
 ;;;### (autoloads (w3m-about-weather w3m-weather) "emacs-w3m/w3m-weather"
-;;;;;;  "emacs-w3m/w3m-weather.el" (20486 20998 0 0))
+;;;;;;  "emacs-w3m/w3m-weather.el" (21840 34040 401680 70000))
 ;;; Generated autoloads from emacs-w3m/w3m-weather.el
 
 (autoload 'w3m-weather "emacs-w3m/w3m-weather" "\
@@ -1758,7 +1758,7 @@ Display weather report.
 
 ;;;### (autoloads (emms-tag-editor-clear-field emms-tag-editor-alter-notes-tag
 ;;;;;;  emms-mark-mark-tagged) "emms-mark-ext/emms-mark-ext" "emms-mark-ext/emms-mark-ext.el"
-;;;;;;  (21135 2215 261170 92000))
+;;;;;;  (21840 34039 897428 58000))
 ;;; Generated autoloads from emms-mark-ext/emms-mark-ext.el
 
 (autoload 'emms-mark-mark-tagged "emms-mark-ext/emms-mark-ext" "\
@@ -1791,8 +1791,8 @@ If region is selected then only alter fields within region.
 ;;;***
 
 ;;;### (autoloads (emms-seek-mode-minus emms-seek-mode-plus) "emms-seek-minor-mode/emms-seek-minor-mode"
-;;;;;;  "emms-seek-minor-mode/emms-seek-minor-mode.el" (21135 2215
-;;;;;;  364502 54000))
+;;;;;;  "emms-seek-minor-mode/emms-seek-minor-mode.el" (21840 34040
+;;;;;;  661810 77000))
 ;;; Generated autoloads from emms-seek-minor-mode/emms-seek-minor-mode.el
 
 (autoload 'emms-seek-mode-plus "emms-seek-minor-mode/emms-seek-minor-mode" "\
@@ -1808,8 +1808,8 @@ Lower volume and enable or extend the `emms-seek-minor-mode' timeout.
 ;;;***
 
 ;;;### (autoloads (emms-cache-toggle emms-cache-disable emms-cache-enable)
-;;;;;;  "emms/lisp/emms-cache" "emms/lisp/emms-cache.el" (21135 2222
-;;;;;;  907735 348000))
+;;;;;;  "emms/lisp/emms-cache" "emms/lisp/emms-cache.el" (21840 34039
+;;;;;;  277118 43000))
 ;;; Generated autoloads from emms/lisp/emms-cache.el
 
 (autoload 'emms-cache-enable "emms/lisp/emms-cache" "\
@@ -1830,8 +1830,8 @@ Toggle caching of Emms track data.
 ;;;***
 
 ;;;### (autoloads (emms-lyrics-toggle emms-lyrics-disable emms-lyrics-enable)
-;;;;;;  "emms/lisp/emms-lyrics" "emms/lisp/emms-lyrics.el" (21135
-;;;;;;  2222 907735 348000))
+;;;;;;  "emms/lisp/emms-lyrics" "emms/lisp/emms-lyrics.el" (21840
+;;;;;;  34039 265112 44000))
 ;;; Generated autoloads from emms/lisp/emms-lyrics.el
 
 (autoload 'emms-lyrics-enable "emms/lisp/emms-lyrics" "\
@@ -1853,7 +1853,7 @@ Toggle displaying emms lyrics.
 
 ;;;### (autoloads (emms-mode-line-toggle emms-mode-line-disable emms-mode-line-enable)
 ;;;;;;  "emms/lisp/emms-mode-line" "emms/lisp/emms-mode-line.el"
-;;;;;;  (21135 2222 911068 637000))
+;;;;;;  (21840 34039 273116 43000))
 ;;; Generated autoloads from emms/lisp/emms-mode-line.el
 
 (autoload 'emms-mode-line-enable "emms/lisp/emms-mode-line" "\
@@ -1875,7 +1875,7 @@ Toggle `emms-mode-line'.
 
 ;;;### (autoloads (emms-player-mpd-show emms-player-mpd-connect emms-player-mpd-clear)
 ;;;;;;  "emms/lisp/emms-player-mpd" "emms/lisp/emms-player-mpd.el"
-;;;;;;  (21135 2222 911068 637000))
+;;;;;;  (21840 34039 293126 43000))
 ;;; Generated autoloads from emms/lisp/emms-player-mpd.el
 
 (autoload 'emms-player-mpd-clear "emms/lisp/emms-player-mpd" "\
@@ -1915,7 +1915,7 @@ rather than EMMS.
 
 ;;;### (autoloads (emms-playing-time-disable-display emms-playing-time-enable-display)
 ;;;;;;  "emms/lisp/emms-playing-time" "emms/lisp/emms-playing-time.el"
-;;;;;;  (21135 2222 911068 637000))
+;;;;;;  (21840 34039 269114 44000))
 ;;; Generated autoloads from emms/lisp/emms-playing-time.el
 
 (autoload 'emms-playing-time-enable-display "emms/lisp/emms-playing-time" "\
@@ -1932,7 +1932,7 @@ Remove playing time from mode line.
 
 ;;;### (autoloads (emms-playlist-limit-toggle emms-playlist-limit-disable
 ;;;;;;  emms-playlist-limit-enable) "emms/lisp/emms-playlist-limit"
-;;;;;;  "emms/lisp/emms-playlist-limit.el" (21135 2222 911068 637000))
+;;;;;;  "emms/lisp/emms-playlist-limit.el" (21840 34039 297128 44000))
 ;;; Generated autoloads from emms/lisp/emms-playlist-limit.el
 
 (autoload 'emms-playlist-limit-enable "emms/lisp/emms-playlist-limit" "\
@@ -1953,7 +1953,7 @@ Toggle emms playlist limit.
 ;;;***
 
 ;;;### (autoloads (emms-playlist-mode) "emms/lisp/emms-playlist-mode"
-;;;;;;  "emms/lisp/emms-playlist-mode.el" (21135 2222 911068 637000))
+;;;;;;  "emms/lisp/emms-playlist-mode.el" (21840 34039 261110 43000))
 ;;; Generated autoloads from emms/lisp/emms-playlist-mode.el
 
 (autoload 'emms-playlist-mode "emms/lisp/emms-playlist-mode" "\
@@ -1965,8 +1965,8 @@ A major mode for Emms playlists.
 ;;;***
 
 ;;;### (autoloads (emms-score-toggle emms-score-disable emms-score-enable)
-;;;;;;  "emms/lisp/emms-score" "emms/lisp/emms-score.el" (21135 2222
-;;;;;;  911068 637000))
+;;;;;;  "emms/lisp/emms-score" "emms/lisp/emms-score.el" (21840 34039
+;;;;;;  297128 44000))
 ;;; Generated autoloads from emms/lisp/emms-score.el
 
 (autoload 'emms-score-enable "emms/lisp/emms-score" "\
@@ -1988,7 +1988,7 @@ Toggle emms-score.
 
 ;;;### (autoloads (emms-default-players emms-devel emms-all emms-standard
 ;;;;;;  emms-minimalistic) "emms/lisp/emms-setup" "emms/lisp/emms-setup.el"
-;;;;;;  (21135 2222 911068 637000))
+;;;;;;  (21840 34039 305132 45000))
 ;;; Generated autoloads from emms/lisp/emms-setup.el
 
 (autoload 'emms-minimalistic "emms/lisp/emms-setup" "\
@@ -2030,7 +2030,7 @@ Set `emms-player-list' to `emms-setup-default-player-list'.
 
 ;;;### (autoloads (emms-locate emms-source-file-regex emms-source-file-directory-tree)
 ;;;;;;  "emms/lisp/emms-source-file" "emms/lisp/emms-source-file.el"
-;;;;;;  (21135 2222 911068 637000))
+;;;;;;  (21840 34039 285122 44000))
 ;;; Generated autoloads from emms/lisp/emms-source-file.el
  (autoload 'emms-play-file "emms-source-file" nil t)
  (autoload 'emms-add-file "emms-source-file" nil t)
@@ -2069,7 +2069,7 @@ Search for REGEXP and display the results in a locate buffer
 ;;;***
 
 ;;;### (autoloads nil "emms/lisp/emms-source-playlist" "emms/lisp/emms-source-playlist.el"
-;;;;;;  (21135 2222 911068 637000))
+;;;;;;  (21840 34039 293126 43000))
 ;;; Generated autoloads from emms/lisp/emms-source-playlist.el
  (autoload 'emms-play-playlist "emms-source-playlist" nil t)
  (autoload 'emms-add-playlist "emms-source-playlist" nil t)
@@ -2093,7 +2093,7 @@ Search for REGEXP and display the results in a locate buffer
 ;;;***
 
 ;;;### (autoloads (emms-streams) "emms/lisp/emms-streams" "emms/lisp/emms-streams.el"
-;;;;;;  (21135 2222 911068 637000))
+;;;;;;  (21840 34039 281120 44000))
 ;;; Generated autoloads from emms/lisp/emms-streams.el
 
 (autoload 'emms-streams "emms/lisp/emms-streams" "\
@@ -2105,7 +2105,7 @@ Opens the EMMS Streams interface.
 
 ;;;### (autoloads (emms-volume-mode-minus emms-volume-mode-plus emms-volume-lower
 ;;;;;;  emms-volume-raise) "emms/lisp/emms-volume" "emms/lisp/emms-volume.el"
-;;;;;;  (21135 2222 911068 637000))
+;;;;;;  (21840 34039 273116 43000))
 ;;; Generated autoloads from emms/lisp/emms-volume.el
 
 (autoload 'emms-volume-raise "emms/lisp/emms-volume" "\
@@ -2131,7 +2131,7 @@ Lower volume and enable or extend the `emms-volume-minor-mode' timeout.
 ;;;***
 
 ;;;### (autoloads (emms-volume-amixer-change) "emms/lisp/emms-volume-amixer"
-;;;;;;  "emms/lisp/emms-volume-amixer.el" (21135 2222 911068 637000))
+;;;;;;  "emms/lisp/emms-volume-amixer.el" (21840 34039 305132 45000))
 ;;; Generated autoloads from emms/lisp/emms-volume-amixer.el
 
 (autoload 'emms-volume-amixer-change "emms/lisp/emms-volume-amixer" "\
@@ -2141,8 +2141,8 @@ Change amixer master volume by AMOUNT.
 
 ;;;***
 
-;;;### (autoloads (tq-create) "emms/lisp/tq" "emms/lisp/tq.el" (21135
-;;;;;;  2222 911068 637000))
+;;;### (autoloads (tq-create) "emms/lisp/tq" "emms/lisp/tq.el" (21840
+;;;;;;  34039 269114 44000))
 ;;; Generated autoloads from emms/lisp/tq.el
 
 (autoload 'tq-create "emms/lisp/tq" "\
@@ -2157,8 +2157,8 @@ to a tcp server on another machine.
 
 ;;;### (autoloads (highline-split-window-horizontally highline-split-window-vertically
 ;;;;;;  highline-view-mode highline-mode global-highline-mode highline-customize)
-;;;;;;  "highline/highline" "highline/highline.el" (21133 44838 538954
-;;;;;;  709000))
+;;;;;;  "highline/highline" "highline/highline.el" (21840 34038 356658
+;;;;;;  21000))
 ;;; Generated autoloads from highline/highline.el
 
 (autoload 'highline-customize "highline/highline" "\
@@ -2241,7 +2241,7 @@ See also `highline-view-mode' for documentation.
 ;;;### (autoloads (hl-line-flash hl-line-when-idle-interval hl-line-toggle-when-idle
 ;;;;;;  hl-line-overlay-priority hl-line-inhibit-highlighting-for-modes
 ;;;;;;  hl-line-flash-show-period) "hl-line+/hl-line+" "hl-line+/hl-line+.el"
-;;;;;;  (21140 15053 112466 809000))
+;;;;;;  (21840 34038 60510 13000))
 ;;; Generated autoloads from hl-line+/hl-line+.el
 
 (defface hl-line '((t (:background "SlateGray3"))) "\
@@ -2298,8 +2298,8 @@ With a prefix argument, highlight for that many seconds.
 ;;;***
 
 ;;;### (autoloads (idle-highlight-mode) "idle-highlight-mode/idle-highlight-mode"
-;;;;;;  "idle-highlight-mode/idle-highlight-mode.el" (21133 50375
-;;;;;;  482996 457000))
+;;;;;;  "idle-highlight-mode/idle-highlight-mode.el" (21840 34038
+;;;;;;  540750 25000))
 ;;; Generated autoloads from idle-highlight-mode/idle-highlight-mode.el
 
 (autoload 'idle-highlight-mode "idle-highlight-mode/idle-highlight-mode" "\
@@ -2310,7 +2310,7 @@ Idle-Highlight Minor Mode
 ;;;***
 
 ;;;### (autoloads (gfm-mode markdown-mode) "markdown-mode/markdown-mode"
-;;;;;;  "markdown-mode/markdown-mode.el" (21139 7379 212461 621000))
+;;;;;;  "markdown-mode/markdown-mode.el" (21840 34039 929444 59000))
 ;;; Generated autoloads from markdown-mode/markdown-mode.el
 
 (autoload 'markdown-mode "markdown-mode/markdown-mode" "\
@@ -2329,7 +2329,7 @@ Major mode for editing GitHub Flavored Markdown files.
 ;;;***
 
 ;;;### (autoloads (nxml-web-mode html-erb-mode) "mmm-mode/mmm-erb"
-;;;;;;  "mmm-mode/mmm-erb.el" (21133 47290 328213 470000))
+;;;;;;  "mmm-mode/mmm-erb.el" (21840 34041 814386 106000))
 ;;; Generated autoloads from mmm-mode/mmm-erb.el
 
 (autoload 'html-erb-mode "mmm-mode/mmm-erb" "\
@@ -2345,7 +2345,7 @@ Major mode for editing GitHub Flavored Markdown files.
 ;;;***
 
 ;;;### (autoloads (mmm-add-classes) "mmm-mode/mmm-vars" "mmm-mode/mmm-vars.el"
-;;;;;;  (21133 47290 331546 754000))
+;;;;;;  (21840 34041 774366 105000))
 ;;; Generated autoloads from mmm-mode/mmm-vars.el
 
 (autoload 'mmm-add-classes "mmm-mode/mmm-vars" "\
@@ -2356,7 +2356,7 @@ Add the submode classes CLASSES to `mmm-classes-alist'.
 ;;;***
 
 ;;;### (autoloads (multi-web-mode) "multi-web-mode/multi-web-mode"
-;;;;;;  "multi-web-mode/multi-web-mode.el" (21133 47243 22242 624000))
+;;;;;;  "multi-web-mode/multi-web-mode.el" (21840 34041 742350 104000))
 ;;; Generated autoloads from multi-web-mode/multi-web-mode.el
 
 (autoload 'multi-web-mode "multi-web-mode/multi-web-mode" "\
@@ -2368,7 +2368,7 @@ Enables the multi web mode chunk detection and indentation
 
 ;;;### (autoloads (mc/edit-beginnings-of-lines mc/edit-ends-of-lines
 ;;;;;;  mc/edit-lines) "multiple-cursors/mc-edit-lines" "multiple-cursors/mc-edit-lines.el"
-;;;;;;  (21509 14721 418886 38000))
+;;;;;;  (21840 34039 577268 52000))
 ;;; Generated autoloads from multiple-cursors/mc-edit-lines.el
 
 (autoload 'mc/edit-lines "multiple-cursors/mc-edit-lines" "\
@@ -2407,7 +2407,7 @@ Add one cursor to the beginning of each line in the active region.
 ;;;;;;  mc/mark-previous-word-like-this mc/mark-previous-like-this
 ;;;;;;  mc/mark-next-symbol-like-this mc/mark-next-word-like-this
 ;;;;;;  mc/mark-next-like-this) "multiple-cursors/mc-mark-more" "multiple-cursors/mc-mark-more.el"
-;;;;;;  (21509 14721 418886 38000))
+;;;;;;  (21840 34039 561260 51000))
 ;;; Generated autoloads from multiple-cursors/mc-mark-more.el
 
 (autoload 'mc/mark-next-like-this "multiple-cursors/mc-mark-more" "\
@@ -2568,7 +2568,7 @@ Mark the tag we're in and its pair for renaming.
 ;;;***
 
 ;;;### (autoloads (mc/mark-pop) "multiple-cursors/mc-mark-pop" "multiple-cursors/mc-mark-pop.el"
-;;;;;;  (21509 14721 418886 38000))
+;;;;;;  (21840 34039 541250 51000))
 ;;; Generated autoloads from multiple-cursors/mc-mark-pop.el
 
 (autoload 'mc/mark-pop "multiple-cursors/mc-mark-pop" "\
@@ -2581,7 +2581,7 @@ to the popped mark.
 
 ;;;### (autoloads (mc/sort-regions mc/reverse-regions mc/insert-numbers)
 ;;;;;;  "multiple-cursors/mc-separate-operations" "multiple-cursors/mc-separate-operations.el"
-;;;;;;  (21509 14721 418886 38000))
+;;;;;;  (21840 34039 541250 51000))
 ;;; Generated autoloads from multiple-cursors/mc-separate-operations.el
 
 (autoload 'mc/insert-numbers "multiple-cursors/mc-separate-operations" "\
@@ -2602,8 +2602,8 @@ Insert increasing numbers for each cursor, starting at 0 or ARG.
 ;;;***
 
 ;;;### (autoloads (set-rectangular-region-anchor) "multiple-cursors/rectangular-region-mode"
-;;;;;;  "multiple-cursors/rectangular-region-mode.el" (21509 14721
-;;;;;;  418886 38000))
+;;;;;;  "multiple-cursors/rectangular-region-mode.el" (21840 34039
+;;;;;;  561260 51000))
 ;;; Generated autoloads from multiple-cursors/rectangular-region-mode.el
 
 (autoload 'set-rectangular-region-anchor "multiple-cursors/rectangular-region-mode" "\
@@ -2617,8 +2617,8 @@ an exceedingly quick way of adding multiple cursors to multiple lines.
 ;;;***
 
 ;;;### (autoloads (php-mode php-file-patterns php-mode-to-use) "php-mode-improved/php-mode-improved"
-;;;;;;  "php-mode-improved/php-mode-improved.el" (21133 33805 719239
-;;;;;;  504000))
+;;;;;;  "php-mode-improved/php-mode-improved.el" (21840 34039 901430
+;;;;;;  59000))
 ;;; Generated autoloads from php-mode-improved/php-mode-improved.el
 
 (defvar php-mode-to-use (progn (require 'mumamo nil t) (if (fboundp 'nxhtml-mumamo-turn-on) 'nxhtml-mumamo-turn-on (if (fboundp 'html-mumamo-turn-on) 'html-mumamo-turn-on 'php-mode))) "\
@@ -2641,7 +2641,7 @@ Major mode for editing PHP code.
 ;;;***
 
 ;;;### (autoloads (php-mode php-extra-constants php) "php-mode/php-mode"
-;;;;;;  "php-mode/php-mode.el" (21133 33832 765659 161000))
+;;;;;;  "php-mode/php-mode.el" (21840 34039 109034 40000))
 ;;; Generated autoloads from php-mode/php-mode.el
 
 (let ((loads (get 'php 'custom-loads))) (if (member '"php-mode/php-mode" loads) nil (put 'php 'custom-loads (cons '"php-mode/php-mode" loads))))
@@ -2665,7 +2665,7 @@ Major mode for editing PHP code.
 ;;;***
 
 ;;;### (autoloads (smex-initialize smex) "smex/smex" "smex/smex.el"
-;;;;;;  (21133 32917 679999 408000))
+;;;;;;  (21840 34039 85022 40000))
 ;;; Generated autoloads from smex/smex.el
 
 (autoload 'smex "smex/smex" "\
@@ -2681,7 +2681,7 @@ Major mode for editing PHP code.
 ;;;***
 
 ;;;### (autoloads (vline-global-mode vline-mode) "vline/vline" "vline/vline.el"
-;;;;;;  (21140 15080 191417 139000))
+;;;;;;  (21840 34038 196578 16000))
 ;;; Generated autoloads from vline/vline.el
 
 (autoload 'vline-mode "vline/vline" "\
@@ -2713,7 +2713,7 @@ See `vline-mode' for more information on Vline mode.
 ;;;***
 
 ;;;### (autoloads (yas-global-mode yas-minor-mode) "yasnippet/yasnippet"
-;;;;;;  "yasnippet/yasnippet.el" (21133 32537 608492 747000))
+;;;;;;  "yasnippet/yasnippet.el" (21840 34038 828894 33000))
 ;;; Generated autoloads from yasnippet/yasnippet.el
 
 (autoload 'yas-minor-mode "yasnippet/yasnippet" "\
@@ -2755,36 +2755,11 @@ See `yas-minor-mode' for more information on Yas minor mode.
 
 ;;;***
 
-;;;### (autoloads nil nil ("ac-anything2/ac-anything2.el" "ac-python/ac-python.el"
-;;;;;;  "auctex/auctex.el" "auctex/auto-loads.el" "auctex/lpath.el"
-;;;;;;  "auctex/preview/auto.el" "auctex/preview/preview-latex.el"
-;;;;;;  "auctex/preview/prv-emacs.el" "auctex/preview/prv-install.el"
-;;;;;;  "auctex/preview/prv-xemacs.el" "auctex/tex-buf.el" "auctex/tex-mik.el"
-;;;;;;  "auctex/tex-site.el" "auctex/tex-style.el" "auctex/tex-wizard.el"
-;;;;;;  "auto-complete+/auto-complete+.el" "auto-complete-chunk/auto-complete-chunk.el"
-;;;;;;  "auto-complete-chunk/test-auto-complete-chunk.el" "auto-complete-clang/auto-complete-clang.el"
-;;;;;;  "auto-complete-emacs-lisp/auto-complete-emacs-lisp.el" "auto-complete-etags/auto-complete-etags.el"
-;;;;;;  "auto-complete-extension/auto-complete-extension.el" "auto-complete-latex/auto-complete-latex.el"
-;;;;;;  "auto-complete-verilog/auto-complete-verilog.el" "auto-complete/auto-complete-pkg.el"
-;;;;;;  "color-moccur/color-moccur.el" "color-occur/color-occur.el"
-;;;;;;  "color-theme-ahei/color-theme-ahei.el" "color-theme-almost-monokai/color-theme-almost-monokai.el"
-;;;;;;  "color-theme-black-purple/color-theme-black-purple.el" "color-theme-chocolate-rain/color-theme-chocolate-rain.el"
-;;;;;;  "color-theme-emacs-revert-theme/color-theme-emacs-revert-theme.el"
-;;;;;;  "color-theme-empty-void/color-theme-empty-void.el" "color-theme-inkpot/color-theme-inkpot.el"
-;;;;;;  "color-theme-ir-black/color-theme-ir-black.el" "color-theme-mac-classic/color-theme-mac-classic.el"
-;;;;;;  "color-theme-maker/color-theme-maker.el" "color-theme-railscasts/color-theme-railscasts.el"
-;;;;;;  "color-theme-reg/color-theme-reg.el" "color-theme-sanityinc/color-theme-sanityinc.el"
-;;;;;;  "color-theme-solarized/color-theme-solarized-pkg.el" "color-theme-solarized/solarized-dark-theme.el"
-;;;;;;  "color-theme-solarized/solarized-light-theme.el" "color-theme-subdued/color-theme-subdued.el"
-;;;;;;  "color-theme-tango-2/color-theme-tango-2.el" "color-theme-tangotango/color-theme-tangotango.el"
-;;;;;;  "color-theme-twilight/color-theme-twilight.el" "color-theme-zen-and-art/zen-and-art.el"
-;;;;;;  "el-get/el-get-autoloads.el" "el-get/el-get-build.el" "el-get/el-get-byte-compile.el"
-;;;;;;  "el-get/el-get-core.el" "el-get/el-get-custom.el" "el-get/el-get-dependencies.el"
-;;;;;;  "el-get/el-get-install.el" "el-get/el-get-methods.el" "el-get/el-get-notify.el"
-;;;;;;  "el-get/el-get-recipes.el" "el-get/el-get-status.el" "multiple-cursors/mc-cycle-cursors.el"
-;;;;;;  "multiple-cursors/mc-hide-unmatched-lines-mode.el" "multiple-cursors/multiple-cursors-core.el"
-;;;;;;  "multiple-cursors/multiple-cursors-pkg.el" "multiple-cursors/multiple-cursors.el"
-;;;;;;  "pos-tip/pos-tip.el") (21509 14722 50858 676000))
+;;;### (autoloads nil nil ("el-get/el-get-autoloads.el" "el-get/el-get-build.el"
+;;;;;;  "el-get/el-get-byte-compile.el" "el-get/el-get-core.el" "el-get/el-get-custom.el"
+;;;;;;  "el-get/el-get-dependencies.el" "el-get/el-get-install.el"
+;;;;;;  "el-get/el-get-methods.el" "el-get/el-get-notify.el" "el-get/el-get-recipes.el"
+;;;;;;  "el-get/el-get-status.el") (21862 55236 319851 578000))
 
 ;;;***
 

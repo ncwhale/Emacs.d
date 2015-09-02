@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: router
+# key: router
+# binding: direct-keybinding
+# expand-env: ((yas-indent-line 'fixed) (yas-wrap-around-region 'nil))
+# --
+express = require 'express'
+debug = require('debug')('route::${1:name}')
+
+router = express.Router()
+
+router.get '/', (req, res)->
+  $0
+
+module.exports = router
