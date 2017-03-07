@@ -3,31 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads (set-up-slime-ac) "ac-slime/ac-slime" "ac-slime/ac-slime.el"
-;;;;;;  (21840 34038 492726 24000))
-;;; Generated autoloads from ac-slime/ac-slime.el
-
-(defface ac-slime-menu-face '((t (:inherit ac-candidate-face))) "\
-Face for slime candidate menu." :group (quote auto-complete))
-
-(defface ac-slime-selection-face '((t (:inherit ac-selection-face))) "\
-Face for the slime selected candidate." :group (quote auto-complete))
-
-(defvar ac-source-slime-fuzzy '((init . ac-slime-init) (candidates . ac-source-slime-fuzzy-candidates) (candidate-face . ac-slime-menu-face) (selection-face . ac-slime-selection-face) (prefix . slime-symbol-start-pos) (symbol . "l") (match lambda (prefix candidates) candidates) (document . ac-slime-documentation)) "\
-Source for fuzzy slime completion.")
-
-(defvar ac-source-slime-simple '((init . ac-slime-init) (candidates . ac-source-slime-simple-candidates) (candidate-face . ac-slime-menu-face) (selection-face . ac-slime-selection-face) (prefix . slime-symbol-start-pos) (symbol . "l") (document . ac-slime-documentation) (match . ac-source-slime-case-correcting-completions)) "\
-Source for slime completion.")
-
-(autoload 'set-up-slime-ac "ac-slime/ac-slime" "\
-Add an optionally-fuzzy slime completion source to `ac-sources'.
-
-\(fn &optional FUZZY)" t nil)
-
-;;;***
-
-;;;### (autoloads (turn-on-bib-cite bib-cite-minor-mode) "auctex/bib-cite"
-;;;;;;  "auctex/bib-cite.el" (21840 34040 217588 67000))
+;;;### (autoloads nil "auctex/bib-cite" "auctex/bib-cite.el" (22718
+;;;;;;  6578 572241 780000))
 ;;; Generated autoloads from auctex/bib-cite.el
 
 (autoload 'bib-cite-minor-mode "auctex/bib-cite" "\
@@ -45,8 +22,8 @@ Unconditionally turn on Bib Cite mode.
 
 ;;;***
 
-;;;### (autoloads (context-mode) "auctex/context" "auctex/context.el"
-;;;;;;  (21840 34040 81520 63000))
+;;;### (autoloads nil "auctex/context" "auctex/context.el" (22718
+;;;;;;  6578 573241 789000))
 ;;; Generated autoloads from auctex/context.el
 
 (defalias 'ConTeXt-mode 'context-mode)
@@ -65,8 +42,8 @@ of ConTeXt-mode-hook.
 
 ;;;***
 
-;;;### (autoloads (context-en-mode) "auctex/context-en" "auctex/context-en.el"
-;;;;;;  (21840 34040 329644 69000))
+;;;### (autoloads nil "auctex/context-en" "auctex/context-en.el"
+;;;;;;  (22718 6578 573241 789000))
 ;;; Generated autoloads from auctex/context-en.el
 
 (autoload 'context-en-mode "auctex/context-en" "\
@@ -83,8 +60,8 @@ of context-mode-hook.
 
 ;;;***
 
-;;;### (autoloads (context-nl-mode) "auctex/context-nl" "auctex/context-nl.el"
-;;;;;;  (21840 34040 69514 63000))
+;;;### (autoloads nil "auctex/context-nl" "auctex/context-nl.el"
+;;;;;;  (22718 6578 573241 789000))
 ;;; Generated autoloads from auctex/context-nl.el
 
 (autoload 'context-nl-mode "auctex/context-nl" "\
@@ -101,8 +78,8 @@ of context-mode-hook.
 
 ;;;***
 
-;;;### (autoloads (font-latex-setup) "auctex/font-latex" "auctex/font-latex.el"
-;;;;;;  (21840 34040 329644 69000))
+;;;### (autoloads nil "auctex/font-latex" "auctex/font-latex.el"
+;;;;;;  (22718 6578 580241 848000))
 ;;; Generated autoloads from auctex/font-latex.el
 
 (autoload 'font-latex-setup "auctex/font-latex" "\
@@ -112,8 +89,8 @@ Setup this buffer for LaTeX font-lock.  Usually called from a hook.
 
 ;;;***
 
-;;;### (autoloads (docTeX-mode TeX-latex-mode BibTeX-auto-store)
-;;;;;;  "auctex/latex" "auctex/latex.el" (21840 34040 281620 69000))
+;;;### (autoloads nil "auctex/latex" "auctex/latex.el" (22718 6578
+;;;;;;  582241 864000))
 ;;; Generated autoloads from auctex/latex.el
 
 (autoload 'BibTeX-auto-store "auctex/latex" "\
@@ -150,8 +127,8 @@ runs the hooks in `docTeX-mode-hook'.
 
 ;;;***
 
-;;;### (autoloads (multi-prompt-key-value multi-prompt) "auctex/multi-prompt"
-;;;;;;  "auctex/multi-prompt.el" (21840 34040 273616 67000))
+;;;### (autoloads nil "auctex/multi-prompt" "auctex/multi-prompt.el"
+;;;;;;  (22718 6578 583241 873000))
 ;;; Generated autoloads from auctex/multi-prompt.el
 
 (autoload 'multi-prompt "auctex/multi-prompt" "\
@@ -180,8 +157,8 @@ The return value is the string as entered in the minibuffer.
 
 ;;;***
 
-;;;### (autoloads (ams-tex-mode TeX-plain-tex-mode) "auctex/plain-tex"
-;;;;;;  "auctex/plain-tex.el" (21840 34040 73516 64000))
+;;;### (autoloads nil "auctex/plain-tex" "auctex/plain-tex.el" (22718
+;;;;;;  6578 584241 881000))
 ;;; Generated autoloads from auctex/plain-tex.el
 
 (autoload 'TeX-plain-tex-mode "auctex/plain-tex" "\
@@ -212,9 +189,8 @@ of `AmS-TeX-mode-hook'.
 
 ;;;***
 
-;;;### (autoloads (preview-report-bug LaTeX-preview-setup preview-install-styles)
-;;;;;;  "auctex/preview/preview" "auctex/preview/preview.el" (21840
-;;;;;;  34040 293626 68000))
+;;;### (autoloads nil "auctex/preview/preview" "auctex/preview/preview.el"
+;;;;;;  (22718 6578 589241 923000))
 ;;; Generated autoloads from auctex/preview/preview.el
 
 (autoload 'preview-install-styles "auctex/preview/preview" "\
@@ -245,9 +221,8 @@ Report a bug in the preview-latex package.
 
 ;;;***
 
-;;;### (autoloads (TeX-submit-bug-report TeX-auto-generate-global
-;;;;;;  TeX-auto-generate TeX-tex-mode) "auctex/tex" "auctex/tex.el"
-;;;;;;  (21840 34040 77518 63000))
+;;;### (autoloads nil "auctex/tex" "auctex/tex.el" (22718 6578 603242
+;;;;;;  41000))
 ;;; Generated autoloads from auctex/tex.el
 
 (autoload 'TeX-tex-mode "auctex/tex" "\
@@ -288,8 +263,8 @@ information about your AUCTeX version and AUCTeX configuration.
 
 ;;;***
 
-;;;### (autoloads (LaTeX-install-toolbar TeX-install-toolbar) "auctex/tex-bar"
-;;;;;;  "auctex/tex-bar.el" (21840 34040 337648 70000))
+;;;### (autoloads nil "auctex/tex-bar" "auctex/tex-bar.el" (22718
+;;;;;;  6578 600242 15000))
 ;;; Generated autoloads from auctex/tex-bar.el
 
 (autoload 'TeX-install-toolbar "auctex/tex-bar" "\
@@ -304,8 +279,8 @@ Install toolbar buttons for LaTeX mode.
 
 ;;;***
 
-;;;### (autoloads nil "auctex/tex-fold" "auctex/tex-fold.el" (21840
-;;;;;;  34040 69514 63000))
+;;;### (autoloads nil "auctex/tex-fold" "auctex/tex-fold.el" (22718
+;;;;;;  6578 600242 15000))
 ;;; Generated autoloads from auctex/tex-fold.el
  (autoload 'TeX-fold-mode "tex-fold" "Minor mode for hiding and revealing macros and environments." t)
 
@@ -313,8 +288,8 @@ Install toolbar buttons for LaTeX mode.
 
 ;;;***
 
-;;;### (autoloads (tex-font-setup) "auctex/tex-font" "auctex/tex-font.el"
-;;;;;;  (21840 34040 225592 67000))
+;;;### (autoloads nil "auctex/tex-font" "auctex/tex-font.el" (22718
+;;;;;;  6578 601242 24000))
 ;;; Generated autoloads from auctex/tex-font.el
 
 (autoload 'tex-font-setup "auctex/tex-font" "\
@@ -324,8 +299,8 @@ Setup font lock support for TeX.
 
 ;;;***
 
-;;;### (autoloads (TeX-texinfo-mode) "auctex/tex-info" "auctex/tex-info.el"
-;;;;;;  (21840 34040 221590 66000))
+;;;### (autoloads nil "auctex/tex-info" "auctex/tex-info.el" (22718
+;;;;;;  6578 601242 24000))
 ;;; Generated autoloads from auctex/tex-info.el
 
 (defalias 'Texinfo-mode 'texinfo-mode)
@@ -343,8 +318,8 @@ value of `Texinfo-mode-hook'.
 
 ;;;***
 
-;;;### (autoloads (japanese-latex-mode japanese-plain-tex-mode) "auctex/tex-jp"
-;;;;;;  "auctex/tex-jp.el" (21840 34040 225592 67000))
+;;;### (autoloads nil "auctex/tex-jp" "auctex/tex-jp.el" (22718 6578
+;;;;;;  601242 24000))
 ;;; Generated autoloads from auctex/tex-jp.el
 
 (autoload 'japanese-plain-tex-mode "auctex/tex-jp" "\
@@ -361,8 +336,8 @@ Set `japanese-TeX-mode' to t, and enter `TeX-latex-mode'.
 
 ;;;***
 
-;;;### (autoloads (texmathp-match-switch texmathp) "auctex/texmathp"
-;;;;;;  "auctex/texmathp.el" (21840 34040 89524 64000))
+;;;### (autoloads nil "auctex/texmathp" "auctex/texmathp.el" (22718
+;;;;;;  6578 603242 41000))
 ;;; Generated autoloads from auctex/texmathp.el
 
 (autoload 'texmathp "auctex/texmathp" "\
@@ -382,89 +357,15 @@ Limit searched to BOUND.
 
 ;;;***
 
-;;;### (autoloads nil "auctex/toolbar-x" "auctex/toolbar-x.el" (21840
-;;;;;;  34040 261610 68000))
+;;;### (autoloads nil "auctex/toolbar-x" "auctex/toolbar-x.el" (22718
+;;;;;;  6578 605242 58000))
 ;;; Generated autoloads from auctex/toolbar-x.el
  (autoload 'toolbarx-install-toolbar "toolbar-x")
 
 ;;;***
 
-;;;### (autoloads (global-auto-complete-mode auto-complete-mode auto-complete)
-;;;;;;  "auto-complete/auto-complete" "auto-complete/auto-complete.el"
-;;;;;;  (21840 34039 489224 49000))
-;;; Generated autoloads from auto-complete/auto-complete.el
-
-(autoload 'auto-complete "auto-complete/auto-complete" "\
-Start auto-completion at current point.
-
-\(fn &optional SOURCES)" t nil)
-
-(autoload 'auto-complete-mode "auto-complete/auto-complete" "\
-AutoComplete mode
-
-\(fn &optional ARG)" t nil)
-
-(defvar global-auto-complete-mode nil "\
-Non-nil if Global-Auto-Complete mode is enabled.
-See the command `global-auto-complete-mode' for a description of this minor mode.
-Setting this variable directly does not take effect;
-either customize it (see the info node `Easy Customization')
-or call the function `global-auto-complete-mode'.")
-
-(custom-autoload 'global-auto-complete-mode "auto-complete/auto-complete" nil)
-
-(autoload 'global-auto-complete-mode "auto-complete/auto-complete" "\
-Toggle Auto-Complete mode in all buffers.
-With prefix ARG, enable Global-Auto-Complete mode if ARG is positive;
-otherwise, disable it.  If called from Lisp, enable the mode if
-ARG is omitted or nil.
-
-Auto-Complete mode is enabled in all buffers where
-`auto-complete-mode-maybe' would do it.
-See `auto-complete-mode' for more information on Auto-Complete mode.
-
-\(fn &optional ARG)" t nil)
-
-;;;***
-
-;;;### (autoloads (ac-config-default) "auto-complete/auto-complete-config"
-;;;;;;  "auto-complete/auto-complete-config.el" (21840 34039 489224
-;;;;;;  49000))
-;;; Generated autoloads from auto-complete/auto-complete-config.el
-
-(autoload 'ac-config-default "auto-complete/auto-complete-config" "\
-
-
-\(fn)" nil nil)
-
-;;;***
-
-;;;### (autoloads (coffee-mode) "coffee-mode/coffee-mode" "coffee-mode/coffee-mode.el"
-;;;;;;  (21840 34040 769864 80000))
-;;; Generated autoloads from coffee-mode/coffee-mode.el
-
-(autoload 'coffee-mode "coffee-mode/coffee-mode" "\
-Major mode for editing CoffeeScript.
-
-\(fn)" t nil)
-
-(add-to-list 'auto-mode-alist '("\\.coffee\\'" . coffee-mode))
-
-(add-to-list 'auto-mode-alist '("\\.iced\\'" . coffee-mode))
-
-(add-to-list 'auto-mode-alist '("Cakefile\\'" . coffee-mode))
-
-(add-to-list 'auto-mode-alist '("\\.cson\\'" . coffee-mode))
-
-(add-to-list 'interpreter-mode-alist '("coffee" . coffee-mode))
-
-;;;***
-
-;;;### (autoloads (col-highlight-flash col-highlight-set-interval
-;;;;;;  col-highlight-toggle-when-idle column-highlight-mode col-highlight-overlay-priority
-;;;;;;  col-highlight-period col-highlight-vline-face-flag col-highlight-show-only
-;;;;;;  column-highlight) "col-highlight/col-highlight" "col-highlight/col-highlight.el"
-;;;;;;  (21840 34038 496728 24000))
+;;;### (autoloads nil "col-highlight/col-highlight" "col-highlight/col-highlight.el"
+;;;;;;  (22718 6578 612242 116000))
 ;;; Generated autoloads from col-highlight/col-highlight.el
 
 (let ((loads (get 'column-highlight 'custom-loads))) (if (member '"col-highlight/col-highlight" loads) nil (put 'column-highlight 'custom-loads (cons '"col-highlight/col-highlight" loads))))
@@ -551,90 +452,8 @@ With a prefix ARG, highlight for that many seconds.
 
 ;;;***
 
-;;;### (autoloads (color-browser) "color-browser/color-browser" "color-browser/color-browser.el"
-;;;;;;  (21840 34038 56508 14000))
-;;; Generated autoloads from color-browser/color-browser.el
-
-(autoload 'color-browser "color-browser/color-browser" "\
-*Pop up a frame containing a color theme design tool.
-If PALETTE-BUILDER is t, this tool consists of two color palette
-buffers (see `cb-build-color-palette-buffer').  Otherwise it consists
-of on Color Palette buffer and one face group buffer (see
-`cb-build-face-group-buffer')
-
-\(fn &optional PALETTE-BUILDER)" t nil)
-
-;;;***
-
-;;;### (autoloads (color-theme-desert) "color-theme-desert/color-theme-desert"
-;;;;;;  "color-theme-desert/color-theme-desert.el" (21840 34039 197078
-;;;;;;  42000))
-;;; Generated autoloads from color-theme-desert/color-theme-desert.el
-
-(autoload 'color-theme-desert "color-theme-desert/color-theme-desert" "\
-Emacs color theme desert, inspired by VIM desert theme.
-
-\(fn)" t nil)
-
-;;;***
-
-;;;### (autoloads (color-theme-solarized-light color-theme-solarized-dark
-;;;;;;  color-theme-solarized) "color-theme-solarized/color-theme-solarized"
-;;;;;;  "color-theme-solarized/color-theme-solarized.el" (21840 34038
-;;;;;;  820890 32000))
-;;; Generated autoloads from color-theme-solarized/color-theme-solarized.el
-
-(autoload 'color-theme-solarized "color-theme-solarized/color-theme-solarized" "\
-Color theme by Ethan Schoonover, created 2011-03-24.
-Ported to Emacs by Greg Pfeil, http://ethanschoonover.com/solarized.
-
-\(fn MODE)" t nil)
-
-(autoload 'color-theme-solarized-dark "color-theme-solarized/color-theme-solarized" "\
-
-
-\(fn)" t nil)
-
-(autoload 'color-theme-solarized-light "color-theme-solarized/color-theme-solarized" "\
-
-
-\(fn)" t nil)
-
-;;;***
-
-;;;### (autoloads nil "color-theme-solarized/solarized-definitions"
-;;;;;;  "color-theme-solarized/solarized-definitions.el" (21840 34038
-;;;;;;  824892 33000))
-;;; Generated autoloads from color-theme-solarized/solarized-definitions.el
-
-(when (boundp 'custom-theme-load-path) (add-to-list 'custom-theme-load-path (file-name-as-directory (file-name-directory load-file-name))))
-
-;;;***
-
-;;;### (autoloads nil "color-theme-tangotango/tangotango-theme" "color-theme-tangotango/tangotango-theme.el"
-;;;;;;  (21840 34040 745852 79000))
-;;; Generated autoloads from color-theme-tangotango/tangotango-theme.el
-
-(and load-file-name (boundp 'custom-theme-load-path) (add-to-list 'custom-theme-load-path (file-name-as-directory (file-name-directory load-file-name))))
-
-;;;***
-
-;;;### (autoloads nil "color-theme-zenburn/zenburn-theme" "color-theme-zenburn/zenburn-theme.el"
-;;;;;;  (21840 34040 753856 80000))
-;;; Generated autoloads from color-theme-zenburn/zenburn-theme.el
-
-(and load-file-name (boundp 'custom-theme-load-path) (add-to-list 'custom-theme-load-path (file-name-as-directory (file-name-directory load-file-name))))
-
-(add-to-list 'safe-local-eval-forms '(when (require 'rainbow-mode nil t) (rainbow-mode 1)))
-
-;;;***
-
-;;;### (autoloads (color-theme-initialize color-theme-submit color-theme-install
-;;;;;;  color-theme-compare color-theme-make-snapshot color-theme-analyze-defun
-;;;;;;  color-theme-print color-theme-install-at-point-for-current-frame
-;;;;;;  color-theme-install-at-mouse color-theme-describe color-theme-select)
-;;;;;;  "color-theme/color-theme" "color-theme/color-theme.el" (21840
-;;;;;;  34038 396678 23000))
+;;;### (autoloads nil "color-theme/color-theme" "color-theme/color-theme.el"
+;;;;;;  (22718 6578 616242 150000))
 ;;; Generated autoloads from color-theme/color-theme.el
 
 (autoload 'color-theme-select "color-theme/color-theme" "\
@@ -769,13 +588,8 @@ Initialize the color theme package by loading color-theme-libraries.
 
 ;;;***
 
-;;;### (autoloads (colour-region-load colour-region-save colour-region-yank-pop
-;;;;;;  colour-region-yank colour-region-kill-ring-rotate colour-region-change-type
-;;;;;;  colour-region-change-comment colour-region-kill colour-region-copy
-;;;;;;  colour-region-previous colour-region-next colour-region-func
-;;;;;;  colour-region-remove colour-region-toggle-text colour-region-toggle-overlay
-;;;;;;  colour-region-store-text colour-region-new) "colour-region/colour-region"
-;;;;;;  "colour-region/colour-region.el" (21840 34039 89024 39000))
+;;;### (autoloads nil "colour-region/colour-region" "colour-region/colour-region.el"
+;;;;;;  (22718 6578 620242 183000))
 ;;; Generated autoloads from colour-region/colour-region.el
 
 (autoload 'colour-region-new "colour-region/colour-region" "\
@@ -946,7 +760,7 @@ the colour-region-default-save-file function.
 ;;;***
 
 ;;;### (autoloads nil "column-marker/column-marker" "column-marker/column-marker.el"
-;;;;;;  (21840 34040 337648 70000))
+;;;;;;  (22718 6578 620242 183000))
 ;;; Generated autoloads from column-marker/column-marker.el
 
 (autoload 'column-marker-1 "column-marker" "\
@@ -954,10 +768,8 @@ Highlight a column." t)
 
 ;;;***
 
-;;;### (autoloads (crosshairs-unhighlight crosshairs-highlight crosshairs
-;;;;;;  crosshairs-flash crosshairs-toggle-when-idle crosshairs-mode
-;;;;;;  crosshairs) "crosshairs/crosshairs" "crosshairs/crosshairs.el"
-;;;;;;  (21840 34038 52506 14000))
+;;;### (autoloads nil "crosshairs/crosshairs" "crosshairs/crosshairs.el"
+;;;;;;  (22718 6578 621242 192000))
 ;;; Generated autoloads from crosshairs/crosshairs.el
 
 (let ((loads (get 'crosshairs 'custom-loads))) (if (member '"crosshairs/crosshairs" loads) nil (put 'crosshairs 'custom-loads (cons '"crosshairs/crosshairs" loads))))
@@ -1032,8 +844,8 @@ Optional arg nil means do nothing if this event is a frame switch.
 
 ;;;***
 
-;;;### (autoloads (css-mode) "css-mode/css-mode" "css-mode/css-mode.el"
-;;;;;;  (21840 34040 713836 78000))
+;;;### (autoloads nil "css-mode/css-mode" "css-mode/css-mode.el"
+;;;;;;  (22718 6578 658242 502000))
 ;;; Generated autoloads from css-mode/css-mode.el
 (add-to-list 'auto-mode-alist '("\\.css\\'" . css-mode))
 
@@ -1048,9 +860,8 @@ Key bindings:
 
 ;;;***
 
-;;;### (autoloads (el-get-checksum el-get-make-recipes el-get-cd
-;;;;;;  el-get-self-update el-get-update-all el-get-version) "el-get/el-get"
-;;;;;;  "el-get/el-get.el" (21840 34039 897428 58000))
+;;;### (autoloads nil "el-get/el-get" "el-get/el-get.el" (22718 27195
+;;;;;;  936071 677000))
 ;;; Generated autoloads from el-get/el-get.el
 
 (autoload 'el-get-version "el-get/el-get" "\
@@ -1058,15 +869,43 @@ Message the current el-get version
 
 \(fn)" t nil)
 
+(autoload 'el-get-install "el-get/el-get" "\
+Cause the named PACKAGE to be installed after all of its
+dependencies (if any).
+
+PACKAGE may be either a string or the corresponding symbol.
+
+\(fn PACKAGE)" t nil)
+
+(autoload 'el-get-update "el-get/el-get" "\
+Update PACKAGE.
+
+\(fn PACKAGE)" t nil)
+
 (autoload 'el-get-update-all "el-get/el-get" "\
 Performs update of all installed packages.
 
 \(fn &optional NO-PROMPT)" t nil)
 
+(autoload 'el-get-update-packages-of-type "el-get/el-get" "\
+Update all installed packages of type TYPE.
+
+\(fn TYPE)" t nil)
+
 (autoload 'el-get-self-update "el-get/el-get" "\
 Update el-get itself.  The standard recipe takes care of reloading the code.
 
 \(fn)" t nil)
+
+(autoload 'el-get-remove "el-get/el-get" "\
+Remove any PACKAGE that is know to be installed or required.
+
+\(fn PACKAGE)" t nil)
+
+(autoload 'el-get-reinstall "el-get/el-get" "\
+Remove PACKAGE and then install it again.
+
+\(fn PACKAGE)" t nil)
 
 (autoload 'el-get-cd "el-get/el-get" "\
 Open dired in the package directory.
@@ -1082,12 +921,121 @@ entry which is not a symbol and is not already a known recipe.
 (autoload 'el-get-checksum "el-get/el-get" "\
 Compute the checksum of the given package, and put it in the kill-ring
 
-\(fn PACKAGE &optional PACKAGE-STATUS-ALIST)" t nil)
+\(fn PACKAGE)" t nil)
+
+(autoload 'el-get-self-checksum "el-get/el-get" "\
+Compute the checksum of the running version of el-get itself.
+
+Also put the checksum in the kill-ring.
+
+\(fn)" t nil)
+
+(autoload 'el-get "el-get/el-get" "\
+Ensure that packages have been downloaded once and init them as needed.
+
+This will not update the sources by using `apt-get install' or
+`git pull', but it will ensure that:
+
+* the packages have been installed
+* load-path is set so their elisp files can be found
+* Info-directory-list is set so their info files can be found
+* Autoloads have been prepared and evaluated for each package
+* Any post-installation setup (e.g. `(require 'feature)') happens
+
+When SYNC is nil (the default), all installations run
+concurrently, in the background.
+
+When SYNC is 'sync, each package will be installed synchronously,
+and any error will stop it all.
+
+Please note that the `el-get-init' part of `el-get' is always
+done synchronously. There's `byte-compile' support though, and
+the packages you use are welcome to use `autoload' too.
+
+PACKAGES is expected to be a list of packages you want to install
+or init.  When PACKAGES is omited (the default), the list of
+already installed packages is considered.
+
+\(fn &optional SYNC &rest PACKAGES)" nil nil)
 
 ;;;***
 
-;;;### (autoloads (el-get-list-packages) "el-get/el-get-list-packages"
-;;;;;;  "el-get/el-get-list-packages.el" (21840 34039 693326 54000))
+;;;### (autoloads nil "el-get/el-get-bundle" "el-get/el-get-bundle.el"
+;;;;;;  (22718 27195 934071 617000))
+;;; Generated autoloads from el-get/el-get-bundle.el
+
+(autoload 'el-get-bundle-el-get "el-get/el-get-bundle" "\
+
+
+\(fn SRC SYNC)" nil nil)
+
+(autoload 'el-get-bundle "el-get/el-get-bundle" "\
+Install PACKAGE and run initialization FORM.
+
+PACKAGE can be either a simple package name or a package name
+with a modifier before the name to specify local recipe source
+information:
+
+* `<owner>/' : specifies a Github owner name
+* `gist:<id>' : specifies a Gist ID
+* `<type>:' : specifies a type of the package source
+
+If `FEATURE in PACKAGE' form is used instead of PACKAGE, then
+that FEATURE is `require'd after installing PACKAGE.  You can
+also use `el-get-bundle!' macro if FEATURE and PACKAGE are the
+same.  If you wish to `require' more than one feature, then use
+`:features' property in FORM.
+
+The initialization FORM may start with a property list that
+describes a local recipe.  The property list may include the keyword
+`:bundle-sync' with a value of either `t' or `nil' to request that
+`el-get-bundle' invoke `el-get' synchronously (respectively asynchronously).
+The keyword `:bundle-async' is the inverse of `:bundle-sync'.
+\(Note that the request to run el-get synchronously may not be respected in all
+circumstances: see the definition of `el-get-bundle-el-get' for details.)
+The FORM after the property list is treated as initialization code,
+which is actually an `:after' property of the local recipe.
+
+A copy of the initialization code is stored in a directory
+specified by `el-get-bundle-init-directory' and its byte-compiled
+version is used if `el-get-bundle-byte-compile' is non-nil.
+
+\(fn PACKAGE &rest FORM)" nil t)
+
+(put 'el-get-bundle 'lisp-indent-function 'defun)
+
+(autoload 'el-get-bundle! "el-get/el-get-bundle" "\
+Install PACKAGE and run initialization form.
+It is the same as `el-get-bundle' except that PACKAGE is explicitly
+required.
+
+\(fn PACKAGE &rest ARGS)" nil t)
+
+(put 'el-get-bundle! 'lisp-indent-function 'defun)
+
+;;;***
+
+;;;### (autoloads nil "el-get/el-get-check" "el-get/el-get-check.el"
+;;;;;;  (22718 27195 934071 617000))
+;;; Generated autoloads from el-get/el-get-check.el
+
+(autoload 'el-get-check-recipe "el-get/el-get-check" "\
+Check the format of the recipe.
+Please run this command before sending a pull request.
+Usage: M-x el-get-check-recipe RET
+
+You can run this function from checker script like this:
+    test/check-recipe.el PATH/TO/RECIPE.rcp
+
+When used as a lisp function, FILE-OR-BUFFER must be a buffer
+object or a file path.
+
+\(fn FILE-OR-BUFFER)" t nil)
+
+;;;***
+
+;;;### (autoloads nil "el-get/el-get-list-packages" "el-get/el-get-list-packages.el"
+;;;;;;  (22718 27195 935071 647000))
 ;;; Generated autoloads from el-get/el-get-list-packages.el
 
 (autoload 'el-get-list-packages "el-get/el-get-list-packages" "\
@@ -1097,73 +1045,8 @@ Display a list of packages.
 
 ;;;***
 
-;;;### (autoloads (async-start async-start-process) "emacs-async/async"
-;;;;;;  "emacs-async/async.el" (21840 34040 13486 61000))
-;;; Generated autoloads from emacs-async/async.el
-
-(autoload 'async-start-process "emacs-async/async" "\
-Start the executable PROGRAM asynchronously.  See `async-start'.
-PROGRAM is passed PROGRAM-ARGS, calling FINISH-FUNC with the
-process object when done.  If FINISH-FUNC is nil, the future
-object will return the process object when the program is
-finished.
-
-\(fn NAME PROGRAM FINISH-FUNC &rest PROGRAM-ARGS)" nil nil)
-
-(autoload 'async-start "emacs-async/async" "\
-Execute START-FUNC (often a lambda) in a subordinate Emacs process.
-When done, the return value is passed to FINISH-FUNC.  Example:
-
-    (async-start
-       ;; What to do in the child process
-       (lambda ()
-         (message \"This is a test\")
-         (sleep-for 3)
-         222)
-
-       ;; What to do when it finishes
-       (lambda (result)
-         (message \"Async process done, result should be 222: %s\"
-                  result)))
-
-If FINISH-FUNC is nil or missing, a future is returned that can
-be inspected using `async-get', blocking until the value is
-ready.  Example:
-
-    (let ((proc (async-start
-                   ;; What to do in the child process
-                   (lambda ()
-                     (message \"This is a test\")
-                     (sleep-for 3)
-                     222))))
-
-        (message \"I'm going to do some work here\") ;; ....
-
-        (message \"Waiting on async process, result should be 222: %s\"
-                 (async-get proc)))
-
-If you don't want to use a callback, and you don't care about any
-return value form the child process, pass the `ignore' symbol as
-the second argument (if you don't, and never call `async-get', it
-will leave *emacs* process buffers hanging around):
-
-    (async-start
-     (lambda ()
-       (delete-file \"a remote file on a slow link\" nil))
-     'ignore)
-
-Note: Even when FINISH-FUNC is present, a future is still
-returned except that it yields no value (since the value is
-passed to FINISH-FUNC).  Call `async-get' on such a future always
-returns nil.  It can still be useful, however, as an argument to
-`async-ready' or `async-wait'.
-
-\(fn START-FUNC &optional FINISH-FUNC)" nil t)
-
-;;;***
-
-;;;### (autoloads (bookmark-w3m-bookmark-jump) "emacs-w3m/bookmark-w3m"
-;;;;;;  "emacs-w3m/bookmark-w3m.el" (21840 34040 529744 74000))
+;;;### (autoloads nil "emacs-w3m/bookmark-w3m" "emacs-w3m/bookmark-w3m.el"
+;;;;;;  (22718 6578 625242 225000))
 ;;; Generated autoloads from emacs-w3m/bookmark-w3m.el
 
 (autoload 'bookmark-w3m-bookmark-jump "emacs-w3m/bookmark-w3m" "\
@@ -1173,8 +1056,8 @@ Default bookmark handler for w3m buffers.
 
 ;;;***
 
-;;;### (autoloads (mime-w3m-preview-text/html) "emacs-w3m/mime-w3m"
-;;;;;;  "emacs-w3m/mime-w3m.el" (21840 34040 401680 70000))
+;;;### (autoloads nil "emacs-w3m/mime-w3m" "emacs-w3m/mime-w3m.el"
+;;;;;;  (22718 6578 634242 301000))
 ;;; Generated autoloads from emacs-w3m/mime-w3m.el
 
 (autoload 'mime-w3m-preview-text/html "emacs-w3m/mime-w3m" "\
@@ -1184,9 +1067,8 @@ Default bookmark handler for w3m buffers.
 
 ;;;***
 
-;;;### (autoloads (octet-mime-setup mime-view-octet mime-preview-octet
-;;;;;;  octet-find-file octet-buffer) "emacs-w3m/octet" "emacs-w3m/octet.el"
-;;;;;;  (21840 34040 401680 70000))
+;;;### (autoloads nil "emacs-w3m/octet" "emacs-w3m/octet.el" (22718
+;;;;;;  6578 634242 301000))
 ;;; Generated autoloads from emacs-w3m/octet.el
 
 (autoload 'octet-buffer "emacs-w3m/octet" "\
@@ -1218,10 +1100,8 @@ Octet setting for MIME module.
 
 ;;;***
 
-;;;### (autoloads (w3m-buffer w3m-region w3m-find-file w3m-browse-url
-;;;;;;  w3m w3m-create-empty-session w3m-gohome w3m-goto-url-new-session
-;;;;;;  w3m-goto-url w3m-download w3m-retrieve) "emacs-w3m/w3m" "emacs-w3m/w3m.el"
-;;;;;;  (21840 34040 413686 72000))
+;;;### (autoloads nil "emacs-w3m/w3m" "emacs-w3m/w3m.el" (22718 6578
+;;;;;;  648242 418000))
 ;;; Generated autoloads from emacs-w3m/w3m.el
 
 (autoload 'w3m-retrieve "emacs-w3m/w3m" "\
@@ -1378,8 +1258,8 @@ See `w3m-region' for the optional arguments.
 
 ;;;***
 
-;;;### (autoloads (w3m-antenna w3m-about-antenna) "emacs-w3m/w3m-antenna"
-;;;;;;  "emacs-w3m/w3m-antenna.el" (21840 34040 421690 71000))
+;;;### (autoloads nil "emacs-w3m/w3m-antenna" "emacs-w3m/w3m-antenna.el"
+;;;;;;  (22718 6578 642242 368000))
 ;;; Generated autoloads from emacs-w3m/w3m-antenna.el
 
 (autoload 'w3m-about-antenna "emacs-w3m/w3m-antenna" "\
@@ -1394,10 +1274,8 @@ Report changes of WEB sites, which is specified in `w3m-antenna-sites'.
 
 ;;;***
 
-;;;### (autoloads (w3m-setup-bookmark-menu w3m-about-bookmark w3m-bookmark-view-new-session
-;;;;;;  w3m-bookmark-view w3m-bookmark-add-current-url-group w3m-bookmark-add-all-urls
-;;;;;;  w3m-bookmark-add-current-url w3m-bookmark-add-this-url) "emacs-w3m/w3m-bookmark"
-;;;;;;  "emacs-w3m/w3m-bookmark.el" (21840 34040 561760 75000))
+;;;### (autoloads nil "emacs-w3m/w3m-bookmark" "emacs-w3m/w3m-bookmark.el"
+;;;;;;  (22718 6578 642242 368000))
 ;;; Generated autoloads from emacs-w3m/w3m-bookmark.el
 
 (autoload 'w3m-bookmark-add-this-url "emacs-w3m/w3m-bookmark" "\
@@ -1443,9 +1321,8 @@ Setup w3m bookmark items in menubar.
 
 ;;;***
 
-;;;### (autoloads (w3m-about-cookie w3m-cookie w3m-cookie-get w3m-cookie-set
-;;;;;;  w3m-cookie-shutdown) "emacs-w3m/w3m-cookie" "emacs-w3m/w3m-cookie.el"
-;;;;;;  (21840 34040 569764 75000))
+;;;### (autoloads nil "emacs-w3m/w3m-cookie" "emacs-w3m/w3m-cookie.el"
+;;;;;;  (22718 6578 642242 368000))
 ;;; Generated autoloads from emacs-w3m/w3m-cookie.el
 
 (autoload 'w3m-cookie-shutdown "emacs-w3m/w3m-cookie" "\
@@ -1476,8 +1353,8 @@ Make the html contents to display and to enable you to manage cookies.
 
 ;;;***
 
-;;;### (autoloads (w3m-dtree w3m-about-dtree) "emacs-w3m/w3m-dtree"
-;;;;;;  "emacs-w3m/w3m-dtree.el" (21840 34040 445702 73000))
+;;;### (autoloads nil "emacs-w3m/w3m-dtree" "emacs-w3m/w3m-dtree.el"
+;;;;;;  (22718 6578 643242 376000))
 ;;; Generated autoloads from emacs-w3m/w3m-dtree.el
 
 (autoload 'w3m-about-dtree "emacs-w3m/w3m-dtree" "\
@@ -1493,8 +1370,8 @@ If called with 'prefix argument', display all directorys and files.
 
 ;;;***
 
-;;;### (autoloads (w3m-fb-mode) "emacs-w3m/w3m-fb" "emacs-w3m/w3m-fb.el"
-;;;;;;  (21840 34040 573766 75000))
+;;;### (autoloads nil "emacs-w3m/w3m-fb" "emacs-w3m/w3m-fb.el" (22718
+;;;;;;  6578 643242 376000))
 ;;; Generated autoloads from emacs-w3m/w3m-fb.el
 
 (defvar w3m-fb-mode nil "\
@@ -1514,8 +1391,8 @@ This allows frame-local lists of buffers (tabs).
 
 ;;;***
 
-;;;### (autoloads (w3m-filter) "emacs-w3m/w3m-filter" "emacs-w3m/w3m-filter.el"
-;;;;;;  (21840 34040 445702 73000))
+;;;### (autoloads nil "emacs-w3m/w3m-filter" "emacs-w3m/w3m-filter.el"
+;;;;;;  (22718 6578 643242 376000))
 ;;; Generated autoloads from emacs-w3m/w3m-filter.el
 
 (autoload 'w3m-filter "emacs-w3m/w3m-filter" "\
@@ -1525,8 +1402,8 @@ Apply filtering rule of URL against a content in this buffer.
 
 ;;;***
 
-;;;### (autoloads (w3m-fontify-forms) "emacs-w3m/w3m-form" "emacs-w3m/w3m-form.el"
-;;;;;;  (21840 34040 529744 74000))
+;;;### (autoloads nil "emacs-w3m/w3m-form" "emacs-w3m/w3m-form.el"
+;;;;;;  (22718 6578 643242 376000))
 ;;; Generated autoloads from emacs-w3m/w3m-form.el
 
 (autoload 'w3m-fontify-forms "emacs-w3m/w3m-form" "\
@@ -1536,12 +1413,8 @@ Process half-dumped data and fontify forms in this buffer.
 
 ;;;***
 
-;;;### (autoloads (w3m-lnum-bookmark-add-this-url w3m-lnum-download-this-url
-;;;;;;  w3m-lnum-print-this-url w3m-lnum-edit-this-url w3m-lnum-external-view-this-url
-;;;;;;  w3m-lnum-save-image w3m-lnum-view-image w3m-lnum-toggle-inline-image
-;;;;;;  w3m-lnum-universal w3m-lnum-follow w3m-lnum-goto w3m-lnum-mode)
-;;;;;;  "emacs-w3m/w3m-lnum" "emacs-w3m/w3m-lnum.el" (21840 34040
-;;;;;;  409684 71000))
+;;;### (autoloads nil "emacs-w3m/w3m-lnum" "emacs-w3m/w3m-lnum.el"
+;;;;;;  (22718 6578 644242 385000))
 ;;; Generated autoloads from emacs-w3m/w3m-lnum.el
 
 (autoload 'w3m-lnum-mode "emacs-w3m/w3m-lnum" "\
@@ -1632,8 +1505,8 @@ If no link under point, activate numbering and ask for one.
 
 ;;;***
 
-;;;### (autoloads (w3m-namazu w3m-about-namazu) "emacs-w3m/w3m-namazu"
-;;;;;;  "emacs-w3m/w3m-namazu.el" (21840 34040 441700 72000))
+;;;### (autoloads nil "emacs-w3m/w3m-namazu" "emacs-w3m/w3m-namazu.el"
+;;;;;;  (22718 6578 645242 393000))
 ;;; Generated autoloads from emacs-w3m/w3m-namazu.el
 
 (autoload 'w3m-about-namazu "emacs-w3m/w3m-namazu" "\
@@ -1648,8 +1521,8 @@ Search indexed files with Namazu.
 
 ;;;***
 
-;;;### (autoloads (w3m-perldoc w3m-about-perldoc) "emacs-w3m/w3m-perldoc"
-;;;;;;  "emacs-w3m/w3m-perldoc.el" (21840 34040 417688 72000))
+;;;### (autoloads nil "emacs-w3m/w3m-perldoc" "emacs-w3m/w3m-perldoc.el"
+;;;;;;  (22718 6578 645242 393000))
 ;;; Generated autoloads from emacs-w3m/w3m-perldoc.el
 
 (autoload 'w3m-about-perldoc "emacs-w3m/w3m-perldoc" "\
@@ -1664,9 +1537,8 @@ View Perl documents.
 
 ;;;***
 
-;;;### (autoloads (w3m-search-uri-replace w3m-search-new-session
-;;;;;;  w3m-search) "emacs-w3m/w3m-search" "emacs-w3m/w3m-search.el"
-;;;;;;  (21840 34040 401680 70000))
+;;;### (autoloads nil "emacs-w3m/w3m-search" "emacs-w3m/w3m-search.el"
+;;;;;;  (22718 6578 646242 402000))
 ;;; Generated autoloads from emacs-w3m/w3m-search.el
 
 (autoload 'w3m-search "emacs-w3m/w3m-search" "\
@@ -1691,10 +1563,8 @@ Generate query string for ENGINE from URI matched by last search.
 
 ;;;***
 
-;;;### (autoloads (w3m-session-last-crashed-session w3m-session-last-autosave-session
-;;;;;;  w3m-setup-session-menu w3m-session-select w3m-session-crash-recovery-remove
-;;;;;;  w3m-session-save) "emacs-w3m/w3m-session" "emacs-w3m/w3m-session.el"
-;;;;;;  (21840 34040 565762 76000))
+;;;### (autoloads nil "emacs-w3m/w3m-session" "emacs-w3m/w3m-session.el"
+;;;;;;  (22718 6578 646242 402000))
 ;;; Generated autoloads from emacs-w3m/w3m-session.el
 
 (autoload 'w3m-session-save "emacs-w3m/w3m-session" "\
@@ -1729,8 +1599,8 @@ Setup w3m session items in menubar.
 
 ;;;***
 
-;;;### (autoloads (w3m-replace-symbol) "emacs-w3m/w3m-symbol" "emacs-w3m/w3m-symbol.el"
-;;;;;;  (21840 34040 597778 76000))
+;;;### (autoloads nil "emacs-w3m/w3m-symbol" "emacs-w3m/w3m-symbol.el"
+;;;;;;  (22718 6578 646242 402000))
 ;;; Generated autoloads from emacs-w3m/w3m-symbol.el
 
 (autoload 'w3m-replace-symbol "emacs-w3m/w3m-symbol" "\
@@ -1740,8 +1610,8 @@ Setup w3m session items in menubar.
 
 ;;;***
 
-;;;### (autoloads (w3m-about-weather w3m-weather) "emacs-w3m/w3m-weather"
-;;;;;;  "emacs-w3m/w3m-weather.el" (21840 34040 401680 70000))
+;;;### (autoloads nil "emacs-w3m/w3m-weather" "emacs-w3m/w3m-weather.el"
+;;;;;;  (22718 6578 646242 402000))
 ;;; Generated autoloads from emacs-w3m/w3m-weather.el
 
 (autoload 'w3m-weather "emacs-w3m/w3m-weather" "\
@@ -1756,9 +1626,8 @@ Display weather report.
 
 ;;;***
 
-;;;### (autoloads (emms-tag-editor-clear-field emms-tag-editor-alter-notes-tag
-;;;;;;  emms-mark-mark-tagged) "emms-mark-ext/emms-mark-ext" "emms-mark-ext/emms-mark-ext.el"
-;;;;;;  (21840 34039 897428 58000))
+;;;### (autoloads nil "emms-mark-ext/emms-mark-ext" "emms-mark-ext/emms-mark-ext.el"
+;;;;;;  (22718 6578 656242 486000))
 ;;; Generated autoloads from emms-mark-ext/emms-mark-ext.el
 
 (autoload 'emms-mark-mark-tagged "emms-mark-ext/emms-mark-ext" "\
@@ -1790,9 +1659,9 @@ If region is selected then only alter fields within region.
 
 ;;;***
 
-;;;### (autoloads (emms-seek-mode-minus emms-seek-mode-plus) "emms-seek-minor-mode/emms-seek-minor-mode"
-;;;;;;  "emms-seek-minor-mode/emms-seek-minor-mode.el" (21840 34040
-;;;;;;  661810 77000))
+;;;### (autoloads nil "emms-seek-minor-mode/emms-seek-minor-mode"
+;;;;;;  "emms-seek-minor-mode/emms-seek-minor-mode.el" (22718 6578
+;;;;;;  656242 486000))
 ;;; Generated autoloads from emms-seek-minor-mode/emms-seek-minor-mode.el
 
 (autoload 'emms-seek-mode-plus "emms-seek-minor-mode/emms-seek-minor-mode" "\
@@ -1807,358 +1676,8 @@ Lower volume and enable or extend the `emms-seek-minor-mode' timeout.
 
 ;;;***
 
-;;;### (autoloads (emms-cache-toggle emms-cache-disable emms-cache-enable)
-;;;;;;  "emms/lisp/emms-cache" "emms/lisp/emms-cache.el" (21840 34039
-;;;;;;  277118 43000))
-;;; Generated autoloads from emms/lisp/emms-cache.el
-
-(autoload 'emms-cache-enable "emms/lisp/emms-cache" "\
-Enable caching of Emms track data.
-
-\(fn)" t nil)
-
-(autoload 'emms-cache-disable "emms/lisp/emms-cache" "\
-Disable caching of Emms track data.
-
-\(fn)" t nil)
-
-(autoload 'emms-cache-toggle "emms/lisp/emms-cache" "\
-Toggle caching of Emms track data.
-
-\(fn)" t nil)
-
-;;;***
-
-;;;### (autoloads (emms-lyrics-toggle emms-lyrics-disable emms-lyrics-enable)
-;;;;;;  "emms/lisp/emms-lyrics" "emms/lisp/emms-lyrics.el" (21840
-;;;;;;  34039 265112 44000))
-;;; Generated autoloads from emms/lisp/emms-lyrics.el
-
-(autoload 'emms-lyrics-enable "emms/lisp/emms-lyrics" "\
-Enable displaying emms lyrics.
-
-\(fn)" t nil)
-
-(autoload 'emms-lyrics-disable "emms/lisp/emms-lyrics" "\
-Disable displaying emms lyrics.
-
-\(fn)" t nil)
-
-(autoload 'emms-lyrics-toggle "emms/lisp/emms-lyrics" "\
-Toggle displaying emms lyrics.
-
-\(fn)" t nil)
-
-;;;***
-
-;;;### (autoloads (emms-mode-line-toggle emms-mode-line-disable emms-mode-line-enable)
-;;;;;;  "emms/lisp/emms-mode-line" "emms/lisp/emms-mode-line.el"
-;;;;;;  (21840 34039 273116 43000))
-;;; Generated autoloads from emms/lisp/emms-mode-line.el
-
-(autoload 'emms-mode-line-enable "emms/lisp/emms-mode-line" "\
-Turn on `emms-mode-line'.
-
-\(fn)" t nil)
-
-(autoload 'emms-mode-line-disable "emms/lisp/emms-mode-line" "\
-Turn off `emms-mode-line'.
-
-\(fn)" t nil)
-
-(autoload 'emms-mode-line-toggle "emms/lisp/emms-mode-line" "\
-Toggle `emms-mode-line'.
-
-\(fn)" t nil)
-
-;;;***
-
-;;;### (autoloads (emms-player-mpd-show emms-player-mpd-connect emms-player-mpd-clear)
-;;;;;;  "emms/lisp/emms-player-mpd" "emms/lisp/emms-player-mpd.el"
-;;;;;;  (21840 34039 293126 43000))
-;;; Generated autoloads from emms/lisp/emms-player-mpd.el
-
-(autoload 'emms-player-mpd-clear "emms/lisp/emms-player-mpd" "\
-Clear the MusicPD playlist.
-
-\(fn)" t nil)
-
-(autoload 'emms-player-mpd-connect "emms/lisp/emms-player-mpd" "\
-Connect to MusicPD and retrieve its current playlist.
-
-Afterward, the status of MusicPD will be tracked.
-
-This also has the effect of changing the current EMMS playlist to
-be the same as the current MusicPD playlist.  Thus, this
-function is useful to call if the contents of the EMMS playlist
-buffer get out-of-sync for some reason.
-
-\(fn)" t nil)
-
-(autoload 'emms-player-mpd-show "emms/lisp/emms-player-mpd" "\
-Describe the current EMMS track in the minibuffer.
-
-If INSERTP is non-nil, insert the description into the current
-buffer instead.
-
-If CALLBACK is a function, call it with the current buffer and
-description as arguments instead of displaying the description or
-inserting it.
-
-This function uses `emms-show-format' to format the current track.
-It differs from `emms-show' in that it asks MusicPD for the current track,
-rather than EMMS.
-
-\(fn &optional INSERTP CALLBACK)" t nil)
-
-;;;***
-
-;;;### (autoloads (emms-playing-time-disable-display emms-playing-time-enable-display)
-;;;;;;  "emms/lisp/emms-playing-time" "emms/lisp/emms-playing-time.el"
-;;;;;;  (21840 34039 269114 44000))
-;;; Generated autoloads from emms/lisp/emms-playing-time.el
-
-(autoload 'emms-playing-time-enable-display "emms/lisp/emms-playing-time" "\
-Display playing time on mode line.
-
-\(fn)" t nil)
-
-(autoload 'emms-playing-time-disable-display "emms/lisp/emms-playing-time" "\
-Remove playing time from mode line.
-
-\(fn)" t nil)
-
-;;;***
-
-;;;### (autoloads (emms-playlist-limit-toggle emms-playlist-limit-disable
-;;;;;;  emms-playlist-limit-enable) "emms/lisp/emms-playlist-limit"
-;;;;;;  "emms/lisp/emms-playlist-limit.el" (21840 34039 297128 44000))
-;;; Generated autoloads from emms/lisp/emms-playlist-limit.el
-
-(autoload 'emms-playlist-limit-enable "emms/lisp/emms-playlist-limit" "\
-Turn on emms playlist limit.
-
-\(fn)" t nil)
-
-(autoload 'emms-playlist-limit-disable "emms/lisp/emms-playlist-limit" "\
-Turn off emms playlist limit.
-
-\(fn)" t nil)
-
-(autoload 'emms-playlist-limit-toggle "emms/lisp/emms-playlist-limit" "\
-Toggle emms playlist limit.
-
-\(fn)" t nil)
-
-;;;***
-
-;;;### (autoloads (emms-playlist-mode) "emms/lisp/emms-playlist-mode"
-;;;;;;  "emms/lisp/emms-playlist-mode.el" (21840 34039 261110 43000))
-;;; Generated autoloads from emms/lisp/emms-playlist-mode.el
-
-(autoload 'emms-playlist-mode "emms/lisp/emms-playlist-mode" "\
-A major mode for Emms playlists.
-\\{emms-playlist-mode-map}
-
-\(fn)" t nil)
-
-;;;***
-
-;;;### (autoloads (emms-score-toggle emms-score-disable emms-score-enable)
-;;;;;;  "emms/lisp/emms-score" "emms/lisp/emms-score.el" (21840 34039
-;;;;;;  297128 44000))
-;;; Generated autoloads from emms/lisp/emms-score.el
-
-(autoload 'emms-score-enable "emms/lisp/emms-score" "\
-Turn on emms-score.
-
-\(fn)" t nil)
-
-(autoload 'emms-score-disable "emms/lisp/emms-score" "\
-Turn off emms-score.
-
-\(fn)" t nil)
-
-(autoload 'emms-score-toggle "emms/lisp/emms-score" "\
-Toggle emms-score.
-
-\(fn)" t nil)
-
-;;;***
-
-;;;### (autoloads (emms-default-players emms-devel emms-all emms-standard
-;;;;;;  emms-minimalistic) "emms/lisp/emms-setup" "emms/lisp/emms-setup.el"
-;;;;;;  (21840 34039 305132 45000))
-;;; Generated autoloads from emms/lisp/emms-setup.el
-
-(autoload 'emms-minimalistic "emms/lisp/emms-setup" "\
-An Emms setup script.
-Invisible playlists and all the basics for playing media.
-
-\(fn)" nil nil)
-
-(autoload 'emms-standard "emms/lisp/emms-setup" "\
-An Emms setup script.
-Everything included in the `emms-minimalistic' setup, the Emms
-interactive playlist mode, reading information from tagged
-audio files, and a metadata cache.
-
-\(fn)" nil nil)
-
-(autoload 'emms-all "emms/lisp/emms-setup" "\
-An Emms setup script.
-Everything included in the `emms-standard' setup and adds all the
-stable features which come with the Emms distribution.
-
-\(fn)" nil nil)
-
-(autoload 'emms-devel "emms/lisp/emms-setup" "\
-An Emms setup script.
-Everything included in the `emms-all' setup and adds all the
-features which come with the Emms distribution regardless of if
-they are considered stable or not.  Use this if you like living
-on the edge.
-
-\(fn)" nil nil)
-
-(autoload 'emms-default-players "emms/lisp/emms-setup" "\
-Set `emms-player-list' to `emms-setup-default-player-list'.
-
-\(fn)" nil nil)
-
-;;;***
-
-;;;### (autoloads (emms-locate emms-source-file-regex emms-source-file-directory-tree)
-;;;;;;  "emms/lisp/emms-source-file" "emms/lisp/emms-source-file.el"
-;;;;;;  (21840 34039 285122 44000))
-;;; Generated autoloads from emms/lisp/emms-source-file.el
- (autoload 'emms-play-file "emms-source-file" nil t)
- (autoload 'emms-add-file "emms-source-file" nil t)
- (autoload 'emms-play-directory "emms-source-file" nil t)
- (autoload 'emms-add-directory "emms-source-file" nil t)
- (autoload 'emms-play-directory-tree "emms-source-file" nil t)
- (autoload 'emms-add-directory-tree "emms-source-file" nil t)
- (autoload 'emms-play-find "emms-source-file" nil t)
- (autoload 'emms-add-find "emms-source-file" nil t)
- (autoload 'emms-play-dired "emms-source-file" nil t)
- (autoload 'emms-add-dired "emms-source-file" nil t)
-
-(autoload 'emms-source-file-directory-tree "emms/lisp/emms-source-file" "\
-Return a list of all files under DIR that match REGEX.
-This function uses `emms-source-file-directory-tree-function'.
-
-\(fn DIR REGEX)" nil nil)
-
-(autoload 'emms-source-file-regex "emms/lisp/emms-source-file" "\
-Return a regexp that matches everything any player (that supports
-files) can play.
-
-\(fn)" nil nil)
-
-(autoload 'emms-locate "emms/lisp/emms-source-file" "\
-Search for REGEXP and display the results in a locate buffer
-
-\(fn REGEXP)" t nil)
- (autoload 'emms-play-url "emms-source-file" nil t)
- (autoload 'emms-add-url "emms-source-file" nil t)
- (autoload 'emms-play-streamlist "emms-source-file" nil t)
- (autoload 'emms-add-streamlist "emms-source-file" nil t)
- (autoload 'emms-play-lastfm "emms-lastfm" nil t)
- (autoload 'emms-add-lastfm "emms-lastfm" nil t)
-
-;;;***
-
-;;;### (autoloads nil "emms/lisp/emms-source-playlist" "emms/lisp/emms-source-playlist.el"
-;;;;;;  (21840 34039 293126 43000))
-;;; Generated autoloads from emms/lisp/emms-source-playlist.el
- (autoload 'emms-play-playlist "emms-source-playlist" nil t)
- (autoload 'emms-add-playlist "emms-source-playlist" nil t)
- (autoload 'emms-play-native-playlist "emms-source-playlist" nil t)
- (autoload 'emms-add-native-playlist "emms-source-playlist" nil t)
- (autoload 'emms-play-m3u-playlist "emms-source-playlist" nil t)
- (autoload 'emms-add-m3u-playlist "emms-source-playlist" nil t)
- (autoload 'emms-play-pls-playlist "emms-source-playlist" nil t)
- (autoload 'emms-add-pls-playlist "emms-source-playlist" nil t)
- (autoload 'emms-play-playlist-file "emms-source-playlist" nil t)
- (autoload 'emms-add-playlist-file "emms-source-playlist" nil t)
- (autoload 'emms-play-playlist-directory
-          "emms-source-playlist" nil t)
- (autoload 'emms-add-playlist-directory
-          "emms-source-playlist" nil t)
- (autoload 'emms-play-playlist-directory-tree
-          "emms-source-playlist" nil t)
- (autoload 'emms-add-playlist-directory-tree
-          "emms-source-file" nil t)
-
-;;;***
-
-;;;### (autoloads (emms-streams) "emms/lisp/emms-streams" "emms/lisp/emms-streams.el"
-;;;;;;  (21840 34039 281120 44000))
-;;; Generated autoloads from emms/lisp/emms-streams.el
-
-(autoload 'emms-streams "emms/lisp/emms-streams" "\
-Opens the EMMS Streams interface.
-
-\(fn)" t nil)
-
-;;;***
-
-;;;### (autoloads (emms-volume-mode-minus emms-volume-mode-plus emms-volume-lower
-;;;;;;  emms-volume-raise) "emms/lisp/emms-volume" "emms/lisp/emms-volume.el"
-;;;;;;  (21840 34039 273116 43000))
-;;; Generated autoloads from emms/lisp/emms-volume.el
-
-(autoload 'emms-volume-raise "emms/lisp/emms-volume" "\
-Raise the speaker volume.
-
-\(fn)" t nil)
-
-(autoload 'emms-volume-lower "emms/lisp/emms-volume" "\
-Lower the speaker volume.
-
-\(fn)" t nil)
-
-(autoload 'emms-volume-mode-plus "emms/lisp/emms-volume" "\
-Raise volume and enable or extend the `emms-volume-minor-mode' timeout.
-
-\(fn)" t nil)
-
-(autoload 'emms-volume-mode-minus "emms/lisp/emms-volume" "\
-Lower volume and enable or extend the `emms-volume-minor-mode' timeout.
-
-\(fn)" t nil)
-
-;;;***
-
-;;;### (autoloads (emms-volume-amixer-change) "emms/lisp/emms-volume-amixer"
-;;;;;;  "emms/lisp/emms-volume-amixer.el" (21840 34039 305132 45000))
-;;; Generated autoloads from emms/lisp/emms-volume-amixer.el
-
-(autoload 'emms-volume-amixer-change "emms/lisp/emms-volume-amixer" "\
-Change amixer master volume by AMOUNT.
-
-\(fn AMOUNT)" nil nil)
-
-;;;***
-
-;;;### (autoloads (tq-create) "emms/lisp/tq" "emms/lisp/tq.el" (21840
-;;;;;;  34039 269114 44000))
-;;; Generated autoloads from emms/lisp/tq.el
-
-(autoload 'tq-create "emms/lisp/tq" "\
-Create and return a transaction queue communicating with PROCESS.
-PROCESS should be a subprocess capable of sending and receiving
-streams of bytes.  It may be a local process, or it may be connected
-to a tcp server on another machine.
-
-\(fn PROCESS)" nil nil)
-
-;;;***
-
-;;;### (autoloads (highline-split-window-horizontally highline-split-window-vertically
-;;;;;;  highline-view-mode highline-mode global-highline-mode highline-customize)
-;;;;;;  "highline/highline" "highline/highline.el" (21840 34038 356658
-;;;;;;  21000))
+;;;### (autoloads nil "highline/highline" "highline/highline.el"
+;;;;;;  (22718 6578 657242 494000))
 ;;; Generated autoloads from highline/highline.el
 
 (autoload 'highline-customize "highline/highline" "\
@@ -2238,10 +1757,8 @@ See also `highline-view-mode' for documentation.
 
 ;;;***
 
-;;;### (autoloads (hl-line-flash hl-line-when-idle-interval hl-line-toggle-when-idle
-;;;;;;  hl-line-overlay-priority hl-line-inhibit-highlighting-for-modes
-;;;;;;  hl-line-flash-show-period) "hl-line+/hl-line+" "hl-line+/hl-line+.el"
-;;;;;;  (21840 34038 60510 13000))
+;;;### (autoloads nil "hl-line+/hl-line+" "hl-line+/hl-line+.el"
+;;;;;;  (22718 6578 657242 494000))
 ;;; Generated autoloads from hl-line+/hl-line+.el
 
 (defface hl-line '((t (:background "SlateGray3"))) "\
@@ -2297,328 +1814,8 @@ With a prefix argument, highlight for that many seconds.
 
 ;;;***
 
-;;;### (autoloads (idle-highlight-mode) "idle-highlight-mode/idle-highlight-mode"
-;;;;;;  "idle-highlight-mode/idle-highlight-mode.el" (21840 34038
-;;;;;;  540750 25000))
-;;; Generated autoloads from idle-highlight-mode/idle-highlight-mode.el
-
-(autoload 'idle-highlight-mode "idle-highlight-mode/idle-highlight-mode" "\
-Idle-Highlight Minor Mode
-
-\(fn &optional ARG)" t nil)
-
-;;;***
-
-;;;### (autoloads (gfm-mode markdown-mode) "markdown-mode/markdown-mode"
-;;;;;;  "markdown-mode/markdown-mode.el" (21840 34039 929444 59000))
-;;; Generated autoloads from markdown-mode/markdown-mode.el
-
-(autoload 'markdown-mode "markdown-mode/markdown-mode" "\
-Major mode for editing Markdown files.
-
-\(fn)" t nil)
-(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
-
-(autoload 'gfm-mode "markdown-mode/markdown-mode" "\
-Major mode for editing GitHub Flavored Markdown files.
-
-\(fn)" t nil)
-
-;;;***
-
-;;;### (autoloads (nxml-web-mode html-erb-mode) "mmm-mode/mmm-erb"
-;;;;;;  "mmm-mode/mmm-erb.el" (21840 34041 814386 106000))
-;;; Generated autoloads from mmm-mode/mmm-erb.el
-
-(autoload 'html-erb-mode "mmm-mode/mmm-erb" "\
-
-
-\(fn)" t nil)
-
-(autoload 'nxml-web-mode "mmm-mode/mmm-erb" "\
-
-
-\(fn)" t nil)
-
-;;;***
-
-;;;### (autoloads (mmm-add-classes) "mmm-mode/mmm-vars" "mmm-mode/mmm-vars.el"
-;;;;;;  (21840 34041 774366 105000))
-;;; Generated autoloads from mmm-mode/mmm-vars.el
-
-(autoload 'mmm-add-classes "mmm-mode/mmm-vars" "\
-Add the submode classes CLASSES to `mmm-classes-alist'.
-
-\(fn CLASSES)" nil nil)
-
-;;;***
-
-;;;### (autoloads (multi-web-mode) "multi-web-mode/multi-web-mode"
-;;;;;;  "multi-web-mode/multi-web-mode.el" (21840 34041 742350 104000))
-;;; Generated autoloads from multi-web-mode/multi-web-mode.el
-
-(autoload 'multi-web-mode "multi-web-mode/multi-web-mode" "\
-Enables the multi web mode chunk detection and indentation
-
-\(fn &optional ARG)" t nil)
-
-;;;***
-
-;;;### (autoloads (mc/edit-beginnings-of-lines mc/edit-ends-of-lines
-;;;;;;  mc/edit-lines) "multiple-cursors/mc-edit-lines" "multiple-cursors/mc-edit-lines.el"
-;;;;;;  (21840 34039 577268 52000))
-;;; Generated autoloads from multiple-cursors/mc-edit-lines.el
-
-(autoload 'mc/edit-lines "multiple-cursors/mc-edit-lines" "\
-Add one cursor to each line of the active region.
-Starts from mark and moves in straight down or up towards the
-line point is on.
-
-What is done with lines which are not long enough is governed by
-`mc/edit-lines-empty-lines'.  The prefix argument ARG can be used
-to override this.  If ARG is a symbol (when called from Lisp),
-that symbol is used instead of `mc/edit-lines-empty-lines'.
-Otherwise, if ARG negative, short lines will be ignored.  Any
-other non-nil value will cause short lines to be padded.
-
-\(fn &optional ARG)" t nil)
-
-(autoload 'mc/edit-ends-of-lines "multiple-cursors/mc-edit-lines" "\
-Add one cursor to the end of each line in the active region.
-
-\(fn)" t nil)
-
-(autoload 'mc/edit-beginnings-of-lines "multiple-cursors/mc-edit-lines" "\
-Add one cursor to the beginning of each line in the active region.
-
-\(fn)" t nil)
-
-;;;***
-
-;;;### (autoloads (mc/mark-sgml-tag-pair mc/add-cursor-on-click mc/mark-all-symbols-like-this-in-defun
-;;;;;;  mc/mark-all-words-like-this-in-defun mc/mark-all-like-this-in-defun
-;;;;;;  mc/mark-all-dwim mc/mark-all-like-this-dwim mc/mark-more-like-this-extended
-;;;;;;  mc/mark-all-in-region-regexp mc/mark-all-in-region mc/mark-all-symbols-like-this
-;;;;;;  mc/mark-all-words-like-this mc/mark-all-like-this mc/skip-to-previous-like-this
-;;;;;;  mc/skip-to-next-like-this mc/unmark-previous-like-this mc/unmark-next-like-this
-;;;;;;  mc/mark-previous-lines mc/mark-next-lines mc/mark-previous-symbol-like-this
-;;;;;;  mc/mark-previous-word-like-this mc/mark-previous-like-this
-;;;;;;  mc/mark-next-symbol-like-this mc/mark-next-word-like-this
-;;;;;;  mc/mark-next-like-this) "multiple-cursors/mc-mark-more" "multiple-cursors/mc-mark-more.el"
-;;;;;;  (21840 34039 561260 51000))
-;;; Generated autoloads from multiple-cursors/mc-mark-more.el
-
-(autoload 'mc/mark-next-like-this "multiple-cursors/mc-mark-more" "\
-Find and mark the next part of the buffer matching the currently active region
-With negative ARG, delete the last one instead.
-With zero ARG, skip the last one and mark next.
-
-\(fn ARG)" t nil)
-
-(autoload 'mc/mark-next-word-like-this "multiple-cursors/mc-mark-more" "\
-
-
-\(fn ARG)" t nil)
-
-(autoload 'mc/mark-next-symbol-like-this "multiple-cursors/mc-mark-more" "\
-
-
-\(fn ARG)" t nil)
-
-(autoload 'mc/mark-previous-like-this "multiple-cursors/mc-mark-more" "\
-Find and mark the previous part of the buffer matching the currently active region
-With negative ARG, delete the last one instead.
-With zero ARG, skip the last one and mark next.
-
-\(fn ARG)" t nil)
-
-(autoload 'mc/mark-previous-word-like-this "multiple-cursors/mc-mark-more" "\
-
-
-\(fn ARG)" t nil)
-
-(autoload 'mc/mark-previous-symbol-like-this "multiple-cursors/mc-mark-more" "\
-
-
-\(fn ARG)" t nil)
-
-(autoload 'mc/mark-next-lines "multiple-cursors/mc-mark-more" "\
-
-
-\(fn ARG)" t nil)
-
-(autoload 'mc/mark-previous-lines "multiple-cursors/mc-mark-more" "\
-
-
-\(fn ARG)" t nil)
-
-(autoload 'mc/unmark-next-like-this "multiple-cursors/mc-mark-more" "\
-Deselect next part of the buffer matching the currently active region.
-
-\(fn)" t nil)
-
-(autoload 'mc/unmark-previous-like-this "multiple-cursors/mc-mark-more" "\
-Deselect prev part of the buffer matching the currently active region.
-
-\(fn)" t nil)
-
-(autoload 'mc/skip-to-next-like-this "multiple-cursors/mc-mark-more" "\
-Skip the current one and select the next part of the buffer matching the currently active region.
-
-\(fn)" t nil)
-
-(autoload 'mc/skip-to-previous-like-this "multiple-cursors/mc-mark-more" "\
-Skip the current one and select the prev part of the buffer matching the currently active region.
-
-\(fn)" t nil)
-
-(autoload 'mc/mark-all-like-this "multiple-cursors/mc-mark-more" "\
-Find and mark all the parts of the buffer matching the currently active region
-
-\(fn)" t nil)
-
-(autoload 'mc/mark-all-words-like-this "multiple-cursors/mc-mark-more" "\
-
-
-\(fn)" t nil)
-
-(autoload 'mc/mark-all-symbols-like-this "multiple-cursors/mc-mark-more" "\
-
-
-\(fn)" t nil)
-
-(autoload 'mc/mark-all-in-region "multiple-cursors/mc-mark-more" "\
-Find and mark all the parts in the region matching the given search
-
-\(fn BEG END)" t nil)
-
-(autoload 'mc/mark-all-in-region-regexp "multiple-cursors/mc-mark-more" "\
-Find and mark all the parts in the region matching the given regexp
-
-\(fn BEG END)" t nil)
-
-(autoload 'mc/mark-more-like-this-extended "multiple-cursors/mc-mark-more" "\
-Like mark-more-like-this, but then lets you adjust with arrows key.
-The adjustments work like this:
-
-   <up>    Mark previous like this and set direction to 'up
-   <down>  Mark next like this and set direction to 'down
-
-If direction is 'up:
-
-   <left>  Skip past the cursor furthest up
-   <right> Remove the cursor furthest up
-
-If direction is 'down:
-
-   <left>  Remove the cursor furthest down
-   <right> Skip past the cursor furthest down
-
-The bindings for these commands can be changed. See `mc/mark-more-like-this-extended-keymap'.
-
-\(fn)" t nil)
-
-(autoload 'mc/mark-all-like-this-dwim "multiple-cursors/mc-mark-more" "\
-Tries to guess what you want to mark all of.
-Can be pressed multiple times to increase selection.
-
-With prefix, it behaves the same as original `mc/mark-all-like-this'
-
-\(fn ARG)" t nil)
-
-(autoload 'mc/mark-all-dwim "multiple-cursors/mc-mark-more" "\
-Tries even harder to guess what you want to mark all of.
-
-If the region is active and spans multiple lines, it will behave
-as if `mc/mark-all-in-region'. With the prefix ARG, it will call
-`mc/edit-lines' instead.
-
-If the region is inactive or on a single line, it will behave like 
-`mc/mark-all-like-this-dwim'.
-
-\(fn ARG)" t nil)
-
-(autoload 'mc/mark-all-like-this-in-defun "multiple-cursors/mc-mark-more" "\
-Mark all like this in defun.
-
-\(fn)" t nil)
-
-(autoload 'mc/mark-all-words-like-this-in-defun "multiple-cursors/mc-mark-more" "\
-Mark all words like this in defun.
-
-\(fn)" t nil)
-
-(autoload 'mc/mark-all-symbols-like-this-in-defun "multiple-cursors/mc-mark-more" "\
-Mark all symbols like this in defun.
-
-\(fn)" t nil)
-
-(autoload 'mc/add-cursor-on-click "multiple-cursors/mc-mark-more" "\
-Add a cursor where you click.
-
-\(fn EVENT)" t nil)
-
-(autoload 'mc/mark-sgml-tag-pair "multiple-cursors/mc-mark-more" "\
-Mark the tag we're in and its pair for renaming.
-
-\(fn)" t nil)
-
-;;;***
-
-;;;### (autoloads (mc/mark-pop) "multiple-cursors/mc-mark-pop" "multiple-cursors/mc-mark-pop.el"
-;;;;;;  (21840 34039 541250 51000))
-;;; Generated autoloads from multiple-cursors/mc-mark-pop.el
-
-(autoload 'mc/mark-pop "multiple-cursors/mc-mark-pop" "\
-Add a cursor at the current point, pop off mark ring and jump
-to the popped mark.
-
-\(fn)" t nil)
-
-;;;***
-
-;;;### (autoloads (mc/sort-regions mc/reverse-regions mc/insert-numbers)
-;;;;;;  "multiple-cursors/mc-separate-operations" "multiple-cursors/mc-separate-operations.el"
-;;;;;;  (21840 34039 541250 51000))
-;;; Generated autoloads from multiple-cursors/mc-separate-operations.el
-
-(autoload 'mc/insert-numbers "multiple-cursors/mc-separate-operations" "\
-Insert increasing numbers for each cursor, starting at 0 or ARG.
-
-\(fn ARG)" t nil)
-
-(autoload 'mc/reverse-regions "multiple-cursors/mc-separate-operations" "\
-
-
-\(fn)" t nil)
-
-(autoload 'mc/sort-regions "multiple-cursors/mc-separate-operations" "\
-
-
-\(fn)" t nil)
-
-;;;***
-
-;;;### (autoloads (set-rectangular-region-anchor) "multiple-cursors/rectangular-region-mode"
-;;;;;;  "multiple-cursors/rectangular-region-mode.el" (21840 34039
-;;;;;;  561260 51000))
-;;; Generated autoloads from multiple-cursors/rectangular-region-mode.el
-
-(autoload 'set-rectangular-region-anchor "multiple-cursors/rectangular-region-mode" "\
-Anchors the rectangular region at point.
-
-Think of this one as `set-mark' except you're marking a rectangular region. It is
-an exceedingly quick way of adding multiple cursors to multiple lines.
-
-\(fn)" t nil)
-
-;;;***
-
-;;;### (autoloads (php-mode php-file-patterns php-mode-to-use) "php-mode-improved/php-mode-improved"
-;;;;;;  "php-mode-improved/php-mode-improved.el" (21840 34039 901430
-;;;;;;  59000))
+;;;### (autoloads nil "php-mode-improved/php-mode-improved" "php-mode-improved/php-mode-improved.el"
+;;;;;;  (22718 6578 667242 578000))
 ;;; Generated autoloads from php-mode-improved/php-mode-improved.el
 
 (defvar php-mode-to-use (progn (require 'mumamo nil t) (if (fboundp 'nxhtml-mumamo-turn-on) 'nxhtml-mumamo-turn-on (if (fboundp 'html-mumamo-turn-on) 'html-mumamo-turn-on 'php-mode))) "\
@@ -2640,48 +1837,8 @@ Major mode for editing PHP code.
 
 ;;;***
 
-;;;### (autoloads (php-mode php-extra-constants php) "php-mode/php-mode"
-;;;;;;  "php-mode/php-mode.el" (21840 34039 109034 40000))
-;;; Generated autoloads from php-mode/php-mode.el
-
-(let ((loads (get 'php 'custom-loads))) (if (member '"php-mode/php-mode" loads) nil (put 'php 'custom-loads (cons '"php-mode/php-mode" loads))))
-
-(defvar php-extra-constants 'nil "\
-A list of additional strings to treat as PHP constants.")
-
-(custom-autoload 'php-extra-constants "php-mode/php-mode" t)
-
-(add-to-list 'interpreter-mode-alist (cons "php" 'php-mode))
-
-(autoload 'php-mode "php-mode/php-mode" "\
-Major mode for editing PHP code.
-
-\\{php-mode-map}
-
-\(fn)" t nil)
-
-(dolist (pattern '("\\.php[s345t]?\\'" "\\.phtml\\'" "Amkfile" "\\.amk$")) (add-to-list 'auto-mode-alist `(,pattern . php-mode) t))
-
-;;;***
-
-;;;### (autoloads (smex-initialize smex) "smex/smex" "smex/smex.el"
-;;;;;;  (21840 34039 85022 40000))
-;;; Generated autoloads from smex/smex.el
-
-(autoload 'smex "smex/smex" "\
-
-
-\(fn)" t nil)
-
-(autoload 'smex-initialize "smex/smex" "\
-
-
-\(fn)" t nil)
-
-;;;***
-
-;;;### (autoloads (vline-global-mode vline-mode) "vline/vline" "vline/vline.el"
-;;;;;;  (21840 34038 196578 16000))
+;;;### (autoloads nil "vline/vline" "vline/vline.el" (22718 6578
+;;;;;;  705242 897000))
 ;;; Generated autoloads from vline/vline.el
 
 (autoload 'vline-mode "vline/vline" "\
@@ -2712,54 +1869,11 @@ See `vline-mode' for more information on Vline mode.
 
 ;;;***
 
-;;;### (autoloads (yas-global-mode yas-minor-mode) "yasnippet/yasnippet"
-;;;;;;  "yasnippet/yasnippet.el" (21840 34038 828894 33000))
-;;; Generated autoloads from yasnippet/yasnippet.el
-
-(autoload 'yas-minor-mode "yasnippet/yasnippet" "\
-Toggle YASnippet mode.
-
-When YASnippet mode is enabled, `yas-expand', normally bound to
-the TAB key, expands snippets of code depending on the major
-mode.
-
-With no argument, this command toggles the mode.
-positive prefix argument turns on the mode.
-Negative prefix argument turns off the mode.
-
-Key bindings:
-\\{yas-minor-mode-map}
-
-\(fn &optional ARG)" t nil)
-
-(defvar yas-global-mode nil "\
-Non-nil if Yas-Global mode is enabled.
-See the command `yas-global-mode' for a description of this minor mode.
-Setting this variable directly does not take effect;
-either customize it (see the info node `Easy Customization')
-or call the function `yas-global-mode'.")
-
-(custom-autoload 'yas-global-mode "yasnippet/yasnippet" nil)
-
-(autoload 'yas-global-mode "yasnippet/yasnippet" "\
-Toggle Yas minor mode in all buffers.
-With prefix ARG, enable Yas-Global mode if ARG is positive;
-otherwise, disable it.  If called from Lisp, enable the mode if
-ARG is omitted or nil.
-
-Yas minor mode is enabled in all buffers where
-`yas-minor-mode-on' would do it.
-See `yas-minor-mode' for more information on Yas minor mode.
-
-\(fn &optional ARG)" t nil)
-
-;;;***
-
-;;;### (autoloads nil nil ("el-get/el-get-autoloads.el" "el-get/el-get-build.el"
+;;;### (autoloads nil nil ("el-get/el-get-autoloading.el" "el-get/el-get-build.el"
 ;;;;;;  "el-get/el-get-byte-compile.el" "el-get/el-get-core.el" "el-get/el-get-custom.el"
 ;;;;;;  "el-get/el-get-dependencies.el" "el-get/el-get-install.el"
 ;;;;;;  "el-get/el-get-methods.el" "el-get/el-get-notify.el" "el-get/el-get-recipes.el"
-;;;;;;  "el-get/el-get-status.el") (21862 55236 319851 578000))
+;;;;;;  "el-get/el-get-status.el") (22718 27721 471657 871000))
 
 ;;;***
 
