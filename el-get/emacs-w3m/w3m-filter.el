@@ -1,6 +1,6 @@
 ;;; w3m-filter.el --- filtering utility of advertisements on WEB sites -*- coding: utf-8 -*-
 
-;; Copyright (C) 2001-2008, 2012, 2013 TSUCHIYA Masatoshi <tsuchiya@namazu.org>
+;; Copyright (C) 2001-2008, 2012-2015 TSUCHIYA Masatoshi <tsuchiya@namazu.org>
 
 ;; Authors: TSUCHIYA Masatoshi <tsuchiya@namazu.org>
 ;; Keywords: w3m, WWW, hypermedia
@@ -370,49 +370,96 @@ href=\"\\)\\(?:[^\"]+\\)?/\\(?:imgres\\?imgurl\\|url\\?\\(?:q\\|url\\)\\)=\
 	  (goto-char (point-max)))))))
 
 (defun w3m-filter-add-name-anchors (url)
-  ;;  cf. [emacs-w3m:11153]
+  ;;  cf. [emacs-w3m:11153] [emacs-w3m:12339] [emacs-w3m:12422]
   "Add name anchors that w3m can handle.
 This function adds ``<a name=\"FOO_BAR\"></a>'' in front of
 ``<TAG ... id=\"FOO_BAR\" ...>FOO BAR</TAG>'' in the current buffer."
-  (let ((case-fold-search t) names st nd name)
+  (let ((case-fold-search t)
+	(maxregexps 10)
+	names regexp i st nd)
     (goto-char (point-min))
     (while (re-search-forward "<a[\t\n\r ]+\\(?:[^\t\n\r >]+[\t\n\r ]+\\)*\
 href=\"#\\([a-z][-.0-9:_a-z]*\\)\"" nil t)
       (add-to-list 'names (match-string 1)))
-    (when names
-      (setq names (concat "<\\(?:[^\t\n\r >]+\\)\
-\[\t\n\r ]+\\(?:[^\t\n\r >]+[\t\n\r ]+\\)*[Ii][Dd]=\"\\("
-			  (mapconcat 'regexp-quote names "\\|")
-			  "\\)\"")
-	    case-fold-search nil)
+    (setq case-fold-search nil)
+    (while names
+      (setq regexp "[\t\n\r ]+[Ii][Dd]=\"\\("
+	    i maxregexps)
+      (while (and names (> i 0))
+	(setq regexp (concat regexp (regexp-quote (pop names)) "\\|")
+	      i (1- i)))
+      (setq regexp (concat (substring regexp 0 -1) ")\""))
       (goto-char (point-min))
-      (while (re-search-forward names nil t)
-	(goto-char (setq st (match-beginning 0)))
-	(setq nd (match-end 0)
-	      name (match-string 1))
-	(insert "<a name=" name "></a>")
-	(goto-char (+ nd (- (point) st)))))))
+      (while (re-search-forward "<[^>]+>" nil t)
+	(setq st (match-beginning 0)
+	      nd (match-end 0))
+	(goto-char st)
+	(if (re-search-forward regexp nd t)
+	    (progn
+	      (goto-char st)
+	      (insert "<a name=" (match-string 1) "></a>")
+	      (goto-char (+ nd (- (point) st))))
+	  (goto-char nd))))))
 
 (defun w3m-filter-subst-disabled-with-readonly (url)
-  ;;  cf. [emacs-w3m:12146]
+  ;;  cf. [emacs-w3m:12146] [emacs-w3m:12222]
   "Substitute disabled attr with readonly attr in forms."
-  (let ((case-fold-search t) st nd)
+  (let ((case-fold-search t) st opt nd val default)
     (goto-char (point-min))
-    (while (and (re-search-forward "<form[\t\n ]" nil t)
-		(w3m-end-of-tag "form"))
-      (narrow-to-region (match-beginning 0) (match-end 0))
-      (goto-char (point-min))
-      (while (re-search-forward "<[a-z]+\\(?:[\t\n ]+[a-z]+=\"[^\">]*\"\\)*\
-\[\t\n ]+\\(disabled=\"[^\">]+\"\\)[^>]*>" nil t)
-	(setq st (match-beginning 1)
-	      nd (match-end 1))
-	(when (string-match
-	       "[\t\n ]id=\"[^\">]+\""
-	       (buffer-substring (match-beginning 0) (match-end 0)))
-	  (delete-region (goto-char st) nd)
-	  (insert "readonly=\"readonly\"")))
-      (goto-char (point-max))
-      (widen))))
+    (while (and (re-search-forward "\
+<\\(?:input\\|\\(option\\)\\|textarea\\)[\t\n ]" nil t)
+		(progn
+		  (setq st (match-beginning 0)
+			opt (match-beginning 1))
+		  (search-forward ">" nil t))
+		(progn
+		  (setq nd (match-end 0))
+		  (goto-char st)
+		  (re-search-forward "[\t\n ]\
+\\(?:\\(disabled\\(=\"[^\"]+\"\\)?\\)\\|\\(readonly\\(?:=\"[^\"]+\"\\)?\\)\\)"
+				     nd t)))
+      (setq val (if (match-beginning 1)
+		    (if (match-beginning 2)
+			"readonly=\"readonly\""
+		      "readonly")
+		  (match-string 3)))
+      (if opt
+	  ;; Unfortunately w3m doesn't support readonly attr in select forms,
+	  ;; so we replace them with read-only input forms.
+	  (if (and (re-search-backward "<select[\t\n ]" nil t)
+		   (w3m-end-of-tag "select")
+		   (< st (match-end 0)))
+	      (save-restriction
+		(narrow-to-region (match-beginning 0) (match-end 0))
+		(goto-char (+ (match-beginning 0) 8))
+		(w3m-parse-attributes (id name)
+		  (if (and id name)
+		      (progn
+			(goto-char (point-min))
+			(setq default
+			      (when (re-search-forward "<option\
+\\(?:[\t\n ]+[^\t\n >]+\\)*[\t\n ]selected\\(?:=\"[^\"]+\"\\)?\
+\\(?:[\t\n ]+[^\t\n >]+\\)*[\t\n /]*>[\t\n ]*\\([^<]+\\)" nil t)
+				(goto-char (match-end 1))
+				(skip-chars-backward "\t\n ")
+				(buffer-substring (match-beginning 1) (point))))
+			(delete-region (point-min) (point-max))
+			(insert "<input id=\"" id "\" name=\"" name "\""
+				(if default
+				    (concat " value=\"" default "\" ")
+				  " ")
+				val
+				;; Fit the width to that of the select form.
+				" size=\"13\">"))
+		    (goto-char (point-max)))))
+	    (goto-char nd))
+	(if (match-beginning 1)
+	    (save-restriction
+	      (narrow-to-region st nd)
+	      (delete-region (goto-char (match-beginning 1)) (match-end 1))
+	      (insert val)
+	      (goto-char (point-max)))
+	  (goto-char nd))))))
 
 (defun w3m-filter-fix-tfoot-rendering (url &optional recursion)
   "Render <tfoot>...</tfoot> after <tbody>...</tbody>."

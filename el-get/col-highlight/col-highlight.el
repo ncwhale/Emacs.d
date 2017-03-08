@@ -4,17 +4,17 @@
 ;; Description: Highlight the current column.
 ;; Author: Drew Adams
 ;; Maintainer: Drew Adams (concat "drew.adams" "@" "oracle" ".com")
-;; Copyright (C) 2006-2014, Drew Adams, all rights reserved.
+;; Copyright (C) 2006-2017, Drew Adams, all rights reserved.
 ;; Created: Fri Sep 08 11:06:35 2006
 ;; Version: 0
 ;; Package-Requires: ((vline "0"))
-;; Last-Updated: Thu Dec 26 08:51:27 2013 (-0800)
+;; Last-Updated: Sat Dec 24 17:06:48 2016 (-0800)
 ;;           By: dradams
-;;     Update #: 420
-;; URL: http://www.emacswiki.org/cgi-bin/wiki/col-highlight.el
+;;     Update #: 431
+;; URL: http://www.emacswiki.org/col-highlight.el
 ;; Doc URL: http://emacswiki.org/emacs/HighlightCurrentColumn
 ;; Keywords: faces, frames, emulation, highlight, cursor, accessibility
-;; Compatibility: GNU Emacs: 22.x, 23.x
+;; Compatibility: GNU Emacs: 22.x, 23.x, 24.x, 25.x
 ;;
 ;; Features that might be required by this library:
 ;;
@@ -191,9 +191,9 @@ col-highlight.el bug: \
 &body=Describe bug here, starting with `emacs -q'.  \
 Don't forget to mention your Emacs and library versions."))
   :link '(url-link :tag "Other Libraries by Drew"
-          "http://www.emacswiki.org/cgi-bin/wiki/DrewsElispLibraries")
+          "http://www.emacswiki.org/DrewsElispLibraries")
   :link '(url-link :tag "Download"
-          "http://www.emacswiki.org/cgi-bin/wiki/col-highlight.el"))
+          "http://www.emacswiki.org/col-highlight.el"))
 
 ;;;###autoload
 (defcustom col-highlight-show-only nil
@@ -393,11 +393,11 @@ col-highlight.el bug: \
 &body=Describe bug here, starting with `emacs -q'.  \
 Don't forget to mention your Emacs and library versions."))
   :link '(url-link :tag "Other Libraries by Drew"
-          "http://www.emacswiki.org/cgi-bin/wiki/DrewsElispLibraries")
+          "http://www.emacswiki.org/DrewsElispLibraries")
   :link '(url-link :tag
-          "Download" "http://www.emacswiki.org/cgi-bin/wiki/col-highlight.el")
+          "Download" "http://www.emacswiki.org/col-highlight.el")
   :link '(url-link :tag "Description"
-          "http://www.emacswiki.org/cgi-bin/wiki/ChangingCursorDynamically")
+          "http://www.emacswiki.org/ChangingCursorDynamically")
   :link '(emacs-commentary-link :tag "Commentary" "col-highlight")
   (cond (column-highlight-mode
          (add-hook 'pre-command-hook #'col-highlight-unhighlight)

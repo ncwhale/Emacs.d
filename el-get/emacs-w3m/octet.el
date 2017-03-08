@@ -1,6 +1,6 @@
 ;;; octet.el --- An octet stream viewer.
 
-;; Copyright (C) 2000, 2002, 2003, 2004, 2005, 2010
+;; Copyright (C) 2000, 2002, 2003, 2004, 2005, 2010, 2014, 2016, 2017
 ;; Yuuichi Teranishi <teranisi@gohome.org>
 
 ;; Author: Yuuichi Teranishi <teranisi@gohome.org>
@@ -73,8 +73,15 @@
 (require 'static)
 (require 'w3m-util); w3m-insert-string
 
+;; Make edebug work for the static-* macros in Emacs 24.4+.
+(def-edebug-spec static-cond (&rest (&rest def-form)))
+(def-edebug-spec static-defconst (&define name def-body [&optional def-body]))
+(def-edebug-spec static-if (&rest def-form))
+(def-edebug-spec static-unless (&rest def-form))
+(def-edebug-spec static-when (&rest def-form))
+
 (defvar octet-temp-directory temporary-file-directory
-  "A directory to create temporal files.")
+  "A directory to create temporary files.")
 
 (defvar octet-html-render-function 'octet-w3m-region
   "A function for HTML rendering.")
@@ -179,7 +186,9 @@ nil in NEW-TYPE means filtering is completed.")
   (let (buffer attachments pair)
     (set-buffer-multibyte nil)
     (when (string-match "\\`about://octet-attachments/\\([^/]+\\)/" url)
-      (setq buffer (get-buffer (base64-decode-string (match-string 1 url)))
+      (setq buffer (get-buffer (decode-coding-string
+				(base64-decode-string (match-string 1 url))
+				'utf-8))
 	    url (substring url (match-end 0))
 	    attachments (with-current-buffer buffer
 			  octet-attachments))
@@ -194,8 +203,8 @@ nil in NEW-TYPE means filtering is completed.")
     (funcall (symbol-function 'w3m-region)
 	     beg end (concat "about://octet-attachments/"
 			     (base64-encode-string
-			      (string-as-unibyte
-			       (buffer-name (current-buffer))) "/")))
+			      (encode-coding-string (buffer-name) 'utf-8))
+			     "/"))
     (setq octet-attachments nil))
   0)
 

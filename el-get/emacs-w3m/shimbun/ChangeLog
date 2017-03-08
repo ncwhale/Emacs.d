@@ -1,3 +1,197 @@
+2017-02-03  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	Don't use string-make-unibyte that got obsolete in Emacs 26.
+
+	* mew-shimbun.el (mew-shimbun-md5): Encode a string by utf-8-emacs.
+	* nnshimbun.el (gnus-group-make-shimbun-group): Don't use it.
+
+2016-10-06  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* sb-yoshirin.el (shimbun-yoshirin-make-contents):
+	Decode thumnail's caption if necessary.
+
+2016-10-04  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* sb-mainichi.el (shimbun-mainichi-group-table): Fix fuchiso url.
+	(shimbun-mainichi-get-headers-fuchisou): New function.
+	(shimbun-get-headers): Use it.
+	(shimbun-mainichi-get-headers): Fix regexp.
+	(shimbun-mainichi-clear-contents): Don't conceal error page.
+
+	Note: These changes don't let we get to subscribe to fuchiso (yet).
+	It requires shimbun.el to work for <body onload="..."> automatically.
+	In addition, a user has to have an account on mainichi.jp of course.
+
+2016-09-30  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* nnshimbun.el (nnshimbun-decode-group-name)
+	(gnus-group-make-shimbun-group): Use Emacs functions rather than
+	mm-coding-system-p, mm-decode-coding-string, or mm-encode-coding-string.
+
+2016-09-27  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* nnshimbun.el: Add an advice to gnus-backlog-shutdown.
+	(nnshimbun-close-server): Use unadvised gnus-backlog-shutdown.
+
+2016-08-17  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	Don't use `string-as-unibyte' that is obsolete in Emacs 25.2.
+	Use `string-make-unibyte' instead.
+
+	* mew-shimbun.el (mew-shimbun-md5):
+	* nnshimbun.el (gnus-group-make-shimbun-group): Do.
+
+2016-07-05  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* sb-sankei.el (shimbun-sankei-clear-contents):
+	Improve the way to find the article end.
+
+2016-03-28  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* sb-nikkangendai.el (shimbun-nikkangendai-get-headers-top): Work.
+
+2016-03-16  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* sb-nikkangendai.el (shimbun-multi-clear-contents): Fix regexp.
+
+2016-03-14  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* sb-mainichi.el (shimbun-mainichi-clear-contents): Make it work.
+
+2016-03-08  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* sb-asahi.el (shimbun-asahi-clear-contents): Remove garbage.
+
+2015-12-10  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* sb-mainichi.el (shimbun-mainichi-clear-contents):
+	Emergency fix to regexp to search article body.
+
+2015-12-07  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* sb-yoshirin.el (shimbun-yoshirin-x-face-alist): Add a face.
+
+2015-12-04  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* sb-nikkangendai.el (shimbun-clear-contents): Remove;
+	merge to shimbun-multi-clear-contents.
+	(shimbun-multi-clear-contents): Improve regexp to search img tag;
+	add author's info and subtitle if any.
+
+2015-12-03  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* sb-nikkangendai.el (shimbun-nikkangendai-get-headers-top)
+	(shimbun-nikkangendai-get-headers, shimbun-multi-next-url)
+	(shimbun-clear-contents): Rewrite following the site renewal.
+
+2015-11-09  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* sb-nikkangendai.el (shimbun-clear-contents): Fix image gathering.
+
+2015-11-04  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* sb-nikkangendai.el (shimbun-clear-contents):
+	Don't exclude article head.
+
+2015-10-09  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* sb-kyoko-np.el: Disable expiration and enable hankaku by default.
+	(shimbun-clear-contents): Remove App store info.
+
+2015-10-08  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* sb-nikkangendai.el: New file, a successor of sb-gendai-net.el.
+	* sb-gendai-net.el: Remove.
+
+2015-10-06  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* sb-kyoko-np.el (shimbun-headers): Say "Checking new news...".
+
+2015-09-25  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* sb-kyoko-np.el: New file.
+
+2015-09-03  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* sb-yoshirin.el (shimbun-yoshirin-get-thumnail):
+	No need to use shimbun-replace-in-string; always expose alt text.
+	(shimbun-yoshirin-make-contents): Don't insert thumnail if the same one
+	exists already in the article body.
+
+2015-09-02  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* sb-yoshirin.el: New file.
+
+2015-02-23  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* sb-sankei.el (shimbun-sankei-get-headers)
+	(shimbun-sankei-get-headers-top-1): Protect against timestamp typo.
+
+2015-02-19  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* sb-asahi.el (shimbun-asahi-article-contents):
+	Respect shimbun-japanese-hankaku.
+
+2015-01-05  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* sb-sankei.el (shimbun-sankei-clear-contents): Remove ads.
+
+2014-11-07  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* sb-sankei.el (shimbun-sankei-group-table): Add `top' group.
+	(shimbun-sankei-get-headers-top, shimbun-sankei-get-headers-top-1):
+	New functions.
+	(shimbun-get-headers): Call shimbun-sankei-get-headers-top.
+	(shimbun-sankei-clear-contents): Update Date header.
+
+2014-10-23  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* sb-sankei.el (shimbun-sankei-group-table): Typo fix s/regino/region/;
+	rearrange Japanese group names.
+	(shimbun-sankei-category-name-alist): New variable.
+	(shimbun-sankei-get-headers): Categorize author names in flash group.
+	(shimbun-sankei-clear-contents): Work for old articles.
+
+2014-10-22  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* sb-sankei.el: Work for the new Sankei-news.
+	(shimbun-sankei): Don't rely on sb-rss.
+	(shimbun-sankei-url, shimbun-sankei-top-level-domain)
+	(shimbun-sankei-server-name, shimbun-sankei-group-table)
+	(shimbun-sankei-x-face-alist): Renew.
+	(shimbun-headers, shimbun-server-name): Remove function modifiers.
+	(shimbun-sankei-get-headers, shimbun-sankei-multi-next-url)
+	(shimbun-sankei-clear-contents): Rewrite.
+	(shimbun-footer): Correct shimbun server name.
+
+2014-09-29  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* sb-asahi.el (shimbun-asahi-group-table): Fix regexp for rss group.
+
+2014-07-30  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* sb-asahi.el (shimbun-asahi-content-start, shimbun-asahi-content-end)
+	(shimbun-asahi-text-content-start, shimbun-asahi-text-content-end):
+	Update them following the Asahi site changes.
+
+2014-01-07  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* shimbun.el: Fix edebug spec for the static-* macros.
+
+2013-12-17  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* sb-asahi.el (shimbun-asahi-group-table): Update regexp matching
+	articles in rss group.
+
+2013-12-06  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* sb-asahi.el (shimbun-asahi-article-contents): Don't infloop.
+
+2013-12-02  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* sb-asahi.el (shimbun-asahi-article-contents):
+	Work for editorial and tenjin groups again.
+
 2013-11-07  Katsumi Yamaoka  <yamaoka@jpl.org>
 
 	Work for editorial and tenjin groups again.
@@ -534,7 +728,6 @@
 	* sb-cnet.el (shimbun-rss-process-date):
 	* sb-multi.el (shimbun-multi-make-contents): Use values-list to make
 	sure the 2nd argument of multiple-value-bind to be multiple-value.
-	Cf. http://news.gmane.org/group/gmane.emacs.xemacs.beta/thread=30500/
 
 2009-09-02  Katsumi Yamaoka  <yamaoka@jpl.org>
 

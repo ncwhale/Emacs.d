@@ -1,3 +1,419 @@
+2017-02-20  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	Revert last change in w3m-decode-coding-string-with-priority.
+
+	* w3m-util.el (w3m-decode-coding-string-with-priority): Revert.
+	[emacs-w3m:12630]
+
+2017-02-03  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	Don't use string-make-(multi|uni)byte that got obsolete in Emacs 26.
+
+	* octet.el (w3m-about-octet-attachments, octet-w3m-region):
+	Use (decode|encode)-coding-string.
+	* w3m-image.el (w3m-imagick-convert-buffer): Bind LC_ALL with C.
+	* w3m-proc.el (w3m-process-start-after):
+	Bind LC_ALL with C in w3m-command-environment.
+	* w3m-util.el (w3m-decode-coding-string-with-priority): Don't use it.
+	(w3m-insert-string): Encode a string by utf-8-emacs when inserting it
+	into a unibyte buffer.
+	* w3m.el (w3m-command-environment): Bind LC_ALL with C.
+
+2017-01-10  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* w3m.el (w3m-external-view-this-url, w3m-external-view-current-url)
+	(w3m-view-url-with-external-browser):
+	Don't make obsolete.  [emacs-w3m:12627]
+
+2017-01-06  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* w3m.el (w3m-real-url): Preserve #name portion.  [emacs-w3m:12618]
+
+2017-01-04  Kevin Ryde  <user42_kevin@yahoo.com.au>
+
+	* w3m-save.el (w3m-save-buffer): Use w3m-expand-file-name-as-url for
+	w3m-history-push in case filename ~/foo etc.  [emacs-w3m:12617]
+
+2016-10-04  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* aclocal.m4 (AC_PATH_EMACS): Work for Emacs 26.
+
+2016-09-27  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* w3m-util.el (w3m-flet, w3m-labels): Add edebug spec.
+
+2016-09-21  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* w3m.el (w3m-retrieve-and-render): Reset hscroll.
+
+2016-09-08  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* w3m-util.el (w3m-delete-frames-and-windows): Don't try to delete
+	window that this function deleted already in conjunction with its frame.
+	It happened when a frame has two or more emacs-w3m windows.
+
+2016-09-08  Boruch Baum  <boruch_baum@gmx.com>
+
+	* w3m-save.el (w3m-save-buffer-html-only): New user option.
+	(w3m-save-buffer): Use it; improve docstring.  [emacs-w3m:12595]
+
+2016-08-25  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* w3m.el (w3m-url-at-point): Refactor.
+
+2016-08-18  Boruch Baum  <boruch_baum@gmx.com>
+
+	* w3m.el (w3m-image-viewer): Make it defcustom.
+
+2016-08-17  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	Don't use `string-as-multibyte' and `string-as-unibyte' that are
+	obsolete in Emacs 25.2.
+	Use `string-make-multibyte' and `string-make-unibyte' instead.
+
+	* octet.el (octet-w3m-region):
+	* w3m-image.el (w3m-imagick-convert-buffer):
+	* w3m-proc.el (w3m-process-start-after):
+	* w3m-util.el (w3m-insert-string): Do.
+
+	Remove Gmane mailing list archive stuff.
+
+	* w3m.el (w3m-gmane-url-at-point): Remove.
+
+2016-08-01  Boruch Baum  <boruch_baum@gmx.com>
+
+	* w3m-lnum.el: Do a boundp test for browse-url-generic-program.
+
+2016-07-27  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	Make w3m-delete-buffer return to the buffer that launches
+	the buffer to be deleted if w3m-use-tab is non-nil.
+
+	* w3m.el (w3m-parent-session-buffer): New internal variable.
+	(w3m-view-this-url-1):
+	Save the current session in it when launching a new session.
+	(w3m-delete-buffer, w3m-next-buffer):
+	Return to the buffer that launches the buffer to be deleted.
+
+2016-07-26  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* w3m.el (w3m-lynx-like-map): Bind "K" to w3m-scroll-down.
+	[emacs-w3m:12570]
+
+2016-07-19  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* w3m-ems.el (w3m-create-image): Run w3m-image-animate in page buffer.
+
+	* w3m.el (w3m-goto-url): Run w3m-select-buffer-update after evaluating
+	w3m-display-hook and w3m-display-functions.  [emacs-w3m:12568]
+	It seems to be rational to run w3m-force-window-update, that
+	w3m-select-buffer-update runs, after settling down the page display.
+
+2016-04-22  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* w3m-util.el (w3m-buffer-name-lessp): Work for Emacs 25.2 that starts
+	numbered buffer names with *w3m*<1>, not *w3m*<2>.
+
+2016-03-04  TSUCHIYA Masatoshi  <tsuchiya@namazu.org>
+
+	* w3m.el (w3m-markdown-converter): New option to select the command to
+	convert markdown formed files into HTML format.
+	(w3m-prepare-markdown-content): Use the above.
+
+2016-03-03  TSUCHIYA Masatoshi  <tsuchiya@namazu.org>
+
+	* w3m.el: Add support for markdown formed files.
+	(w3m-content-type-alist, w3m-local-find-file-regexps): Add markdown
+	entry.
+	(w3m-prepare-markdown-content): New function.
+
+2015-11-27  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	Prefer Cygwin pathnames when building emacs-w3m on Cygwin for
+	Windows-native Emacs.  [emacs-w3m:12540]
+
+	* aclocal.m4 (AC_PATH_CYGWIN): New function.
+	(AC_PATH_LISPDIR, AC_PATH_ICONDIR): Use it.
+	* configure.in: Check for cygpath program.
+
+2015-11-26  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* Makefile.in (lisp, what-where, install-package, install-package-ja)
+	(dist, .el.elc, slow, very-slow)
+	* doc/Makefile.in (EMACSINFO, version.texi): Quote Emacs's path name.
+
+2015-11-25  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* aclocal.m4 (AC_SET_VANILLA_FLAG, AC_SET_XEMACSDEBUG, AC_EMACS_LISP)
+	(AC_ADD_LOAD_PATH):
+	* Makefile.in (FLAGS, lisp, what-where, install-lisp, install-package)
+	(install-package-ja, dist, tarball, .el.elc, slow, very-slow):
+	* doc/Makefile.in (FLAGS, EMACSINFO, version.texi, install, install-en)
+	(install-ja): Work for path names containing whitespace.
+	[emacs-w3m:12530]
+
+2015-10-13  Bruno Félix Rezende Ribeiro  <oitofelix@gnu.org>
+
+	* w3m-form.el (w3m-form-make-form-data): Protect against empty token.
+	[emacs-w3m:12517]
+
+2015-10-13  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* w3m.el (w3m-gmane-url-at-point):
+	Change query url to <http://news.gmane.org/group/thread=MESSAGE-ID>.
+
+	* doc/txi-ja.tex: Make the pdf document display a bookmark by default.
+
+2015-10-09  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* configure.in:
+	* doc/Makefile.in (.texi.dvi): Use pbibtex rather than jbibtex.
+	* doc/emacs-w3m-ja.texi: Add @usedvipdfmx to generate pdf bookmark.
+	* doc/txi-ja.tex: Copy from <https://github.com/fukusaka/texinfo-ja/>.
+
+2015-09-29  Kevin Ryde  <user42_kevin@yahoo.com.au>
+
+	* w3m.el (w3m-check-header-tags): w3m-expand-url <base> to tolerate
+	a non-absolute there, as for example from archive.org.
+	(If w3m-current-base-url is relative then form setups error out.)
+
+2015-06-09  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* w3m.el (w3m-retrieve-and-render):
+	Set w3m-current-url (and w3m-current-title) so as to enable moving back
+	to the past page (in the case w3m-clear-display-while-reading is t).
+	(w3m-goto-url): Don't move point to the top when it failed to retrieve.
+	[emacs-w3m:12471]
+
+2015-06-02  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* w3m.el (w3m-retrieve-and-render):
+	Don't display progress message for `about:' pages.  [emacs-w3m:12465]
+
+2015-05-22  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* w3m.el (w3m-refresh-at-time): Remove workaround.  [emacs-w3m:12459]
+
+2015-05-13  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* w3m.el (w3m-use-refresh): Mention Google looping problem in docstring.
+	(w3m-refresh-minimum-interval): Default to 5; change the meaning.
+	(w3m-check-refresh-attribute, w3m-view-previous-page):
+	Do nothing for w3m-refresh-minimum-interval.
+	(w3m-refresh-at-time):
+	Override meta refresh seconds by w3m-refresh-minimum-interval.
+	(w3m-goto-url-with-timer): Check for buffer's existence correctly.
+
+2015-05-10  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* w3m.el (w3m-error): Work for XEmacs.  [emacs-w3m:12444]
+	(w3m-retrieve-and-render): Work for XEmacs.
+	Note: `get-buffer-window' requires a buffer for the 1st arg in XEmacs.
+
+2015-05-08  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* w3m.el (w3m-refresh-at-time):
+	Temporary fix to avoid Google search looping.  [emacs-w3m:12440]
+
+2015-04-27  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* w3m.el (w3m-error): New face.
+	(w3m-retrieve-and-render): Denote `failed' if it did so.
+
+2015-04-06  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* w3m.el (w3m-clear-display-while-reading): New user option.
+	(w3m-retrieve-and-render): Clear the current display while reading
+	a new page if w3m-clear-display-while-reading is non-nil.
+	[emacs-w3m:12428]
+
+2015-04-03  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* w3m.el (w3m-url-savable-p): New function.
+	(w3m-toolbar, w3m-menubar): Use it.
+
+	* w3m-save.el: Provide the feature.
+
+2015-04-02  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* w3m.el (w3m-toolbar-buttons, w3m-toolbar): Add `Save' button.
+
+	* icons/save-up.png, icons/save-up.xpm
+	* icons30/save-up.png, icons30/save-up.xpm: New files.
+
+2015-04-01  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* w3m-save.el: New file.
+
+	* w3m.el (w3m-menubar, w3m-lynx-like-map, w3m-info-like-map):
+	Add w3m-save-buffer and bind `C-x C-s' to it.
+
+2015-03-13  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* w3m-filter.el (w3m-filter-add-name-anchors):
+	Don't use ambiguous regexp.  [emacs-w3m:12422]
+
+2015-02-08  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* w3m.el (w3m-search-name-anchor): Search for both "name" and
+	(w3m-url-decode-string "name").  [emacs-w3m:12392]
+
+2015-01-28  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* w3m.el (w3m-extra-numeric-character-reference):
+	Use #x20 instead of ? .
+	(w3m-scroll-up-1): Remove obsolete function alias to w3m-scroll-up.
+
+2015-01-22  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* w3mhack.el (w3mhack-compile-file): New function.
+	(w3mhack-compile): Use it.
+
+2014-11-24  Andrey Kotlarski  <m00naticus@gmail.com>
+
+	* w3m-lnum.el (w3m-lnum-actions-link-alist): Add open in background
+	bindings.
+	(w3m-lnum-remove-overlays): Enlarge default region to clean.
+	(w3m-lnum-set-numbering): Use w3m-lnum-remove-overlays.
+	(w3m-lnum-next-filter): New function.
+	(w3m-lnum-read-interactive): Use it to search below and above when
+	filter has no matches left.
+	(w3m-with-lnum): Guarantee cleanup of right buffer.
+	(w3m-lnum-get-action): Fix checkdoc warning.
+	(w3m-lnum-visit): Make it function.  Enable visiting in background.
+	(w3m-lnum-follow): Add prefix combinations to visit links in
+	background.
+
+2014-10-06  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* w3m.el (w3m-extra-numeric-character-reference): Add (?\C-m . ? ).
+	[emacs-w3m:12378]
+
+2014-10-01  Herbert J. Skuhra  <h.skuhra@gmail.com>
+
+	* aclocal.m4 (AC_PATH_EMACS): Work for Emacs 25.
+
+2014-08-01  Michael Heerdegen  <michael_heerdegen@web.de>
+	Katsumi Yamaoka <yamaoka@jpl.org>
+
+	* w3m.el (w3m-input-url-next-history-element): Abolish.
+	(w3m-url-completion-map): Don't bind M-n key.
+	(w3m-input-url-default-add-completions): New function.
+	(w3m-input-url):
+	Bind minibuffer-default-add-function to it locally in minibuffer.
+
+2014-07-29  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* w3m.el (w3m-input-url-provide-initial-content): New user option.
+	(w3m-input-url): Use it.
+	(w3m-input-url-next-history-element): New function.
+	(w3m-url-completion-map): Bind it.
+	[emacs-w3m:12345]
+
+2014-07-24  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* w3m-filter.el (w3m-filter-add-name-anchors): Subdivide long regexp.
+	[emacs-w3m:12339]
+
+2014-06-12  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* Makefile.in (install-lisp): Compress .el files.
+	* doc/Makefile.in (install): Compress info files.
+
+	* aclocal.m4 (AC_COMPRESS_INSTALL): New function.
+	* configure.in: Use it.
+
+2014-06-11  Kevin Ryde  <user42_kevin@yahoo.com.au>
+
+	* w3m.el (w3m-zoom-out-image, w3m-resize-image-interactive): Treat
+	zoom-out percentage as inverse of zoom-in, so "in" then "out" returns
+	to the original size.
+	(w3m-resize-inline-image-internal): Set w3m-image-scale property to
+	flonum to avoid integer round-off when resizing in and out.  Use
+	`round' rather than `truncate' when calling "convert" so flonum
+	round-off 99.999 is original 100%.
+
+2014-06-11  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* w3m.el (w3m-content-type-alist): Don't bug out for the case where
+	browse-url-browser-function is set to a function symbol that is not yet
+	defined.  [emacs-w3m:12317]
+
+2014-04-21  Michael Ernst  <mernst@cs.washington.edu>
+
+	* w3m-util.el (w3m-beginning-of-tag, w3m-end-of-tag): Work correctly
+	for the case there is only whitespace between <tag> and </tag>.
+
+2014-03-31  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* w3m.el (w3m-markup-urls-nobreak): Don't modify textarea.
+	[emacs-w3m:12308]
+
+2014-03-26  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* w3m.el (w3m-relationship-estimate-rules): Update regexps for Google.
+
+2014-02-13  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* w3m.el (w3m-url-encode-string): Encode `:' and `/'.
+	Suggested by Dan Jacobson <jidanni@jidanni.org>.
+
+	* w3m-form.el (w3m-form-make-form-data, w3m-form-parse-and-fontify):
+	Use car-less-than-car.
+
+2014-02-10  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* w3m-filter.el (w3m-filter-subst-disabled-with-readonly): Relax regexp.
+
+	* w3m-form.el (w3m-form-submit): Work for a url having no query part.
+
+2014-01-08  Mirko M.  <mirko.m@hotmail.com>
+
+	* w3m-util.el (w3m-delete-frames-and-windows): Don't clear the windows
+	layout that used to be before visiting an emacs-w3m buffer.
+	[emacs-w3m:12273]
+
+2014-01-07  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* w3m-util.el (w3m-static-if, w3m-static-when, w3m-static-unless)
+	(w3m-static-cond): Add edebug spec.
+
+	* octet.el: Fix edebug spec for the static-* macros.
+
+2013-12-03  Tatsuya Kinoshita  <tats@vega.ocn.ne.jp>
+
+	* mew-w3m.el (mew-w3m-region): Set point to the end of <div> tag to
+	prevent infinite loop.
+
+2013-12-01  Tatsuya Kinoshita  <tats@vega.ocn.ne.jp>
+
+	* mew-w3m.el (mew-w3m-region): Set point to minimum for
+	`mew-w3m-cite-blockquote' to work.
+
+2013-11-05  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* mew-w3m.el (mew-w3m-cite-blockquote): New function.
+	(mew-w3m-region): Use it.
+
+2013-11-26  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* w3m-filter.el (w3m-filter-subst-disabled-with-readonly): Rewrite.
+
+	* w3m-filter.el (w3m-filter-subst-disabled-with-readonly):
+	Fix the width of disabled select form.
+
+2013-11-25  Katsumi Yamaoka  <yamaoka@jpl.org>
+
+	* w3m-filter.el (w3m-filter-subst-disabled-with-readonly): Replace
+	disabled or readonly select forms, that w3m doesn't support, with
+	read-only input forms.  [emacs-w3m:12222]
+
+	* w3m-form.el (w3m-form-parse-and-fontify): Make read-only text buttons
+	for image, reset, and submit forms if readonly attr is turned on.
+
+	* w3m-ems.el, w3m-form (w3m-form-make-button): Add the optional
+	readonly argument; make a read-only text button if it is non-nil.
+
 2013-11-20  Katsumi Yamaoka  <yamaoka@jpl.org>
 
 	Make non-link urls unbreakable.  [emacs-w3m:12215]
@@ -117,7 +533,8 @@
 
 	* w3m-ems.el (w3m-toolbar-make-buttons): Make tool-bar button use
 	a single icon image if Emacs built with Gtk+ is running.
-	cf. <http://thread.gmane.org/gmane.emacs.bugs/78021>
+	cf.
+	<https://lists.gnu.org/archive/html/bug-gnu-emacs/2013-09/msg00170.html>
 	(w3m-toolbar-use-single-image-per-icon): Add a note to docstring.
 
 2013-09-04  Katsumi Yamaoka  <yamaoka@jpl.org>
@@ -1835,7 +2252,7 @@
 
 	* w3m.el (w3m-link-menu): Always provide title string.  Suggested by
 	David Abrahams <dave@boostpro.com>.
-	Cf. <URL:http://news.gmane.org/group/gmane.emacs.w3m/thread=8126>.
+	cf. <http://emacs-w3m.namazu.org/ml/msg10658.html>.
 
 2009-03-17  Victor Ren  <victor.ren@ericsson.com>
 
@@ -3522,7 +3939,8 @@
 
 	* w3m-bug.el (report-emacs-w3m-bug): Use a new buffer to compose a mail
 	if at least mail-user-agent is sendmail-user-agent that is the default.
-	cf. http://article.gmane.org/gmane.emacs.devel/67501
+	cf.
+	<https://lists.gnu.org/archive/html/emacs-devel/2007-03/msg00399.html>
 
 2007-03-09  Katsumi Yamaoka  <yamaoka@jpl.org>
 
@@ -4743,8 +5161,8 @@
 
 2005-07-08  Katsumi Yamaoka  <yamaoka@jpl.org>
 
-	* w3m.el (w3m-check-current-position): Bind deactivate-mark.  (cf.
-	http://news.gmane.org/group/gmane.emacs.pretest.bugs/thread=8335).
+	* w3m.el (w3m-check-current-position): Bind deactivate-mark.  cf.
+	<https://lists.gnu.org/archive/html/emacs-pretest-bug/2005-07/msg00109.html>
 
 2005-07-05  Masayuki Ataka  <ataka@milk.freemail.ne.jp>
 

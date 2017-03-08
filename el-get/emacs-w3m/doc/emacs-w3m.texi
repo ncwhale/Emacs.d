@@ -8,7 +8,7 @@
 @synindex pg cp
 
 @copying
-Copyright @copyright{} 2000-2011 @w{TSUCHIYA Masatoshi}
+Copyright @copyright{} 2000-2014 @w{TSUCHIYA Masatoshi}
 
 @quotation
 Permission is granted to copy, distribute and/or modify this document
@@ -424,6 +424,11 @@ may also include the Gnus directory in it separated with @samp{:}):
 @example
 % ./configure --with-addpath=/opt/share/apel:/opt/share/flim
 @end example
+
+By default, the installer (i.e. @samp{make install}) will compress the
+Lisp source files and info files by gzip in the installation directories.
+If you don't want those files to be compressed, use the configure option
+@samp{--without-compress-install}.
 
 @item
 Just run @samp{make} and @samp{make install}.  See also the next step if
@@ -3783,6 +3788,19 @@ process.  It shows a percentage of the data loaded from the web server.
 @vindex w3m-show-current-title-in-buffer-tab
 If non-@code{nil}, show the title strings in the buffers tab.  It has no
 effect if your XEmacs does not support the gutter items.
+
+@item w3m-input-url-provide-initial-content
+@vindex w3m-input-url-provide-initial-content
+If non-@code{nil}, provide an initial minibuffer content (if any) when
+entering a url.  The default is @code{nil}.  A url string is not worth
+editing in most cases since a url thing is generally a list of arbitrary
+letters, not a human readable one.  So, we provide no initial content
+when prompting you for a url by default.  But sometimes there will be a
+case to be convenient if you can modify the url string of [1]the link
+under the cursor or of [2]the current page.  In that case, you can type
+the @kbd{M-n} key [1]once or [2]twice to fill the minibuffer with an
+initial content if you use Emacs 23 and up.  Otherwise, set this
+variable to a non-@code{nil} value to always provide an initial content.
 @end table
 
 @node Hooking into MUAs
@@ -3825,11 +3843,6 @@ function that is Gnus' built-in @acronym{HTML} renderer, you may not
 want to do anything.  @xref{Display Customization, ,Display
 Customization, emacs-mime, The Emacs MIME Manual}.  Also @xref{HTML,
 ,HTML, gnus, The Gnus Manual}.
-
-@quotation
-There's a tip on using @code{gnus-article-html} under XEmacs in:
-@uref{http://article.gmane.org/gmane.emacs.gnus.general/72704}
-@end quotation
 
 But if Gnus you use is a bit old and neither the @code{mm-shr} function
 nor the @code{gnus-article-html} function is available, or if you'd like
@@ -5187,9 +5200,10 @@ zeit-de.gesundheit zeit-de.international zeit-de.leben zeit-de.literatur
 zeit-de.musik zeit-de.news zeit-de.reisen zeit-de.schule zeit-de.sport
 zeit-de.studium zeit-de.wirtschaft zeit-de.wissen zeit-de.zuender
 
-@item @uref{http://gendai.net/, Gendai Net}
-gendai-net.today gendai-net.syakai gendai-net.sports gendai-net.geino
-gendai-net.wadai gendai-net.kenko gendai-net.syoku gendai-net.book
+@item @uref{http://www.nikkan-gendai.com/, Nikkan Gendai}
+nikkangendai.top nikkangendai.news nikkangendai.geino
+nikkangendai.sports nikkangendai.life nikkangendai.book
+nikkangendai.gourmet
 
 @item @uref{http://mainichi.jp/, Mainichi jp}
 @itemx (This site has been shifted from MSN in October, 2007)
@@ -5300,14 +5314,15 @@ nikkei.release.service.lease nikkei.release.service.travel
 nikkei.release.service.etc nikkei.release.const.const
 nikkei.release.const.house nikkei.release.const.etc nikkei.shasetsu
 
-@item @uref{http://sankei.jp.msn.com/, MSN Sankei News}
-@itemx (This site has been shifted to MSN in October, 2007)
-sankei.points sankei.flash sankei.affairs sankei.politics sankei.economy
-sankei.world sankei.sports sankei.entertainments sankei.life
-sankei.science sankei.region sankei.west.flash sankei.west.points
-sankei.west.affairs sankei.west.sports sankei.west.life
-sankei.west.economy sankei.column.sankeisho sankei.column.shucho
-sankei.column.seiron
+@item @uref{http://www.sankei.com/, Sankei News}
+sankei.affairs sankei.column sankei.column.editorial
+sankei.column.sankeisyo sankei.column.seiron sankei.economy
+sankei.entertainments sankei.flash sankei.life sankei.politics
+sankei.region.chubu sankei.region.chugoku-shikoku
+sankei.region.hokkaido-tohoku sankei.region.kanto sankei.region.kinki
+sankei.region.kyushu-okinawa sankei.sports sankei.top
+sankei.west.affairs sankei.west.economy sankei.west.flash
+sankei.west.life sankei.west.sports sankei.world
 
 @item @uref{http://www.spiegel.de/, Spiegel Online}
 spiegel.news
@@ -5344,6 +5359,9 @@ On the other hand, you can also use the @samp{yomiuri-html} back end to
 generate HTML articles.  In order to use it, specify
 @samp{yomiuri-html.atmoney} instead of @samp{yomiuri.atmoney} as the
 group name for example.
+
+@item @uref{http://kyoko-np.net/, Kyoko Shimbun News}
+kyoko-np.rss
 @end table
 
 @node News Sites Supported by Shimbun
@@ -6156,6 +6174,9 @@ ffii.de.software-patente ffii.de.software-patente.ffii
 ffii.de.informations-infrastruktur ffii.fr.brevets-logiciels
 ffii.fr.brevets-logiciels.ffii ffii.nl.softwarepatenten
 ffii.nl.softwarepatenten.ffii
+
+@item @uref{http://yoshinori-kobayashi.com/, Yoshinori Kobayashi Official Site}
+yoshirin.blog yoshirin.topics
 @end table
 
 @node Shimbun Basics
@@ -6757,7 +6778,8 @@ Also @xref{Customizing Articles, ,Customizing Articles, gnus, The Gnus
 Manual}, for details.
 
 In addition, the experimental code below is used to display
-@samp{multipart/related} pictures.  The place might be something wrong.
+@samp{multipart/related} pictures.  The places where pictures are
+displayed are somewhat wrong, though.
 
 @lisp
 (eval-after-load "gnus-art"
@@ -6770,6 +6792,27 @@ In addition, the experimental code below is used to display
                 (lambda (handle)
                   (gnus-mime-display-mixed (cdr handle)))))
               gnus-mime-multipart-functions))))
+@end lisp
+
+If you use @code{shr} to view HTML mails, it deletes page delimiters
+(i.e., ^L) existing between multiple HTML parts in a mail.  The
+following advice is an example for adding those delimiters (even if not
+existent originally).  This might be helpful when you read shimbuns
+(@pxref{Shimbun Library}):
+
+@lisp
+(defadvice gnus-mime-display-mixed (around add-page-delimiter
+                                           (handles) activate)
+  "Add page delimiters to the beginning of succeeding html parts."
+  (if (eq mm-text-html-renderer 'shr)
+      (progn
+        (gnus-mime-display-part (pop handles))
+        (while handles
+          (if (equal (mm-handle-media-type (car handles))
+                     "text/html")
+              (insert "\C-l\n"))
+          (gnus-mime-display-part (pop handles))))
+    ad-do-it))
 @end lisp
 
 @item yahtml-mode
@@ -6823,8 +6866,7 @@ command (or the @w{@kbd{C-c C-b}} key) if you have set the
 English and Japanese can be used when posting to this list, since many
 of its members are Japanese.  Articles posted to the list are opened to
 the public and you can read them on the web (at
-@uref{http://emacs-w3m.namazu.org/ml/}), or in NetNews (group
-@samp{gmane.emacs.w3m} on the server @samp{news.gmane.org}).
+@uref{http://emacs-w3m.namazu.org/ml/}).
 
 If you want to receive articles by mail, send a mail containing
 

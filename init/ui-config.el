@@ -45,6 +45,6 @@
 (require 'stylus-mode)
 
 ;; auto-complete
-(require 'auto-complete-settings)
+;;(require 'auto-complete-settings)
 
 

@@ -1,6 +1,6 @@
 ;;; w3m-form.el --- Stuffs to handle <form> tag
 
-;; Copyright (C) 2001-2013 TSUCHIYA Masatoshi <tsuchiya@namazu.org>
+;; Copyright (C) 2001-2014 TSUCHIYA Masatoshi <tsuchiya@namazu.org>
 
 ;; Authors: TSUCHIYA Masatoshi <tsuchiya@namazu.org>,
 ;;          Yuuichi Teranishi  <teranisi@gohome.org>,
@@ -323,7 +323,7 @@ If no field in forward, return nil without moving."
 	  (setq bufs (cons (cons number (cons name value)) bufs))))
 	(setq plist (cddr plist))))
     (when bufs
-      (setq bufs (sort bufs (lambda (x y) (< (car x) (car y)))))
+      (setq bufs (sort bufs #'car-less-than-car))
       (if (eq (w3m-form-enctype form) 'multipart/form-data)
 	  (let ((boundary (apply 'format "--_%d_%d_%d" (current-time)))
 		file type)
@@ -354,7 +354,9 @@ If no field in forward, return nil without moving."
 			   "Content-Disposition: form-data; name=\""
 			   (car buf)
 			   "\"\r\n\r\n"
-			   (encode-coding-string (cdr buf) coding)
+			   (if (cdr buf)
+			       (encode-coding-string (cdr buf) coding)
+			     "")
 			   "\r\n"))
 		 (setq bufs (cdr bufs)))
 	       (insert "--" boundary "--\r\n")
@@ -465,10 +467,13 @@ fid=\\([^/]+\\)/type=\\([^/]+\\)/name=\\([^/]*\\)/id=\\(.*\\)$"
 
 (eval-and-compile
   (unless (fboundp 'w3m-form-make-button)
-    (defun w3m-form-make-button (start end properties)
+    (defun w3m-form-make-button (start end properties &optional readonly)
       "Make button on the region from START to END with PROPERTIES."
-      (w3m-add-text-properties start end
-			       (append '(face w3m-form) properties)))))
+      (w3m-add-text-properties
+       start end (append (if readonly
+			     '(face w3m-form-inactive w3m-form-readonly t)
+			   '(face w3m-form)
+			   properties))))))
 
 ;;; w3mmee
 ;;
@@ -752,14 +757,16 @@ If optional REUSE-FORMS is non-nil, reuse it as `w3m-current-form'."
 					       (w3m-form-get ,form ,id)
 					       w3m-form-new-session
 					       w3m-form-download)
-		   w3m-anchor-sequence ,abs-hseq))))
+		   w3m-anchor-sequence ,abs-hseq)
+		 readonly)))
 	     ((string= type "reset")
 	      (w3m-form-make-button
 	       start end
 	       `(w3m-form-field-id
 		 ,(format "fid=%d/type=%s/name=%s/id=%d" fid type name id)
 		 w3m-action (w3m-form-reset ,form)
-		 w3m-anchor-sequence ,abs-hseq)))
+		 w3m-anchor-sequence ,abs-hseq)
+	       readonly))
 	     ((string= type "textarea")
 	      (if (eq w3m-type 'w3mmee)
 		  (w3m-form-put form id
@@ -950,8 +957,7 @@ If optional REUSE-FORMS is non-nil, reuse it as `w3m-current-form'."
     (setq w3m-current-forms (if (eq w3m-type 'w3mmee)
 				forms
 			      (mapcar 'cdr
-				      (sort forms (lambda (x y)
-						    (< (car x)(car y)))))))
+				      (sort forms #'car-less-than-car))))
     (w3m-form-resume (or reuse-forms w3m-current-forms))))
 
 (defun w3m-form-replace (string &optional invisible)
@@ -1456,7 +1462,8 @@ selected rather than \(as usual\) some other window.  See
       ;; Use the whole current window for the textarea when a user added
       ;; the buffer name "*w3m form textarea*" to `same-window-buffer-names'
       ;; (that is available only in Emacs).
-      ;; cf. http://article.gmane.org/gmane.emacs.w3m/7797
+      ;; cf.
+      ;; <https://lists.gnu.org/archive/html/help-gnu-emacs/2008-11/msg00551.html>
       (unless (w3m-same-window-p (buffer-name (if (consp buffer)
 						  (cdr buffer)
 						buffer)))
@@ -1989,8 +1996,10 @@ selected rather than \(as usual\) some other window.  See
 			(if new-session
 			    'w3m-goto-url-new-session
 			  'w3m-goto-url))
-		      (concat (w3m-url-strip-query url)
-			      "?" (w3m-form-make-form-data form))))
+		      (let ((query (w3m-form-make-form-data form)))
+			(if (zerop (length query))
+			    url
+			  (concat (w3m-url-strip-query url) "?" query)))))
 	    (t
 	     (w3m-message "This form's method has not been supported: %s"
 			  (let (print-level print-length)

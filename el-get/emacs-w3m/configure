@@ -584,6 +584,8 @@ PACKAGE_URL=
 ac_unique_file="w3m.el"
 ac_subst_vars='LTLIBOBJS
 LIBOBJS
+COMPRESS_INSTALL
+GZIP_PROG
 ADDITIONAL_LOAD_PATH
 ICONDIR
 PACKAGEDIR
@@ -591,10 +593,11 @@ lispdir
 XEMACSDEBUG
 VANILLA_FLAG
 EMACS
+CYGPATH
 EGREP
 TEXI2PDF
 DVIPDFMX
-JBIBTEX
+PBIBTEX
 PTEX
 TEXI2DVI
 MAKEINFO
@@ -621,6 +624,7 @@ infodir
 docdir
 oldincludedir
 includedir
+runstatedir
 localstatedir
 sharedstatedir
 sysconfdir
@@ -650,6 +654,7 @@ with_packagedir
 with_icondir
 with_addpath
 with_attic
+with_compress_install
 '
       ac_precious_vars='build_alias
 host_alias
@@ -692,6 +697,7 @@ datadir='${datarootdir}'
 sysconfdir='${prefix}/etc'
 sharedstatedir='${prefix}/com'
 localstatedir='${prefix}/var'
+runstatedir='${localstatedir}/run'
 includedir='${prefix}/include'
 oldincludedir='/usr/include'
 docdir='${datarootdir}/doc/${PACKAGE}'
@@ -944,6 +950,15 @@ do
   | -silent | --silent | --silen | --sile | --sil)
     silent=yes ;;
 
+  -runstatedir | --runstatedir | --runstatedi | --runstated \
+  | --runstate | --runstat | --runsta | --runst | --runs \
+  | --run | --ru | --r)
+    ac_prev=runstatedir ;;
+  -runstatedir=* | --runstatedir=* | --runstatedi=* | --runstated=* \
+  | --runstate=* | --runstat=* | --runsta=* | --runst=* | --runs=* \
+  | --run=* | --ru=* | --r=*)
+    runstatedir=$ac_optarg ;;
+
   -sbindir | --sbindir | --sbindi | --sbind | --sbin | --sbi | --sb)
     ac_prev=sbindir ;;
   -sbindir=* | --sbindir=* | --sbindi=* | --sbind=* | --sbin=* \
@@ -1081,7 +1096,7 @@ fi
 for ac_var in	exec_prefix prefix bindir sbindir libexecdir datarootdir \
 		datadir sysconfdir sharedstatedir localstatedir includedir \
 		oldincludedir docdir infodir htmldir dvidir pdfdir psdir \
-		libdir localedir mandir
+		libdir localedir mandir runstatedir
 do
   eval ac_val=\$$ac_var
   # Remove trailing slashes.
@@ -1234,6 +1249,7 @@ Fine tuning of the installation directories:
   --sysconfdir=DIR        read-only single-machine data [PREFIX/etc]
   --sharedstatedir=DIR    modifiable architecture-independent data [PREFIX/com]
   --localstatedir=DIR     modifiable single-machine data [PREFIX/var]
+  --runstatedir=DIR       modifiable per-process data [LOCALSTATEDIR/run]
   --libdir=DIR            object code libraries [EPREFIX/lib]
   --includedir=DIR        C header files [PREFIX/include]
   --oldincludedir=DIR     C header files for non-gcc [/usr/include]
@@ -1270,6 +1286,8 @@ Optional Packages:
                           use colons to separate directory names
   --with-attic            use attic libraries for compiling default: no
                           (it does not mean installing attic libraries)
+  --without-compress-install
+                          do not compress .el and .info files when installing
 
 Report bugs to the package provider.
 _ACEOF
@@ -1966,15 +1984,17 @@ $as_echo "no" >&6; }
 fi
 
 
-# Extract the first word of "jbibtex", so it can be a program name with args.
-set dummy jbibtex; ac_word=$2
+for ac_prog in pbibtex jbibtex
+do
+  # Extract the first word of "$ac_prog", so it can be a program name with args.
+set dummy $ac_prog; ac_word=$2
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
 $as_echo_n "checking for $ac_word... " >&6; }
-if ${ac_cv_prog_JBIBTEX+:} false; then :
+if ${ac_cv_prog_PBIBTEX+:} false; then :
   $as_echo_n "(cached) " >&6
 else
-  if test -n "$JBIBTEX"; then
-  ac_cv_prog_JBIBTEX="$JBIBTEX" # Let the user override the test.
+  if test -n "$PBIBTEX"; then
+  ac_cv_prog_PBIBTEX="$PBIBTEX" # Let the user override the test.
 else
 as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
 for as_dir in $PATH
@@ -1983,7 +2003,7 @@ do
   test -z "$as_dir" && as_dir=.
     for ac_exec_ext in '' $ac_executable_extensions; do
   if as_fn_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
-    ac_cv_prog_JBIBTEX="jbibtex"
+    ac_cv_prog_PBIBTEX="$ac_prog"
     $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
     break 2
   fi
@@ -1991,18 +2011,21 @@ done
   done
 IFS=$as_save_IFS
 
-  test -z "$ac_cv_prog_JBIBTEX" && ac_cv_prog_JBIBTEX="false"
 fi
 fi
-JBIBTEX=$ac_cv_prog_JBIBTEX
-if test -n "$JBIBTEX"; then
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $JBIBTEX" >&5
-$as_echo "$JBIBTEX" >&6; }
+PBIBTEX=$ac_cv_prog_PBIBTEX
+if test -n "$PBIBTEX"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $PBIBTEX" >&5
+$as_echo "$PBIBTEX" >&6; }
 else
   { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
 $as_echo "no" >&6; }
 fi
 
+
+  test -n "$PBIBTEX" && break
+done
+test -n "$PBIBTEX" || PBIBTEX="false"
 
 # Extract the first word of "dvipdfmx", so it can be a program name with args.
 set dummy dvipdfmx; ac_word=$2
@@ -2121,6 +2144,44 @@ fi
 
   test -n "$EGREP" && break
 done
+
+# Extract the first word of "cygpath", so it can be a program name with args.
+set dummy cygpath; ac_word=$2
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+$as_echo_n "checking for $ac_word... " >&6; }
+if ${ac_cv_prog_CYGPATH+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  if test -n "$CYGPATH"; then
+  ac_cv_prog_CYGPATH="$CYGPATH" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+    ac_cv_prog_CYGPATH="cygpath"
+    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  test -z "$ac_cv_prog_CYGPATH" && ac_cv_prog_CYGPATH="no"
+fi
+fi
+CYGPATH=$ac_cv_prog_CYGPATH
+if test -n "$CYGPATH"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $CYGPATH" >&5
+$as_echo "$CYGPATH" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+
 
 
         test "${EMACS}" = "t" -o -n "${INSIDE_EMACS}" && EMACS=
@@ -2359,7 +2420,7 @@ done
 test -n "$EMACS" || EMACS="emacs"
 
 
-    retval=`echo ${EMACS}| ${EGREP} xemacs| ${EGREP} -v '^$'`
+    retval=`echo "${EMACS}"| "${EGREP}" xemacs| "${EGREP}" -v '^$'`
   if test -z "${retval}"; then
 	VANILLA_FLAG="-q -no-site-file"
   else
@@ -2367,7 +2428,7 @@ test -n "$EMACS" || EMACS="emacs"
   fi
 
         if test "${VANILLA_FLAG}" = "-vanilla"; then
-	XEMACSDEBUG='XEMACSDEBUG='\''(setq log-warning-minimum-level (quote error))'\'' '
+	XEMACSDEBUG='XEMACSDEBUG='\''(setq log-warning-minimum-level (quote error))'\'
   else
 	XEMACSDEBUG=
   fi
@@ -2394,8 +2455,7 @@ if ${EMACS_cv_SYS_flavor+:} false; then :
 else
 
 	OUTPUT=./conftest-$$
-	echo ${XEMACSDEBUG}${EMACS}' '${VANILLA_FLAG}' -batch -eval '\''(let ((x '"${elisp}"')) (write-region (format "%s" x) nil "'${OUTPUT}'" nil 5))'\' >& 5 2>&1
-	eval ${XEMACSDEBUG}${EMACS}' '${VANILLA_FLAG}' -batch -eval '\''(let ((x '"${elisp}"')) (write-region (format "%s" x) nil "'${OUTPUT}'" nil 5))'\' >& 5 2>&1
+	eval "${XEMACSDEBUG} '${EMACS}' ${VANILLA_FLAG} -batch -eval '(let ((x ${elisp})) (write-region (format \"%s\" x) nil \"${OUTPUT}\" nil 5))'" >& 5 2>&1
 	retval="`cat ${OUTPUT}`"
 	echo "=> ${retval}" >& 5 2>&1
 	rm -f ${OUTPUT}
@@ -2412,7 +2472,7 @@ fi
   case "${flavor}" in
   XEmacs)
     EMACS_FLAVOR=xemacs;;
-  Emacs\ 2[1234]\.*)
+  Emacs\ 2[123456]\.*)
     EMACS_FLAVOR=emacs;;
   *)
     EMACS_FLAVOR=unsupported;;
@@ -2443,8 +2503,7 @@ if ${EMACS_cv_SYS_prefix+:} false; then :
 else
 
 	OUTPUT=./conftest-$$
-	echo ${XEMACSDEBUG}${EMACS}' '${VANILLA_FLAG}' -batch -eval '\''(let ((x '"${elisp}"')) (write-region (format "%s" x) nil "'${OUTPUT}'" nil 5))'\' >& 5 2>&1
-	eval ${XEMACSDEBUG}${EMACS}' '${VANILLA_FLAG}' -batch -eval '\''(let ((x '"${elisp}"')) (write-region (format "%s" x) nil "'${OUTPUT}'" nil 5))'\' >& 5 2>&1
+	eval "${XEMACSDEBUG} '${EMACS}' ${VANILLA_FLAG} -batch -eval '(let ((x ${elisp})) (write-region (format \"%s\" x) nil \"${OUTPUT}\" nil 5))'" >& 5 2>&1
 	retval="`cat ${OUTPUT}`"
 	echo "=> ${retval}" >& 5 2>&1
 	rm -f ${OUTPUT}
@@ -2458,7 +2517,10 @@ if test -z "noecho"; then
 $as_echo "$prefix" >&6; }
 fi
 
-	prefix=${EMACS_cv_SYS_prefix}
+	  prefix="${EMACS_cv_SYS_prefix}"
+  if test x"${CYGPATH}" != xno -a -n "`echo $prefix| ${EGREP} '^[A-Za-z]:'`"; then
+	prefix=`"${CYGPATH}" -u "$prefix"`
+  fi
   fi
   { $as_echo "$as_me:${as_lineno-$LINENO}: result: ${prefix}" >&5
 $as_echo "${prefix}" >&6; }
@@ -2548,8 +2610,7 @@ if ${EMACS_cv_SYS_PACKAGEDIR+:} false; then :
 else
 
 	OUTPUT=./conftest-$$
-	echo ${XEMACSDEBUG}${EMACS}' '${VANILLA_FLAG}' -batch -eval '\''(let ((x '"${elisp}"')) (write-region (format "%s" x) nil "'${OUTPUT}'" nil 5))'\' >& 5 2>&1
-	eval ${XEMACSDEBUG}${EMACS}' '${VANILLA_FLAG}' -batch -eval '\''(let ((x '"${elisp}"')) (write-region (format "%s" x) nil "'${OUTPUT}'" nil 5))'\' >& 5 2>&1
+	eval "${XEMACSDEBUG} '${EMACS}' ${VANILLA_FLAG} -batch -eval '(let ((x ${elisp})) (write-region (format \"%s\" x) nil \"${OUTPUT}\" nil 5))'" >& 5 2>&1
 	retval="`cat ${OUTPUT}`"
 	echo "=> ${retval}" >& 5 2>&1
 	rm -f ${OUTPUT}
@@ -2614,8 +2675,7 @@ if ${EMACS_cv_SYS_PACKAGEDIR+:} false; then :
 else
 
 	OUTPUT=./conftest-$$
-	echo ${XEMACSDEBUG}${EMACS}' '${VANILLA_FLAG}' -batch -eval '\''(let ((x '"${elisp}"')) (write-region (format "%s" x) nil "'${OUTPUT}'" nil 5))'\' >& 5 2>&1
-	eval ${XEMACSDEBUG}${EMACS}' '${VANILLA_FLAG}' -batch -eval '\''(let ((x '"${elisp}"')) (write-region (format "%s" x) nil "'${OUTPUT}'" nil 5))'\' >& 5 2>&1
+	eval "${XEMACSDEBUG} '${EMACS}' ${VANILLA_FLAG} -batch -eval '(let ((x ${elisp})) (write-region (format \"%s\" x) nil \"${OUTPUT}\" nil 5))'" >& 5 2>&1
 	retval="`cat ${OUTPUT}`"
 	echo "=> ${retval}" >& 5 2>&1
 	rm -f ${OUTPUT}
@@ -2673,8 +2733,7 @@ if ${EMACS_cv_SYS_icondir+:} false; then :
 else
 
 	OUTPUT=./conftest-$$
-	echo ${XEMACSDEBUG}${EMACS}' '${VANILLA_FLAG}' -batch -eval '\''(let ((x '"${elisp}"')) (write-region (format "%s" x) nil "'${OUTPUT}'" nil 5))'\' >& 5 2>&1
-	eval ${XEMACSDEBUG}${EMACS}' '${VANILLA_FLAG}' -batch -eval '\''(let ((x '"${elisp}"')) (write-region (format "%s" x) nil "'${OUTPUT}'" nil 5))'\' >& 5 2>&1
+	eval "${XEMACSDEBUG} '${EMACS}' ${VANILLA_FLAG} -batch -eval '(let ((x ${elisp})) (write-region (format \"%s\" x) nil \"${OUTPUT}\" nil 5))'" >& 5 2>&1
 	retval="`cat ${OUTPUT}`"
 	echo "=> ${retval}" >& 5 2>&1
 	rm -f ${OUTPUT}
@@ -2688,7 +2747,10 @@ if test -z "${prefix}"; then
 $as_echo "$icondir" >&6; }
 fi
 
-      ICONDIR=${EMACS_cv_SYS_icondir}
+        ICONDIR="${EMACS_cv_SYS_icondir}"
+  if test x"${CYGPATH}" != xno -a -n "`echo $ICONDIR| ${EGREP} '^[A-Za-z]:'`"; then
+	ICONDIR=`"${CYGPATH}" -u "$ICONDIR"`
+  fi
     fi
     if test ${EMACS_FLAVOR} = xemacs; then
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: ${ICONDIR}/
@@ -2712,9 +2774,9 @@ $as_echo_n "checking where to find the additional elisp libraries... " >&6; }
 	ADDITIONAL_LOAD_PATH="${withval}"
       else
 	if test x"$USER" != xroot -a x"$HOME" != x -a -f "$HOME"/.emacs; then
-          ADDITIONAL_LOAD_PATH=`${XEMACSDEBUG}${EMACS} -batch -l "$HOME"/.emacs -l w3mhack.el NONE -f w3mhack-load-path 2>/dev/null | $EGREP -v '^$'`
+          ADDITIONAL_LOAD_PATH=`${XEMACSDEBUG} \'${EMACS}\' -batch -l \'$HOME/.emacs\' -l w3mhack.el NONE -f w3mhack-load-path 2>/dev/null | \'${EGREP}\' -v \'^$\'`
         else
-          ADDITIONAL_LOAD_PATH=`${XEMACSDEBUG}${EMACS} -batch -l w3mhack.el NONE -f w3mhack-load-path 2>/dev/null | $EGREP -v '^$'`
+          ADDITIONAL_LOAD_PATH=`${XEMACSDEBUG} \'${EMACS}\' -batch -l w3mhack.el NONE -f w3mhack-load-path 2>/dev/null | \'${EGREP}\' -v \'^$\'`
         fi
       fi
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: ${ADDITIONAL_LOAD_PATH}" >&5
@@ -2728,17 +2790,78 @@ fi
 if test "${with_attic+set}" = set; then :
   withval=$with_attic; if test "x${withval}" = xyes; then
       if test x"$ADDITIONAL_LOAD_PATH" = xNONE; then
-        ADDITIONAL_LOAD_PATH=`pwd`/attic
+        ADDITIONAL_LOAD_PATH="`pwd`/attic"
       else
-        ADDITIONAL_LOAD_PATH=${ADDITIONAL_LOAD_PATH}:`pwd`/attic
+        ADDITIONAL_LOAD_PATH="${ADDITIONAL_LOAD_PATH}:`pwd`/attic"
       fi
     fi
 fi
 
-  retval=`eval ${XEMACSDEBUG}${EMACS}' '${VANILLA_FLAG}' -batch -l w3mhack.el '${ADDITIONAL_LOAD_PATH}' -f w3mhack-print-status 2>/dev/null | $EGREP -v '\''^$'\'`
+  retval=`eval "${XEMACSDEBUG} '${EMACS}' ${VANILLA_FLAG} -batch -l w3mhack.el '${ADDITIONAL_LOAD_PATH}' -f w3mhack-print-status 2>/dev/null | '${EGREP}' -v '^$'"`
   if test x"$retval" != xOK; then
     as_fn_error $? "Process couldn't proceed.  See the above messages." "$LINENO" 5
   fi
+
+  # Extract the first word of "gzip", so it can be a program name with args.
+set dummy gzip; ac_word=$2
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+$as_echo_n "checking for $ac_word... " >&6; }
+if ${ac_cv_path_GZIP_PROG+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  case $GZIP_PROG in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_GZIP_PROG="$GZIP_PROG" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+    ac_cv_path_GZIP_PROG="$as_dir/$ac_word$ac_exec_ext"
+    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  ;;
+esac
+fi
+GZIP_PROG=$ac_cv_path_GZIP_PROG
+if test -n "$GZIP_PROG"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $GZIP_PROG" >&5
+$as_echo "$GZIP_PROG" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+
+
+
+# Check whether --with-compress-install was given.
+if test "${with_compress_install+set}" = set; then :
+  withval=$with_compress_install; if test "${withval}" = no; then
+		COMPRESS_INSTALL=no;
+	  else
+		if test -n "${GZIP_PROG}"; then
+			COMPRESS_INSTALL=yes;
+		else
+			COMPRESS_INSTALL=no;
+		fi;
+	  fi
+else
+  if test -n "${GZIP_PROG}"; then
+		COMPRESS_INSTALL=yes;
+	  else
+		COMPRESS_INSTALL=no;
+	  fi
+fi
+
 
 ac_config_files="$ac_config_files Makefile doc/Makefile"
 

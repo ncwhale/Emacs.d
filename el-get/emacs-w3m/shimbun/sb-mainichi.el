@@ -1,6 +1,7 @@
 ;;; sb-mainichi.el --- shimbun backend for Mainichi jp -*- coding: iso-2022-7bit; -*-
 
-;; Copyright (C) 2001-2009, 2011-2013 Koichiro Ohba <koichiro@meadowy.org>
+;; Copyright (C) 2001-2009, 2011-2013, 2015, 2016
+;; Koichiro Ohba <koichiro@meadowy.org>
 
 ;; Author: Koichiro Ohba <koichiro@meadowy.org>
 ;;         Katsumi Yamaoka <yamaoka@jpl.org>
@@ -91,7 +92,7 @@
     ("entertainment.art" "芸術・文化"
      "http://mainichi.jp/enta/art/archive/")
     ("fuchisou" "風知草"
-     "http://mainichi.jp/select/seiji/fuchisou/")))
+     "http://mainichi.jp/fuchisou/")))
 
 (defvar shimbun-mainichi-x-face-alist
   '(("default" . "\
@@ -131,18 +132,21 @@ Face: iVBORw0KGgoAAAANSUhEUgAAABwAAAAcBAMAAACAI8KnAAAABGdBTUEAALGPC/xhBQAAABh
 						 &optional range)
   (let ((from (concat shimbun-mainichi-server-name " ("
 		      (shimbun-current-group-name shimbun) ")"))
+	(group (shimbun-current-group-internal shimbun))
 	headers)
-    (if (string-match "\\.rss\\'" (shimbun-index-url shimbun))
-	(progn
-	  (shimbun-strip-cr)
-	  (goto-char (point-min))
-	  (while (and (search-forward "<title><![CDATA[AD:" nil t)
-		      (re-search-backward "<item[\t\n ]*" nil t)
-		      (shimbun-end-of-tag "item" t))
-	    (replace-match "\n"))
-	  (dolist (header (setq headers (luna-call-next-method)) headers)
-	    (shimbun-header-set-from header from)))
-      (shimbun-mainichi-get-headers shimbun range from))))
+    (cond ((string-match "\\.rss\\'" (shimbun-index-url shimbun))
+	   (shimbun-strip-cr)
+	   (goto-char (point-min))
+	   (while (and (search-forward "<title><![CDATA[AD:" nil t)
+		       (re-search-backward "<item[\t\n ]*" nil t)
+		       (shimbun-end-of-tag "item" t))
+	     (replace-match "\n"))
+	   (dolist (header (setq headers (luna-call-next-method)) headers)
+	     (shimbun-header-set-from header from)))
+	  ((string-equal group "fuchisou")
+	   (shimbun-mainichi-get-headers-fuchisou shimbun range from))
+	  (t
+	   (shimbun-mainichi-get-headers shimbun range from)))))
 
 (luna-define-method shimbun-rss-build-message-id :around ((shimbun
 							   shimbun-mainichi)
@@ -150,6 +154,98 @@ Face: iVBORw0KGgoAAAANSUhEUgAAABwAAAAcBAMAAACAI8KnAAAABGdBTUEAALGPC/xhBQAAABh
   ;; Don't strip string following "?" or "#" in url.  See sb-rss.el.
   (concat "<" (md5 url) "%" (shimbun-current-group shimbun)
 	  "@" (shimbun-server shimbun) ".shimbun.namazu.org>"))
+
+(defun shimbun-mainichi-get-headers-fuchisou (shimbun range from)
+  "Get headers for the fuchisou groups."
+  (let ((rgrp (mapconcat 'identity
+			 (nreverse (split-string
+				    (shimbun-current-group-internal shimbun)
+				    "\\."))
+			 "."))
+	(count 0)
+	(index (shimbun-index-url shimbun))
+	(pages (shimbun-header-index-pages range))
+	end id headers indices idx)
+    (catch 'stop
+      (while t
+	(shimbun-strip-cr)
+	(goto-char (point-min))
+	(when (and (or (search-forward "<!--<h2>最新の記事</h2>-->" nil t)
+		       (search-forward "<!--| main-box BGN |-->" nil t))
+		   (re-search-forward "\
+<ul[\t\n ]+\\(?:[^\t\n >]+[\t\n ]+\\)*class=\"list-typeD\""
+				      nil t)
+		   (shimbun-end-of-tag "ul"))
+	  (goto-char (match-beginning 0))
+	  (setq end (match-end 0))
+	  (while (re-search-forward
+		  (eval-when-compile
+		    (concat
+		     "<a[\t\n ]+\\(?:[^\t\n >]+[\t\n ]+\\)*href=\""
+		     ;; 1. url
+		     "\\(/articles/"
+		     ;; 2. serial number
+		     "\\("
+		     ;; 3. year
+		     "m?\\(20[0-9][0-9]\\)"
+		     ;; 4. month
+		     "\\([01][0-9]\\)"
+		     ;; 5. day
+		     "\\([0-3][0-9]\\)"
+		     "[^\".]+\\)\\)\""
+		     "[^>]*>\\(?:[\t\n ]*<[^>]+>\\)*[\t\n ]*"
+		     ;; 6. subject
+		     "\\([^<]+\\)"))
+		  end t)
+	    (setq id (concat "<"
+			     (mapconcat
+			      'identity
+			      (save-match-data
+				(nreverse
+				 (split-string (match-string 2) "/")))
+			      ".")
+			     "." rgrp
+			     "%" shimbun-mainichi-top-level-domain ">"))
+	    (if (shimbun-search-id shimbun id)
+		(unless (zerop count)
+		  (throw 'stop nil))
+	      (push (shimbun-create-header
+		     0 (match-string 6) from
+		     (shimbun-make-date-string
+		      (string-to-number (match-string 3))
+		      (string-to-number (match-string 4))
+		      (string-to-number (match-string 5)))
+		     id "" 0 0
+		     (shimbun-expand-url (match-string 1) index))
+		    headers))))
+	(push index indices)
+	(if (and (or (not pages)
+		     (< (setq count (1+ count)) pages))
+		 (progn
+		   (goto-char (point-min))
+		   (re-search-forward "\
+<div[\t\n ]+\\(?:[^\t\n >]+[\t\n ]+\\)*class=\"pager\""
+				      nil t))
+		 (shimbun-end-of-tag "div")
+		 (progn
+		   (setq end (match-beginning 0)
+			 idx nil)
+		   (while (and (not idx)
+			       (re-search-backward "\
+<a[\t\n ]+\\(?:[^\t\n >]+[\t\n ]+\\)*href=\"\\([^\"]+/[0-9]+\\)\""
+						   end t))
+		     (when (member (setq idx (shimbun-expand-url
+					      (match-string 1) index))
+				   indices)
+		       (setq idx nil)))
+		   idx))
+	    (progn
+	      (setq index idx)
+	      (erase-buffer)
+	      (shimbun-fetch-url shimbun index t)
+	      (goto-char (point-min)))
+	  (throw 'stop nil))))
+    headers))
 
 (defun shimbun-mainichi-get-headers (shimbun range from)
   "Get headers for non-RSS groups."
@@ -186,7 +282,7 @@ Face: iVBORw0KGgoAAAANSUhEUgAAABwAAAAcBAMAAACAI8KnAAAABGdBTUEAALGPC/xhBQAAABh
 		     "\\([01][0-9]\\)"
 		     ;; 5. day
 		     "\\([0-3][0-9]\\)"
-		     "[^.]+\\)\\.html\\)\""
+		     "[^\".]+\\)\\.html\\)\""
 		     "\\(?:[\t\n ]+[^\t\n >]+\\)*[\t\n ]*>[\t\n ]*"
 		     ;; 6. subject
 		     "\\([^<]+\\)"))
@@ -277,71 +373,42 @@ Face: iVBORw0KGgoAAAANSUhEUgAAABwAAAAcBAMAAACAI8KnAAAABGdBTUEAALGPC/xhBQAAABh
 (defun shimbun-mainichi-clear-contents (shimbun header)
   (shimbun-strip-cr)
   (goto-char (point-min))
-  (let ((group (shimbun-current-group-internal shimbun))
-	(hankaku (shimbun-japanese-hankaku shimbun))
-	(case-fold-search t)
-	arts)
-    (when (string-equal group "weekly")
-      (when (and (re-search-forward "\
-<div[\t\n ]+\\(?:[^\t\n >]+[\t\n ]+\\)*class=\"Words\""
-				    nil t)
-		 (shimbun-end-of-tag "div"))
-	(setq arts (list (match-string 2))))
-      (when (and (re-search-forward "\
-<\\([^\t\n >]+\\)[\t\n ]+\\(?:[^\t\n >]+[\t\n ]+\\)*class=\"NewsTitle\""
-				    nil t)
-		 (shimbun-end-of-tag (match-string 1)))
-	(setq arts (nconc arts (list (concat "<p>" (match-string 2) "</p>"))))))
-    (while (and (re-search-forward "\
-<div[\t\n ]+\\(?:[^\t\n >]+[\t\n ]+\\)*class=\
-\"\\(?:NewsBody\\(?: clr\\)?\\|Credit\\)\""
-				   nil t)
-		(shimbun-end-of-tag "div"))
-      (push (match-string 2) arts))
-    (erase-buffer)
-    (if arts
-	(progn
-	  (dolist (art (nreverse arts))
-	    (insert art "\n"))
-
-	  ;; Break continuous lines in yoroku articles.
-	  (when (or (string-equal group "opinion.yoroku")
-		    (string-match "\\`余録[:：]"
-				  (shimbun-header-subject header t)))
-	    (goto-char (point-min))
-	    (while (re-search-forward
-		    (eval-when-compile
-		      (concat "[▲"
-			      (condition-case nil
-				  (list (make-char 'mule-unicode-2500-33ff
-						   33 114))
-				(error nil))
-			      "]"))
-		    nil t)
-	      (replace-match "。</p>\n<p>　")))
-
-	  ;; Convert Japanese zenkaku ASCII chars into hankaku.
-	  (when (and hankaku (not (memq hankaku '(header subject))))
-	    (shimbun-japanese-hankaku-buffer t))
-
-	  (if (shimbun-prefer-text-plain-internal shimbun)
-	      (progn
-		;; Replace image tags with text.
-		(goto-char (point-min))
-		(while (and (re-search-forward "\\(<img[\t\n ]+\
+  (if (and (re-search-forward
+	    "<div[\t\n ]+\\(?:[^\t\n >]+[\t\n ]+\\)*class=\"main-text\"" nil t)
+	   (shimbun-end-of-tag "div"))
+      (let ((hankaku (shimbun-japanese-hankaku shimbun))
+	    regexp)
+	(delete-region (match-end 2) (point-max))
+	(delete-region (point-min) (match-beginning 2))
+	(dolist (rm '("class=\"img-left[\t\n ]+ad\""
+		      "class=\"txtad\"" "id=\"tools\""))
+	  (setq regexp (concat "<div[\t\n ]+\\(?:[^\t\n >]+[\t\n ]+\\)*" rm))
+	  (goto-char (point-min))
+	  (while (re-search-forward regexp nil t)
+	    (when (shimbun-end-of-tag "div" t)
+	      (delete-region (goto-char (match-beginning 0)) (match-end 0))
+	      (insert "\n"))))
+	;; Convert Japanese zenkaku ASCII chars into hankaku.
+	(when (and hankaku (not (memq hankaku '(header subject))))
+	  (shimbun-japanese-hankaku-buffer t))
+	(if (shimbun-prefer-text-plain-internal shimbun)
+	    (progn
+	      ;; Replace image tags with text.
+	      (goto-char (point-min))
+	      (while (and (re-search-forward "\\(<img[\t\n ]+\
 \\(?:[^\t\n >]+[\t\n ]+\\)*alt=\"\\)[^\"]+"
-					       nil t)
-			    (shimbun-end-of-tag nil t))
-		  (replace-match "\n&lt;写真&gt;\n")))
-	    ;; Break long lines.
-	    (shimbun-break-long-japanese-lines))
-	  t)
-
-      (insert "<html><body>\
-この記事はもうありません。<br>\n\
-\(さもなければ通常とは異なる形式を使っているか、<br>\n\
-&nbsp;または取得に失敗したのかもしれません。)</body></html>\n")
-      nil)))
+					     nil t)
+			  (shimbun-end-of-tag nil t))
+		(replace-match "\n&lt;写真&gt;\n")))
+	  ;; Break long lines.
+	  (shimbun-break-long-japanese-lines))
+	t)
+;;    (erase-buffer)
+;;    (insert "<html><body>\
+;;この記事はもうありません。<br>\n\
+;;\(さもなければ通常とは異なる形式を使っているか、<br>\n\
+;;&nbsp;または取得に失敗したのかもしれません。)</body></html>\n")
+    nil))
 
 (luna-define-method shimbun-multi-clear-contents :around ((shimbun
 							   shimbun-mainichi)

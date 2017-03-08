@@ -1,1 +1,1 @@
-:pserver:anonymous@cvs.namazu.org:/storage/cvsroot
+:pserver;proxy=dev-proxy.oa.com;proxyport=8080:anonymous@cvs.namazu.org:/storage/cvsroot

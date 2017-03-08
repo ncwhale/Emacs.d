@@ -1,6 +1,6 @@
 ;;; nnshimbun.el --- interfacing with web newspapers
 
-;; Copyright (C) 2000-2012 TSUCHIYA Masatoshi <tsuchiya@namazu.org>
+;; Copyright (C) 2000-2012, 2016, 2017 TSUCHIYA Masatoshi <tsuchiya@namazu.org>
 
 ;; Authors: TSUCHIYA Masatoshi <tsuchiya@namazu.org>,
 ;;          ARISAWA Akihiro    <ari@mbf.sphere.ne.jp>,
@@ -370,8 +370,8 @@ If FULL-NAME-P is non-nil, it assumes that GROUP is a full name."
 	   `(plist-get (nnshimbun-find-group-parameters ,name) ,symbol)))))
 
 (defun nnshimbun-decode-group-name (group)
-  (if (and group (mm-coding-system-p 'utf-8))
-      (mm-decode-coding-string group 'utf-8)
+  (if (and group (coding-system-p 'utf-8))
+      (decode-coding-string group 'utf-8)
     group))
 
 (defun nnshimbun-nov-buffer-name (&optional group)
@@ -416,6 +416,20 @@ If FULL-NAME-P is non-nil, it assumes that GROUP is a full name."
 			      (cons (list 'nnshimbun-shimbun shimbun) defs))
 	  t))))
 
+(eval-and-compile
+  (require 'advice)
+
+  (defadvice gnus-backlog-shutdown (after do-it-for-nnshimbun-as-well activate)
+    "Do it for nnshimbun as well."
+    (ad-with-originals (gnus-backlog-shutdown)
+      (nnshimbun-backlog (gnus-backlog-shutdown)))
+    (dolist (buffer (buffer-list))
+      (when (string-match "\\` \\*nnshimbun backlog " (buffer-name buffer))
+	(kill-buffer buffer))))
+
+  (defalias 'nnshimbun-unadvised-gnus-backlog-shutdown
+    (ad-get-orig-definition 'gnus-backlog-shutdown)))
+
 (deffoo nnshimbun-close-server (&optional server)
   (when (nnshimbun-server-opened server)
     (when nnshimbun-shimbun
@@ -423,7 +437,7 @@ If FULL-NAME-P is non-nil, it assumes that GROUP is a full name."
 	(when (buffer-live-p (nnshimbun-nov-buffer-name group))
 	  (nnshimbun-write-nov group t)))
       (shimbun-close nnshimbun-shimbun)))
-  (nnshimbun-backlog (gnus-backlog-shutdown))
+  (nnshimbun-backlog (nnshimbun-unadvised-gnus-backlog-shutdown))
   (nnoo-close-server 'nnshimbun server)
   t)
 
@@ -918,17 +932,15 @@ shimbun group."
 		   alist nil t
 		   (car (delete "" nnshimbun-server-history))
 		   'nnshimbun-server-history))
-     (static-unless (featurep 'xemacs)
-       (setq server (string-as-unibyte server)))
      (if (assoc server alist)
 	 (let ((shimbun (shimbun-open server)))
 	   (setq group (completing-read
 			"Group name [Hit TAB to see candidates]: "
 			(mapcar 'list (shimbun-groups shimbun))))
 	   ;; Unify non-ASCII text.
-	   (when (mm-coding-system-p 'utf-8)
-	     (setq group (mm-decode-coding-string
-			  (mm-encode-coding-string group 'utf-8) 'utf-8)))
+	   (when (coding-system-p 'utf-8)
+	     (setq group (decode-coding-string
+			  (encode-coding-string group 'utf-8) 'utf-8)))
 	   (unless (shimbun-group-p shimbun group)
 	     (setq group nil)))
        (setq server nil))
@@ -937,8 +949,8 @@ shimbun group."
       (let (nname)
 	(setq server (list 'nnshimbun server)
 	      nname (gnus-group-prefixed-name
-		     (if (mm-coding-system-p 'utf-8)
-			 (mm-encode-coding-string group 'utf-8)
+		     (if (coding-system-p 'utf-8)
+			 (encode-coding-string group 'utf-8)
 		       group)
 		     server))
 	(if ephemeral

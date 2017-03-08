@@ -63,15 +63,31 @@
 ;; turn on highlighting current line
 (global-hl-line-mode 1)
 
+(require 'chinese-fonts-setup)
+;; 不需要消息
+;;(set cfs-verbose nil)
+;; 添加字体
+(setq cfs-personal-fontnames
+     '(()
+       ("Noto Sans Mono CJK SC", "Noto Sans CJK SC")
+       ()))
+;; 让 chinese-fonts-setup 随着 emacs 自动生效。
+(chinese-fonts-setup-enable)
+;; 让 spacemacs mode-line 中的 Unicode 图标正确显示。
+(cfs-set-spacemacs-fallback-fonts)
+ 
+
 ;; Setting English Font
-(set-face-attribute
-  'default nil :font "Consolas 12")
+;;(set-face-attribute
+;;  'default nil :font "Consolas 11")
  
 ;; Chinese Font
-(dolist (charset '(kana han symbol cjk-misc bopomofo))
-    (set-fontset-font (frame-parameter nil 'font)
-                      charset
-                      (font-spec :family "Noto Sans S Chinese" :size 14)))
+;;(dolist (charset '(kana han symbol cjk-misc bopomofo))
+;;    (set-fontset-font (frame-parameter nil 'font)
+;;                      charset
+;;                      (font-spec :family "Noto Sans S Chinese" :size 14)))
+
+;; (setq face-font-rescale-alist '(("Noto Sans S Chinese" 1.2) ("Microsoft Yahei" . 1.2) ("WenQuanYi Zen Hei" . 1.2)))
 
 ;; For coffee mode
 (setq tab-width 2)

@@ -1,6 +1,6 @@
 ;;; sb-asahi.el --- shimbun backend for asahi.com -*- coding: iso-2022-7bit; -*-
 
-;; Copyright (C) 2001-2011, 2013 Yuuichi Teranishi <teranisi@gohome.org>
+;; Copyright (C) 2001-2011, 2013-2016 Yuuichi Teranishi <teranisi@gohome.org>
 
 ;; Author: TSUCHIYA Masatoshi <tsuchiya@namazu.org>,
 ;;         Yuuichi Teranishi  <teranisi@gohome.org>,
@@ -146,7 +146,7 @@ Every `.' in NAME will be replaced with `/'."
 		"\\([^/]+\\)"
 		"\\(?:/update/"
 		;; 3 and 4. serial number
-		"\\([0-9]+\\)\\)?/\\([a-z]*[0-9]+\\)"
+		"\\([0-9]+\\)\\)?/\\([0-9a-z]+\\)"
 		"\\.html\\?ref=rss\\)"
 		"\"" s0 ">" s0 "<title>" s0
 		;; 5. subject
@@ -925,41 +925,16 @@ Each table is the same as the `cdr' of the element of
 `shimbun-asahi-group-table'.")
 
 (defvar shimbun-asahi-content-start
-  "<div[\t\n ]+class=\"\
-\\(?:ArticleBody\
-\\|ThmbSet300Tb\\|ThmbSet256\\|Kansai-ThmbSet100\\|ThmbCol\\)\">\
-\\|<!--[\t\n ]*End of Headline[\t\n ]*-->\
-\\(?:[\t\n ]*<div[\t\n ]+[^<]+</div>[\t\n ]*\
-\\|[\t\n ]*<p[\t\n ]+[^<]+</p>[\t\n ]*\\)?\
-\\|<!--[\t\n ]*Start of \\(Kiji\\|photo\\)[\t\n ]*-->\
-\\|<!--[\t\n ]*FJZONE START NAME=\"HONBUN\"[\t\n ]*-->")
+  "<!-+[\t\n ]*ArticleBody[\t\n ]*BGN[\t\n ]*-+>")
 
 (defvar shimbun-asahi-content-end
-  "</div>[\t\n ]*<!-+[\t\n ]*ArticleBody[\t\n ]+END[\t\n ]*-+>\
-\\|<dl[\t\n ]+class=\"PrInfo\">\
-\\|<!--[\t\n ]*google_ad_section_end\
-\\|<!-[^>]+[^>★]ここまで[\t\n ]*-+>\
-\\|\\(?:[\t\n ]*<[^>]+>\\)*[\t\n ]*<!--[\t\n ]*Start of hatenab[\t\n ]*-->\
-\\|<!--[\t\n ]*End of Kiji[\t\n ]*-->\
-\\|<!--[\t\n ]*End of related link[\t\n ]*-->\
-\\|<!--[\t\n ]*FJZONE END NAME=\"HONBUN\"[\t\n ]*-->")
+  "<!-+[\t\n ]*ArticleBody[\t\n ]*END[\t\n ]*-+>")
 
 (defvar shimbun-asahi-text-content-start
-  "<div[\t\n ]+class=\"\\(?:ThmbSet256\\|Kansai-ThmbSet100\\|ThmbCol\\)\">\
-\\|<!--[\t\n ]*End of Headline[\t\n ]*-->\
-\\(?:[\t\n ]*<div[\t\n ]+[^<]+</div>[\t\n ]*\
-\\|[\t\n ]*<p[\t\n ]+[^<]+</p>[\t\n ]*\\)?\
-\\|<!--[\t\n ]*Start of Kiji[\t\n ]*-->\
-\\|<!--[\t\n ]*FJZONE START NAME=\"HONBUN\"[\t\n ]*-->")
+  "<!-+[\t\n ]*ArticleText[\t\n ]*BGN[\t\n ]*-+>")
 
 (defvar shimbun-asahi-text-content-end
-  "<dl[\t\n ]+class=\"PrInfo\">\
-\\|<!--[\t\n ]*google_ad_section_end\
-\\|<!-[^>]+ここまで[\t\n ]*-+>\
-\\|\\(?:[\t\n ]*<[^>]+>\\)*[\t\n ]*<!--[\t\n ]*Start of hatenab[\t\n ]*-->\
-\\|<!--[\t\n ]*\\(?:google_ad_section\\|[AD★☆]+\\)\
-\\|<!--[\t\n ]*End of Kiji[\t\n ]*-->\
-\\|<!--[\t\n ]*FJZONE END NAME=\"HONBUN\"[\t\n ]*-->")
+  "<!-+[\t\n ]*ArticleText[\t\n ]*END[\t\n ]*-+>")
 
 (defvar shimbun-asahi-x-face-alist
   '(("default" . "\
@@ -1007,32 +982,46 @@ Face: iVBORw0KGgoAAAANSUhEUgAAAEIAAAAQBAMAAABQPLQnAAAAElBMVEX8rKjd3Nj+7utdXFr
 	  (t
 	   (shimbun-expand-url (format index group) shimbun-asahi-url)))))
 
-(defun shimbun-asahi-article-contents (group)
+(defun shimbun-asahi-article-contents (group shimbun)
   "Get article's contents for editorial and tenjin groups.
 Contents will be saved in the shimbun header as the extra element."
   (let ((case-fold-search t)
 	contents)
-    (goto-char (point-min))
     (cond ((string-equal group "editorial")
+	   (goto-char (point-max))
+	   (shimbun-retrieve-url "http://www.asahi.com/paper/editorial2.html")
 	   (let (tem)
+	     (goto-char (point-min))
 	     (while (and (re-search-forward "\
-<[^\t\n >]+[\t\n ]+\\(?:[^\t\n >]+[\t\n ]+\\)*id=\"Edit[0-9]*\"[^>]*>\
-\\(?:[\t\n ]*<[^>]*>\\)*[\t\n ]*\\([^<]+\\)" nil t)
+<div[\t\n ]+\\(?:[^\t\n >]+[\t\n ]+\\)*class=\"ArticleTitle\"" nil t)
+			 (re-search-forward "\
+<div[\t\n ]+\\(?:[^\t\n >]+[\t\n ]+\\)*class=\"Title\"" nil t)
+			 (shimbun-end-of-tag "div")
 			 (progn
-			   (push (shimbun-replace-in-string (match-string 1)
-							    "[\t ]+\\'" "")
-				 tem)
-			   (re-search-forward "\
-<div[\t\n ]+\\(?:[^\t\n >]+[\t\n ]+\\)*class=\"BodyTxt\"" nil t))
+			   (goto-char (match-beginning 2))
+			   (if (re-search-forward "<h[0-9]>[\t\n ]*\\([^<]+\\)"
+						  (match-end 2) t)
+			       (progn
+				 (push (shimbun-replace-in-string
+					(match-string 1) "[\t ]+\\'" "")
+				       tem)
+				 (re-search-forward "\
+<div[\t\n ]+\\(?:[^\t\n >]+[\t\n ]+\\)*class=\"ArticleText\"" nil t))
+			     (goto-char (match-end 0))
+			     nil))
 			 (shimbun-end-of-tag "div" t))
 	       (push (match-string 3) tem))
+	     (goto-char (point-max))
 	     (setq tem (nreverse tem))
 	     (while tem
 	       (setq contents (concat contents
 				      "<p><h2>" (pop tem) "</h2></p>\n"
 				      (pop tem) "\n")))))
 	  ((string-equal group "tenjin")
-	   (when (and (search-forward "▼" nil t)
+	   (goto-char (point-min))
+	   (when (and (re-search-forward "\
+<div[\t\n ]+\\(?:[^\t\n >]+[\t\n ]+\\)*class=\"ArticleBody\"" nil t)
+		      (search-forward "▼" nil t)
 		      (re-search-backward
 		       "<p\\(?:[\t\n ]+[^\t\n >]+\\)*[\t\n ]*>" nil t)
 		      (shimbun-end-of-tag "p" t))
@@ -1042,12 +1031,23 @@ Contents will be saved in the shimbun header as the extra element."
 				      (split-string (match-string 3)
 						    "[\t\n 　]*▼[\t\n 　]*" t)
 				      "。\n</p>\n<p>\n　")
-			   "\n</p>\n")))))
+			   "\n</p>\n")))
+	   (goto-char (point-max))))
     (with-temp-buffer
-      (set-buffer-multibyte nil)
-      (insert (if contents
-		  (encode-coding-string contents 'utf-8)
-		"<h2>No content retrieved.</h2>\n"))
+      (if contents
+	  (progn
+	    (set-buffer-multibyte t)
+	    (insert contents)
+	    (unless (memq (shimbun-japanese-hankaku shimbun)
+			  '(header subject nil))
+	      (shimbun-japanese-hankaku-buffer t))
+	    (insert (encode-coding-string (prog1
+					      (buffer-string)
+					    (erase-buffer)
+					    (set-buffer-multibyte nil))
+					  'utf-8)))
+	(set-buffer-multibyte nil)
+	(insert "<h2>No content retrieved.</h2>\n"))
       (let ((coding-system-for-read 'binary)
 	    (coding-system-for-write 'binary))
 	(shell-command-on-region (point-min) (point-max) "gzip -f9" nil t))
@@ -1153,7 +1153,8 @@ Contents will be saved in the shimbun header as the extra element."
 				 shimbun-asahi-top-level-domain ">")
 		       (concat "<" serial "%" rgroup "."
 			       shimbun-asahi-top-level-domain ">")))
-	    (setq extra (and paper-p (shimbun-asahi-article-contents group)))
+	    (setq extra (and paper-p
+			     (shimbun-asahi-article-contents group shimbun)))
 	    (unless (shimbun-search-id shimbun id)
 	      (push (shimbun-create-header
 		     ;; number
@@ -1537,6 +1538,10 @@ as article contents."
 	     (or (match-string 1) (match-string 2) (match-string 3)) t)
 	(delete-region (match-beginning 0) (match-end 0))
 	(insert "\n")))
+    (goto-char (point-min))
+    (when (re-search-forward "\
+[\t\n ]*<!-+[\t\n ]*Outbrain[\t\n ]+TAG[\t\n ]+PC[\t\n ]*-+>" nil t)
+      (delete-region (match-end 0) (point-max)))
     ;; Remove Ads.
     (goto-char (point-min))
     (let (st)

@@ -6,9 +6,12 @@
 @documentlanguage ja
 @include version.texi
 @synindex pg cp
+@iftex
+@usedvipdfmx
+@end iftex
 
 @copying
-Copyright @copyright{} 2000-2011 @w{TSUCHIYA Masatoshi}
+Copyright @copyright{} 2000-2014 @w{TSUCHIYA Masatoshi}
 
 @quotation
 Permission is granted to copy, distribute and/or modify this document
@@ -445,6 +448,11 @@ Emacs-w3m $B$r(B CVS $B$G<hF@$7$?$N$J$i$P!"(B@samp{configure} $B%9%/%j%W%H$
 @example
 % ./configure --with-addpath=/opt/share/apel:/opt/share/flim
 @end example
+
+$B%G%U%)%k%H$G$O%$%s%9%H!<%i(B ($B$D$^$j(B @samp{make install}) $B$O(B gzip $B$K$h$C$F(B
+$B%$%s%9%H!<%k$5$l$k(B Lisp $B$N%=!<%9%U%!%$%k$H(B info $B%U%!%$%k$r05=L$7$^$9!#$b(B
+$B$7$=$l$i$N%U%!%$%k$,05=L$5$l$k$3$H$rK>$^$J$$$N$G$"$l$P!"(Bconfigure $B%*%W%7%g(B
+$B%s$N(B {--without-compress-install} $B$r;H$C$F$/$@$5$$!#(B
 
 @item
 $BC1$K(B @samp{make} $B$H(B @samp{make install} $B$r<B9T$7$^$9!#(BXEmacs $B$r;H$C$F$$(B
@@ -3838,6 +3846,19 @@ process.  It shows a percentage of the data loaded from the web server.
 @vindex w3m-show-current-title-in-buffer-tab
 If non-@code{nil}, show the title strings in the buffers tab.  It has no
 effect if your XEmacs does not support the gutter items.
+
+@item w3m-input-url-provide-initial-content
+@vindex w3m-input-url-provide-initial-content
+If non-@code{nil}, provide an initial minibuffer content (if any) when
+entering a url.  The default is @code{nil}.  A url string is not worth
+editing in most cases since a url thing is generally a list of arbitrary
+letters, not a human readable one.  So, we provide no initial content
+when prompting you for a url by default.  But sometimes there will be a
+case to be convenient if you can modify the url string of [1]the link
+under the cursor or of [2]the current page.  In that case, you can type
+the @kbd{M-n} key [1]once or [2]twice to fill the minibuffer with an
+initial content if you use Emacs 23 and up.  Otherwise, set this
+variable to a non-@code{nil} value to always provide an initial content.
 @end table
 
 @node Hooking into MUAs
@@ -3882,12 +3903,6 @@ effect if your XEmacs does not support the gutter items.
 $B$G$"$l$P!"2?$b$9$kI,MW$OL5$$$G$7$g$&!#(B@xref{Display Customization, ,$BI=<((B
 $B$N%+%9%?%^%$%:(B, emacs-mime-ja, The Emacs MIME Manual}.  $B$5$i(B
 $B$K(B @xref{HTML, ,HTML, gnus-ja, The Gnus Manual}.
-
-@quotation
-XEmacs $B$G(B @code{gnus-article-html} $B$r;H$&$?$a$N%R%s%H(B
-$B$,(B @uref{http://article.gmane.org/gmane.emacs.gnus.general/72704} $B$K$"$j(B
-$B$^$9!#(B
-@end quotation
 
 $B$7$+$7!"$b$7$*;H$$$N(B Gnus $B$,>/$78E$/$F(B @code{mm-shr} $B4X?t(B
 $B$d(B @code{gnus-article-html} $B4X?t$,;H$($J$$$+!"$^$?$O(B @acronym{HTML} $B5-;v(B
@@ -5214,9 +5229,10 @@ zeit-de.gesundheit zeit-de.international zeit-de.leben zeit-de.literatur
 zeit-de.musik zeit-de.news zeit-de.reisen zeit-de.schule zeit-de.sport
 zeit-de.studium zeit-de.wirtschaft zeit-de.wissen zeit-de.zuender
 
-@item @uref{http://gendai.net/, $B%2%s%@%$%M%C%H(B}
-gendai-net.today gendai-net.syakai gendai-net.sports gendai-net.geino
-gendai-net.wadai gendai-net.kenko gendai-net.syoku gendai-net.book
+@item @uref{http://www.nikkan-gendai.com/, $BF|4)%2%s%@%$(B}
+nikkangendai.top nikkangendai.news nikkangendai.geino
+nikkangendai.sports nikkangendai.life nikkangendai.book
+nikkangendai.gourmet
 
 @item @uref{http://mainichi.jp/, $BKhF|(Bjp}
 @itemx (2007$BG/(B10$B7n$K(B MSN $B$+$i<+<R%5%$%H$K0\9T(B)
@@ -5327,14 +5343,15 @@ nikkei.release.service.lease nikkei.release.service.travel
 nikkei.release.service.etc nikkei.release.const.const
 nikkei.release.const.house nikkei.release.const.etc nikkei.shasetsu
 
-@item @uref{http://sankei.jp.msn.com/, MSN $B;:7P%K%e!<%9(B}
-@itemx (2007$BG/(B10$B7n$+$i(B MSN $B$K0\9T(B)
-sankei.points sankei.flash sankei.affairs sankei.politics sankei.economy
-sankei.world sankei.sports sankei.entertainments sankei.life
-sankei.science sankei.region sankei.west.flash sankei.west.points
-sankei.west.affairs sankei.west.sports sankei.west.life
-sankei.west.economy sankei.column.sankeisho sankei.column.shucho
-sankei.column.seiron
+@item @uref{http://www.sankei.com/, $B;:7P%K%e!<%9(B}
+sankei.affairs sankei.column sankei.column.editorial
+sankei.column.sankeisyo sankei.column.seiron sankei.economy
+sankei.entertainments sankei.flash sankei.life sankei.politics
+sankei.region.chubu sankei.region.chugoku-shikoku
+sankei.region.hokkaido-tohoku sankei.region.kanto sankei.region.kinki
+sankei.region.kyushu-okinawa sankei.sports sankei.top
+sankei.west.affairs sankei.west.economy sankei.west.flash
+sankei.west.life sankei.west.sports sankei.world
 
 @item @uref{http://www.spiegel.de/, Spiegel Online}
 spiegel.news
@@ -5370,6 +5387,9 @@ yomiuri.world
 $B$b$G$-$^$9!#$=$l$r;H$&$K$O!"Nc$($P%0%k!<%WL>$H$7(B
 $B$F(B @samp{yomiuri.atmoney} $B$NBe$o$j$K(B @samp{yomiuri-html.atmoney} $B$r;XDj(B
 $B$7$F$/$@$5$$!#(B
+
+@item @uref{http://kyoko-np.net/, $B5u9=?7J9(B}
+kyoko-np.rss
 @end table
 
 @node News Sites Supported by Shimbun
@@ -6183,6 +6203,9 @@ ffii.de.software-patente ffii.de.software-patente.ffii
 ffii.de.informations-infrastruktur ffii.fr.brevets-logiciels
 ffii.fr.brevets-logiciels.ffii ffii.nl.softwarepatenten
 ffii.nl.softwarepatenten.ffii
+
+@item @uref{http://yoshinori-kobayashi.com/, $B>.NS$h$7$N$j8x<0%5%$%H(B}
+yoshirin.blog yoshirin.topics
 @end table
 
 @node Shimbun Basics
@@ -6765,7 +6788,7 @@ emacs-w3m $B$r;H$C$F(B HTML $B%U%!%$%k$r1\Mw$9$k$3$H$,$G$-$^$9!#(B
 The Gnus Manual}, $B$r8+$F$/$@$5$$!#(B
 
 $B2C$($F!"0J2<$N<B83E*$J%3!<%I$O(B @samp{multipart/related} $B$J3($r8+$k$?$a$N(B
-$B$b$N$G$9!#I=<($5$l$k>l=j$KFq$,$"$j$^$9!#(B
+$B$b$N$G$9!#I=<($5$l$k>l=j$K>/!9Fq$,$"$j$^$9$,!#(B
 
 @lisp
 (eval-after-load "gnus-art"
@@ -6778,6 +6801,26 @@ The Gnus Manual}, $B$r8+$F$/$@$5$$!#(B
                 (lambda (handle)
                   (gnus-mime-display-mixed (cdr handle)))))
               gnus-mime-multipart-functions))))
+@end lisp
+
+HTML $B%a!<%k$rFI$`$?$a$K(B @code{shr} $B$r;H$&$H!"$=$l$O%a!<%k$NCf$NJ#?t(B
+$B$N(B HTML $B%Q!<%H$N4V$K$"$k%Z!<%86h@Z$j(B ($B$D$^$j(B ~L) $B$r>C$7$F$7$^$$$^$9!#0J(B
+$B2<$N(B advice $B$O$=$l$i$N%Z!<%86h@Z$j$r(B ($B85!9$J$/$F$b(B) $BDI2C$9$k$?$a$NNc$G$9!#(B
+$B?7J9(B (@pxref{Shimbun Library}) $B$rFI$`$H$-Lr$KN)$D$+$b$7$l$^$;$s(B:
+
+@lisp
+(defadvice gnus-mime-display-mixed (around add-page-delimiter
+                                           (handles) activate)
+  "Add page delimiters to the beginning of succeeding html parts."
+  (if (eq mm-text-html-renderer 'shr)
+      (progn
+        (gnus-mime-display-part (pop handles))
+        (while handles
+          (if (equal (mm-handle-media-type (car handles))
+                     "text/html")
+              (insert "\C-l\n"))
+          (gnus-mime-display-part (pop handles))))
+    ad-do-it))
 @end lisp
 
 @item yahtml-mode
@@ -6830,9 +6873,7 @@ Emacs-w3m $B%a!<%j%s%0%j%9%H(B @t{<emacs-w3m@@namazu.org>}
 
 $B$3$N%j%9%H$KEj9F$9$k$H$-$O!"F|K\8l$+1Q8l$r;H$C$F$/$@$5$$!#B?$/$N%a%s%P!<(B
 $B$OF|K\?M$G$9!#Ej9F$5$l$?5-;v$O8x3+$5$l$F$$$F!"%&%'(B
-$B%V(B (@uref{http://emacs-w3m.namazu.org/ml/}) $B$d(B NetNews ($B%5!<(B
-$B%P(B @samp{news.gmane.org} $B>e$N(B @samp{gmane.emacs.w3m} $B$H$$$&%0%k!<%W(B) $B$G(B
-$B$bFI$`$3$H$,$G$-$^$9!#(B
+$B%V(B (@uref{http://emacs-w3m.namazu.org/ml/}) $B$G$bFI$`$3$H$,$G$-$^$9!#(B
 
 $B$3$N%j%9%H$N%a%C%;!<%8$r%a!<%k$G<u$1<h$j$?$$?M$O!"K\J8$K(B
 

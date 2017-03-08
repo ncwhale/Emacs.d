@@ -1,6 +1,6 @@
 ;;; w3m-util.el --- Utility macros and functions for emacs-w3m
 
-;; Copyright (C) 2001-2013 TSUCHIYA Masatoshi <tsuchiya@namazu.org>
+;; Copyright (C) 2001-2014, 2016, 2017 TSUCHIYA Masatoshi <tsuchiya@namazu.org>
 
 ;; Authors: TSUCHIYA Masatoshi <tsuchiya@namazu.org>,
 ;;          Shun-ichi GOTO     <gotoh@taiyo.co.jp>,
@@ -87,12 +87,14 @@
   "Like `if', except that it evaluates COND at compile-time."
   (if (eval cond) then `(progn  ,@else)))
 (put 'w3m-static-if 'lisp-indent-function 2)
+(def-edebug-spec w3m-static-if (&rest def-form))
 
 (put 'w3m-static-when 'lisp-indent-function 1)
 (defmacro w3m-static-when (cond &rest body)
   "Like `when', but evaluate COND at compile time."
   (if (eval cond)
       `(progn ,@body)))
+(def-edebug-spec w3m-static-when (&rest def-form))
 
 (put 'w3m-static-unless 'lisp-indent-function 1)
 (defmacro w3m-static-unless (cond &rest body)
@@ -100,6 +102,7 @@
   (if (eval cond)
       nil
     `(progn ,@body)))
+(def-edebug-spec w3m-static-unless (&rest def-form))
 
 (defmacro w3m-static-cond (&rest clauses)
   "Like `cond', except that it evaluates CONDITION part of each clause at
@@ -109,6 +112,7 @@ compile-time."
     (setq clauses (cdr clauses)))
   (if clauses
       (cons 'progn (cdr (car clauses)))))
+(def-edebug-spec w3m-static-cond (&rest (&rest def-form)))
 
 (put 'w3m-condition-case 'lisp-indent-function 2)
 (defmacro w3m-condition-case (var bodyform &rest handlers)
@@ -512,12 +516,12 @@ An argument of nil means kill the current buffer."
 	   (setq x (cons x
 			 (if (match-beginning 1)
 			     (string-to-number (match-string 2 x))
-			   1))))
+			   0))))
       (if (string-match "\\*w3m\\*\\(<\\([0-9]+\\)>\\)?\\'" y)
 	  (< (cdr x)
 	     (if (match-beginning 1)
 		 (string-to-number (match-string 2 y))
-	       1))
+	       0))
 	(string< (car x) y))
     (string< x y)))
 
@@ -754,7 +758,7 @@ objects will not be deleted:
 	(set-buffer buffer)
 	(while windows
 	  (setq window (pop windows)
-		frame (window-frame window))
+		frame (and (window-live-p window) (window-frame window)))
 	  (when (and frame
 		     (not (eq frame exception)))
 	    (setq one-window-p
@@ -798,8 +802,8 @@ objects will not be deleted:
 		       flag))
 		    (delete-frame frame)
 		  (delete-window window))
-	      (unless one-window-p
-		(delete-window window)))))))))
+	      ;; do not clear the layout.
+	      (switch-to-buffer nil))))))))
 
 
 ;;; Navigation:
@@ -998,7 +1002,8 @@ ___<TAG ...>___
 			      (1- num))))
 		(setq st1 (car (match-data)) ;; (match-beginning 0)
 		      st2 (nth 3 (match-data)) ;; (match-end 1)
-		      st3 (nth 1 (match-data)))) ;; (match-end 0)
+		      ;; There may be only whitespace between <tag>...</tag>.
+		      st3 (min nd3 (nth 1 (match-data))))) ;; (match-end 0)
 	    (search-forward ">")
 	    (setq nd1 (nth 1 (match-data))) ;; (match-end 0)
 	    (goto-char init)
@@ -1093,7 +1098,8 @@ ___<TAG ...>___
 			      (1+ num))))
 		(setq nd1 (nth 3 (match-data)) ;; (match-end 1)
 		      nd2 (nth 2 (match-data)) ;; (match-beginning 1)
-		      nd3 (car (match-data)))) ;; (match-beginning 0)
+		      ;; There may be only whitespace between <tag>...</tag>.
+		      nd3 (max st3 (car (match-data))))) ;; (match-beginning 0)
 	    (search-backward "<")
 	    (setq st1 (car (match-data))) ;; (match-beginning 0)
 	    (goto-char init)
@@ -1358,12 +1364,11 @@ pairs from PLIST whose value is nil."
 (defmacro w3m-insert-string (string)
   "Insert STRING at point without conversions in either case the
 multibyteness of the buffer."
-  (if (and (fboundp 'string-as-multibyte)
-	   (subrp (symbol-function 'string-as-multibyte)))
+  (if (featurep 'emacs)
       `(let ((string ,string))
 	 (insert (if enable-multibyte-characters
-		     (string-as-multibyte string)
-		   (string-as-unibyte string))))
+		     string
+		   (encode-coding-string string 'utf-8-emacs))))
     `(insert ,string)))
 
 (defun w3m-custom-hook-initialize (symbol value)
@@ -1608,6 +1613,7 @@ the function cell of FUNCs rather than their value cell.
 	 ,@body)
     `(flet ,bindings ,@body)))
 (put 'w3m-flet 'lisp-indent-function 1)
+(def-edebug-spec w3m-flet ((&rest (sexp sexp &rest form)) &rest form))
 
 (defmacro w3m-labels (bindings &rest body)
   "Make temporary function bindings.
@@ -1620,6 +1626,7 @@ rather than relying on `lexical-binding'.
   `(,(progn (require 'cl) (if (fboundp 'cl-labels) 'cl-labels 'labels))
     ,bindings ,@body))
 (put 'w3m-labels 'lisp-indent-function 1)
+(def-edebug-spec w3m-labels ((&rest (sexp sexp &rest form)) &rest form))
 
 (eval-when-compile (require 'wid-edit))
 (defun w3m-widget-type-convert-widget (widget)
