@@ -145,13 +145,6 @@
 		   :build/windows-nt
 		   ("sh /usr/bin/autoconf" "sh ./configure" "make")
 		   :info "doc"))
- (emms status "installed" recipe
-       (:name emms :description "The Emacs Multimedia System" :type git :url "git://git.sv.gnu.org/emms.git" :info "doc" :load-path
-	      ("./lisp")
-	      :features emms-setup :build
-	      `(,(format "mkdir -p %s/emms " user-emacs-directory)
-		,(concat "make EMACS=" el-get-emacs " SITEFLAG=\"--no-site-file -L " el-get-dir "/emacs-w3m/ \"" " autoloads lisp docs"))
-	      :depends emacs-w3m))
  (fuzzy status "installed" recipe
 	(:name fuzzy :website "https://github.com/auto-complete/fuzzy-el" :description "Fuzzy matching utilities for GNU Emacs" :type github :pkgname "auto-complete/fuzzy-el"))
  (highline status "installed" recipe
@@ -203,7 +196,18 @@
 	(:name popup :website "https://github.com/auto-complete/popup-el" :description "Visual Popup Interface Library for Emacs" :type github :pkgname "auto-complete/popup-el"))
  (pos-tip status "installed" recipe
 	  (:name pos-tip :description "Show tooltip at point" :type emacswiki))
- (slime status "required" recipe nil)
+ (slime status "installed" recipe
+	(:name slime :description "Superior Lisp Interaction Mode for Emacs" :type github :autoloads "slime-autoloads" :info "doc" :pkgname "slime/slime" :depends cl-lib :load-path
+	       ("." "contrib")
+	       :build
+	       '(("sed" "-i" "s/@itemx INIT-FUNCTION/@item INIT-FUNCTION/" "doc/slime.texi")
+		 ("make" "-C" "doc" "slime.info"))
+	       :build/darwin
+	       '(("make" "-C" "doc" "slime.info"))
+	       :build/berkeley-unix
+	       '(("gmake" "-C" "doc" "slime.info"))
+	       :post-init
+	       (slime-setup)))
  (slime-loads status "removed" recipe nil)
  (smex status "installed" recipe
        (:name smex :description "M-x interface with Ido-style fuzzy matching." :type github :pkgname "nonsequitur/smex" :features smex :post-init
@@ -212,22 +216,5 @@
  (vline status "installed" recipe
 	(:name vline :description "show vertical line (column highlighting) mode." :type emacswiki))
  (yasnippet status "installed" recipe
-	    (:name yasnippet :website "https://github.com/capitaomorte/yasnippet.git" :description "YASnippet is a template system for Emacs." :type github :pkgname "capitaomorte/yasnippet" :features "yasnippet" :pre-init
-		   (unless
-		       (or
-			(boundp 'yas/snippet-dirs)
-			(get 'yas/snippet-dirs 'customized-value))
-		     (setq yas/snippet-dirs
-			   (list
-			    (concat el-get-dir
-				    (file-name-as-directory "yasnippet")
-				    "snippets"))))
-		   :post-init
-		   (put 'yas/snippet-dirs 'standard-value
-			(list
-			 (list 'quote
-			       (list
-				(concat el-get-dir
-					(file-name-as-directory "yasnippet")
-					"snippets")))))
-		   :compile nil :submodule nil)))
+	    (:name yasnippet :website "https://github.com/capitaomorte/yasnippet.git" :description "YASnippet is a template system for Emacs." :type github :pkgname "capitaomorte/yasnippet" :compile "yasnippet.el" :submodule nil :build
+		   (("git" "submodule" "update" "--init" "--" "snippets")))))
